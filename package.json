@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "JobMapApp",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Heat Map of Software Engineering Jobs Across the United States",
   "engines": {
     "node": "~12.11.1"
   },
