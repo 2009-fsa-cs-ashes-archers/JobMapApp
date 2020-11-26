@@ -1,6 +1,8 @@
-const db = require('./db')
+//!! Commented out while we are not using database:
 
-// register models
-require('./models')
+// const db = require('./db')
 
-module.exports = db
+// // register models
+// require('./models')
+
+// module.exports = db
