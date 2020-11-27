@@ -13,7 +13,7 @@ module.exports = router
 
 // This route returns the total number of jobs by state in adzuna's it-jobs category
 // It's an example of how we can get by-the-state data with one api call, but it's not not a good representation of actual software developer jobs
-// Postman Query Time: 0:13 - 0:15
+// Postman Query Time: 0:13 - 0:20
 // A central part of our app depends on visualizing the total number of jobs in each state from the national view
 // Hopefully BLS will give us better options
 router.get('/jobs-by-state', async (req, res, next) => {
@@ -35,7 +35,6 @@ router.get('/jobs-by-state', async (req, res, next) => {
 
 // Total number of US Jobs for "Software Developer"
 // Searches Adzuna for jobs containing "JavaScript" with some other helper keys
-// Query Time: 0:01.8
 router.get('/us-totals', async (req, res, next) => {
   try {
     const {data} = await axios.get(
@@ -88,6 +87,24 @@ router.get('/us-totals-ranges', async (req, res, next) => {
       histogramByPercent
     }
     res.json(nationalTotals)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// User can submit multiple filters but please submit them to req.params the same as the state, with each word separated by '-'
+router.get('/us-totals/:filter', async (req, res, next) => {
+  try {
+    const filter = req.params.filter.split('-').join('%20')
+    const {data} = await axios.get(
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&max_days_old=30&sort_by=relevance`
+    )
+    // Only returns the broad data, not the jobs themselves.
+    // We can change this (see: '/state/jobs/filter')
+    res.json({
+      count: data.count,
+      averageSalary: data.mean
+    })
   } catch (err) {
     next(err)
   }

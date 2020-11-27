@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const axios = require('axios')
 const calculatePercHistogram = require('./histogramHelper')
+const jobDataHelper = require('./jobDataHelper')
 
 module.exports = router
 
@@ -62,43 +63,35 @@ router.get('/:state/jobs', async (req, res, next) => {
         }
       }
     )
-
     // Cleaned up the response object
-    const jobs = data.results.map(job => {
-      return {
-        // Note that a <strong> tag is wrapped around each word in the title -- it's a pretty archaic programming practice to store style tags in the api...
-        title: job.title,
-        company: job.company.display_name,
-        salary:
-          Number(job.salary_is_predicted) > 0
-            ? Number(job.salary_is_predicted)
-            : undefined,
-        maxSalary: Number(job.salary_max),
-        minSalary: Number(job.salary_min),
-        locationName: job.location.display_name,
-        area: job.location.area,
-        longitude: job.longitude,
-        latitude: job.latitude,
-        url: job.redirect_url,
-        // Description also returns a lot of inline html styling
-        description: job.description,
-        created: job.created,
-        contract: job.contract_time
-      }
-    })
+    const jobs = jobDataHelper(data.results)
+
     res.json({
       count: data.count,
       averageSalary: data.mean,
-      jobs
+      jobs: jobs
     })
   } catch (err) {
     next(err)
   }
 })
 
+// User can submit multiple filters but please submit them to req.params the same as the state, with each word separated by '-'
 router.get('/:state/jobs/:filter', async (req, res, next) => {
   try {
     const state = req.params.state.split('-').join('%20')
+    const filter = req.params.filter.split('-').join('%20')
+    const {data} = await axios.get(
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
+    )
+    // Cleaned up the response object
+    const jobs = jobDataHelper(data.results)
+    res.json({
+      count: data.count,
+      // Depeneding on the specificity of the search, none of the results might have a salary attached, and this field will be undefined
+      averageSalary: data.mean,
+      jobs: jobs
+    })
   } catch (err) {
     next(err)
   }
