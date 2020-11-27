@@ -64,7 +64,7 @@ router.get('/:state/jobs', async (req, res, next) => {
     )
 
     // Cleaned up the response object
-    const returnData = data.results.map(job => {
+    const jobs = data.results.map(job => {
       return {
         // Note that a <strong> tag is wrapped around each word in the title -- it's a pretty archaic programming practice to store style tags in the api...
         title: job.title,
@@ -86,7 +86,11 @@ router.get('/:state/jobs', async (req, res, next) => {
         contract: job.contract_time
       }
     })
-    res.json(returnData)
+    res.json({
+      count: data.count,
+      averageSalary: data.mean,
+      jobs
+    })
   } catch (err) {
     next(err)
   }
