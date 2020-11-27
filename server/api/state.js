@@ -34,6 +34,7 @@ router.get('/:state/totals-ranges', async (req, res, next) => {
     )
     const histogram = res2.data.histogram
     const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
+    // Cleaned up the response object
     const stateTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
@@ -62,19 +63,18 @@ router.get('/:state/jobs', async (req, res, next) => {
       }
     )
 
-    // The description is returning a lot of annoying data
-    // that looks like HTML inline styling. How do I get rid of it?
+    // Cleaned up the response object
     const returnData = data.results.map(job => {
       return {
-        // Note that a <strong> tag is wrapped around each word in the title
+        // Note that a <strong> tag is wrapped around each word in the title -- it's a pretty archaic programming practice to store style tags in the api...
         title: job.title,
         company: job.company.display_name,
         salary:
           Number(job.salary_is_predicted) > 0
             ? Number(job.salary_is_predicted)
             : undefined,
-        maxSalary: job.salary_max,
-        minSalary: job.salary_min,
+        maxSalary: Number(job.salary_max),
+        minSalary: Number(job.salary_min),
         locationName: job.location.display_name,
         area: job.location.area,
         longitude: job.longitude,

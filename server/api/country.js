@@ -80,6 +80,7 @@ router.get('/us-totals-ranges', async (req, res, next) => {
     )
     const histogram = res2.data.histogram
     const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
+    // Cleaned up the response object
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
