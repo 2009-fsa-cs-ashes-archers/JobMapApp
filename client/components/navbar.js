@@ -4,25 +4,20 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = () => (
-  <div>
-    <h1>Job Map App</h1>
-    <nav>
-      <div>
-        {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        {/* <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-        <div>
-          {/* The navbar will show these links before you log in */}
-        {/* <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>  */}
-      </div>
-    </nav>
-    <hr />
-  </div>
+const Navbar = props => (
+  <nav id="nav">
+    <div className="navbar navbar-left">
+      {/* The navbar will show these links after you log in */}
+      <h3>🌎 JavaScript Country</h3>
+      {/* <Link to="/">Home</Link> */}
+    </div>
+    <div className="navbar navbar-right">
+      {/* {if user is not logged in show this} */}
+      <Link to="/login">Log In</Link>
+      <Link to="/signup">Sign Up</Link>
+      {/* {if user is logged in show bookmarks + log out + account tbd} */}
+    </div>
+  </nav>
 )
 
 /**

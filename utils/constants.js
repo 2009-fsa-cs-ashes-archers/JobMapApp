@@ -4,8 +4,8 @@ const nationalData = {}
 const dataByState = {
   // Sample:
   Alabama: {
-    JSJobs: 10000,
-    medianJSSalary: 60000,
+    totalSoftwareDeveloperJobs: 10000,
+    medianDevloperSalary: 60000,
     medianRent1Bed: 800,
     medianRent2Bed: 1100
   },
