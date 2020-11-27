@@ -4,12 +4,35 @@ const calculatePercHistogram = require('./histogramHelper')
 
 module.exports = router
 
-// RIGHT NOW each query is separate routes, but we can also combine
-// 2-3 queries to 3rd party apis in one route.
-// for example, if we want histographic data, as well as the total number of hits
-// for a search, we can do that with two separate queries, inside one route
-// and res.json an object with keys containing data from both queries
-// ----------------------------------------------------------------------------
+// Dynamic US Totals -- * USE THIS ROUTE *
+router.get('/totals-ranges/:filter', async (req, res, next) => {
+  try {
+    // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
+    const filter = req.params.filter.split('-').join('%20')
+    // Returns total matched jobs and avg salary
+    const res1 = await axios.get(
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&max_days_old=30&sort_by=relevance`
+    )
+    // Returns Histogram of Salary Distribution
+    const res2 = await axios.get(
+      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US`
+    )
+    const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module
+    const nationalTotals = {
+      count: res1.data.count,
+      averageSalary: res1.data.mean,
+      histogram: res2.data.histogram,
+      histogramByPercent
+    }
+    res.json(nationalTotals)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//* Danny: More notes below, I do not think we need to use those routes.
+
+//----------------------------------------------------------------------------
 
 // This route returns the total number of jobs by state in adzuna's it-jobs category
 // It's an example of how we can get by-the-state data with one api call, but it's not not a good representation of actual software developer jobs
@@ -35,7 +58,7 @@ router.get('/jobs-by-state', async (req, res, next) => {
 
 // Total number of US Jobs for "Software Developer"
 // Searches Adzuna for jobs containing "JavaScript" with some other helper keys
-router.get('/us-totals', async (req, res, next) => {
+router.get('/totals', async (req, res, next) => {
   try {
     const {data} = await axios.get(
       'https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=50&what_and=javascript&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US'
@@ -57,7 +80,7 @@ router.get('/us-totals', async (req, res, next) => {
 // display this information as a percentage, not the number of jobs
 // It would look really awkward to show 10,000 job matches, but the total on the histogram
 // is 600. Lastly, the final range is 140,000+ (kind of sucks that it stops there)
-router.get('/us-salary-ranges', async (req, res, next) => {
+router.get('/salary-ranges', async (req, res, next) => {
   try {
     const {data} = await axios.get(
       'https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=javascript&location0=US'
@@ -69,7 +92,7 @@ router.get('/us-salary-ranges', async (req, res, next) => {
 })
 
 // Example of a query combining us-totals and us-salary ranges
-router.get('/us-totals-ranges', async (req, res, next) => {
+router.get('/totals-ranges', async (req, res, next) => {
   try {
     const res1 = await axios.get(
       'https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=50&what_and=javascript&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US'
@@ -93,7 +116,7 @@ router.get('/us-totals-ranges', async (req, res, next) => {
 })
 
 // User can submit multiple filters but please submit them to req.params the same as the state, with each word separated by '-'
-router.get('/us-totals/:filter', async (req, res, next) => {
+router.get('/totals/:filter', async (req, res, next) => {
   try {
     const filter = req.params.filter.split('-').join('%20')
     const {data} = await axios.get(
