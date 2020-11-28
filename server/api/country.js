@@ -17,7 +17,7 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     const res2 = await axios.get(
       `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US`
     )
-    const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module
+    const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module, see notes below
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
@@ -29,6 +29,8 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     next(err)
   }
 })
+
+// Note that over 90% of jobs on Adzuna don't have a salary category, so we should display this information as a percentage, not the number of jobs. It would look really awkward to show 10,000 job matches, but the total on the histogram is 600. Lastly, the final range is 140,000+ (kind of sucks that it stops there)
 
 //* Danny: More notes below, I do not think we need to use those routes.
 

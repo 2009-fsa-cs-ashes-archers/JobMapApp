@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
-export const UserHome = () => {
+export const MapHome = () => {
   return (
     <div>
-      <h3>Welcome!</h3>
+      <h3>Future Map</h3>
     </div>
   )
 }
@@ -22,12 +22,13 @@ export const UserHome = () => {
 //   }
 // }
 
-// export default connect(mapState)(UserHome)
-export default UserHome
+// export default connect(mapState)(MapHome)
+
+export default MapHome
 
 /**
  * PROP TYPES
  */
-// UserHome.propTypes = {
+// MapHome.propTypes = {
 //   email: PropTypes.string
 // }

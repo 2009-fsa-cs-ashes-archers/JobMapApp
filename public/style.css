@@ -19,3 +19,45 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* App Structure styles */
+.app-row {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.app-column {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+}
+
+/* Navbar styles */
+#nav {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  border-bottom: 6px groove rgba(19, 92, 164, 0.56);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-left {
+  margin-left: 20px;
+}
+
+.navbar-right {
+  margin-right: 20px;
+}
+
+/* Sidebar styles */
+#sidebar-container {
+  width: 25vw;
+  border-left: 6px groove rgba(19, 92, 164, 0.56);
+  text-align: center;
+}
