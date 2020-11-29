@@ -1,30 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {fetchCountry} from '../store/country'
+import {fetchStateJobs} from '../store/stateJobs'
+import {fetchStateTotals} from '../store/stateTotals'
 
 /**
  * COMPONENT
  */
-export const MapHome = () => {
-  return (
-    <div>
-      <h3>Future Map</h3>
-    </div>
-  )
+export class MapHome extends React.Component {
+  componentDidMount() {
+    this.props.fetchCountry()
+    this.props.fetchStateJobs()
+    this.props.fetchStateTotals()
+  }
+  render() {
+    return (
+      <div>
+        <h3>Future Map</h3>
+        <h6>{this.props.stateTotals.averageSalary}</h6>
+      </div>
+    )
+  }
 }
 
-/**
- * CONTAINER
- */
-// const mapState = state => {
-//   return {
-//     email: state.user.email
-//   }
-// }
+//Just for now, to check whether Redux store is ready to use:
+const mapStateToProps = state => {
+  return {
+    country: state.country,
+    stateJobs: state.stateJobs,
+    stateTotals: state.stateTotals
+  }
+}
 
-// export default connect(mapState)(MapHome)
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCountry: filter => dispatch(fetchCountry(filter)),
+    fetchStateJobs: (state, filter) => dispatch(fetchStateJobs(state, filter)),
+    fetchStateTotals: (state, filter) =>
+      dispatch(fetchStateTotals(state, filter))
+  }
+}
 
-export default MapHome
+export default connect(mapStateToProps, mapDispatchToProps)(MapHome)
 
 /**
  * PROP TYPES
