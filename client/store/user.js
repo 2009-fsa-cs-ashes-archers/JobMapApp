@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const GET_LOCATION = 'GET_LOCATION'
 /**
  * INITIAL STATE
  */
@@ -17,6 +17,20 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const getLocation = (latitude, longitude) => ({
+  type: GET_LOCATION,
+  latitude,
+  longitude
+})
+
+export const fetchLocation = () => dispatch => {
+  navigator.geolocation.getCurrentPosition(location => {
+    const {latitude, longitude} = location.coords
+    console.log('location obj:', location.coords)
+    console.log('lat, long:', latitude, longitude)
+    dispatch(getLocation(latitude, longitude))
+  })
+}
 
 /**
  * THUNK CREATORS
@@ -65,6 +79,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case GET_LOCATION:
+      return {...state, latitude: action.latitude, longitude: action.longitude}
     default:
       return state
   }
