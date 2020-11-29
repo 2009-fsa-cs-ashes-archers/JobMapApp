@@ -49,10 +49,12 @@ form div {
 
 .navbar-left {
   margin-left: 20px;
+  z-index: +90;
 }
 
 .navbar-right {
   margin-right: 20px;
+  z-index: +90;
 }
 
 /* Sidebar styles */
@@ -60,4 +62,12 @@ form div {
   width: 25vw;
   border-left: 6px groove rgba(19, 92, 164, 0.56);
   text-align: center;
+}
+
+.map {
+  height: 100vh;
+  width: 100vw;
+  z-index: -90;
+  position: absolute;
+  top: 0;
 }
