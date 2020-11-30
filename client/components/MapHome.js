@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import Map from './Map'
 import {connect} from 'react-redux'
 import {fetchCountry} from '../store/country'
 import {fetchStateJobs} from '../store/stateJobs'
 import {fetchStateTotals} from '../store/stateTotals'
+import {fetchLocation} from '../store/user'
+import Map from '../components/Map'
 
 /**
  * COMPONENT
@@ -14,6 +16,7 @@ export class MapHome extends React.Component {
     this.props.fetchCountry()
     this.props.fetchStateJobs()
     this.props.fetchStateTotals()
+    this.props.fetchLocation()
   }
   render() {
     return (
@@ -29,7 +32,9 @@ const mapStateToProps = state => {
   return {
     country: state.country,
     stateJobs: state.stateJobs,
-    stateTotals: state.stateTotals
+    stateTotals: state.stateTotals,
+    latitude: state.user.latitude,
+    longitude: state.user.longitude
   }
 }
 
@@ -38,7 +43,8 @@ const mapDispatchToProps = dispatch => {
     fetchCountry: filter => dispatch(fetchCountry(filter)),
     fetchStateJobs: (state, filter) => dispatch(fetchStateJobs(state, filter)),
     fetchStateTotals: (state, filter) =>
-      dispatch(fetchStateTotals(state, filter))
+      dispatch(fetchStateTotals(state, filter)),
+    fetchLocation: () => dispatch(fetchLocation())
   }
 }
 

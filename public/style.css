@@ -50,10 +50,12 @@ form div {
 
 .navbar-left {
   margin-left: 20px;
+  z-index: +90;
 }
 
 .navbar-right {
   margin-right: 20px;
+  z-index: +90;
 }
 
 /* Sidebar styles */
@@ -94,4 +96,12 @@ form div {
 #map-container {
   height: 100%;
   width: 100%;
+}
+
+.map {
+  height: 100vh;
+  width: 100vw;
+  z-index: -90;
+  position: absolute;
+  top: 0;
 }
