@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Map from './Map'
 import {connect} from 'react-redux'
 import {fetchCountry} from '../store/country'
 import {fetchStateJobs} from '../store/stateJobs'
@@ -16,9 +17,8 @@ export class MapHome extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h3>Future Map</h3>
-        <h6>{this.props.stateTotals.averageSalary}</h6>
+      <div id="map-container">
+        <Map jobs={this.props.stateJobs} />
       </div>
     )
   }

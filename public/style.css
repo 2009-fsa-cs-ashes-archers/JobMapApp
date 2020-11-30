@@ -39,6 +39,7 @@ form div {
   justify-content: space-between;
   height: 60px;
   border-bottom: 6px groove rgba(19, 92, 164, 0.56);
+  background: rgba(19, 92, 164, 0.8);
 }
 
 .navbar {
@@ -60,6 +61,7 @@ form div {
   width: 25vw;
   border-left: 6px groove rgba(19, 92, 164, 0.56);
   text-align: center;
+  background: rgba(19, 92, 164, 0.8);
 }
 
 .marker-btn {
@@ -71,4 +73,25 @@ form div {
 .marker-btn img {
   width: 20px;
   height: 20px;
+}
+
+.selectedJob {
+  width: 600px;
+  height: 300px;
+}
+
+.map {
+  height: 100vh;
+  width: 100vw;
+  z-index: -90;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#map-container {
+  height: 100%;
+  width: 100%;
 }
