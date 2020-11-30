@@ -12,6 +12,8 @@ const app = express()
 const socketio = require('socket.io')
 module.exports = app
 
+// require('dotenv').config() //This is for the '.env' which will serve as environment variables kept as secrets
+
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 // if (process.env.NODE_ENV === 'test') {

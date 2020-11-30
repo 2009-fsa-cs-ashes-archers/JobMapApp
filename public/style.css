@@ -61,3 +61,14 @@ form div {
   border-left: 6px groove rgba(19, 92, 164, 0.56);
   text-align: center;
 }
+
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.marker-btn img {
+  width: 20px;
+  height: 20px;
+}

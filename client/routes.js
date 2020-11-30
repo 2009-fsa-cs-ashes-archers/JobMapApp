@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, MapHome} from './components'
+import TestMap from './components/TestMap'
 import {me} from './store'
 
 /**
@@ -22,7 +23,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {/* Displays our Home component as a fallback */}
-        <Route component={MapHome} />
+        {/* <Route component={MapHome} /> */}
+        <Route exact path="/test" component={TestMap} />
       </Switch>
     )
   }
