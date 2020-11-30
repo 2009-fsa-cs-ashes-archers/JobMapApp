@@ -13,7 +13,7 @@ const Map = ({latitude, longitude}) => {
         'pk.eyJ1IjoiZHVzYW5ydWxhIiwiYSI6ImNrZHlwaG4yNzE1ODUyeG9hbDl4cWpiNmoifQ.-iCgFfxdLitIYE1errnrZQ'
       if (latitude && longitude) {
         const map = new mapboxgl.Map({
-          container: mapRef.current,
+          container: 'map-container',
           center: [longitude, latitude],
           zoom: 12, // starting zoom
           style: 'mapbox://styles/mapbox/streets-v10' // mapbox has lots of different map styles available.
@@ -29,7 +29,7 @@ const Map = ({latitude, longitude}) => {
   )
 
   if (!latitude && !longitude) {
-    return <h1> Map Loading... </h1>
+    return <h1> Loading... </h1>
   }
 
   return <div ref={mapRef} className="map" />

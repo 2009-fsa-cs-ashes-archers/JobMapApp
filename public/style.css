@@ -64,10 +64,19 @@ form div {
   text-align: center;
 }
 
+/* Map Styles */
+#map-container {
+  height: 100%;
+  width: 100%;
+}
+
 .map {
   height: 100vh;
   width: 100vw;
   z-index: -90;
   position: absolute;
   top: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
 }

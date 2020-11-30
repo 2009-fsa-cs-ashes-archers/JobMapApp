@@ -8,7 +8,9 @@ const Navbar = props => (
   <nav id="nav">
     <div className="navbar navbar-left">
       {/* The navbar will show these links after you log in */}
-      <h3>🌎 JavaScript Country</h3>
+      <Link to="/">
+        <h3>🌎 JavaScript Country</h3>
+      </Link>
       {/* <Link to="/">Home</Link> */}
     </div>
     <div className="navbar navbar-right">

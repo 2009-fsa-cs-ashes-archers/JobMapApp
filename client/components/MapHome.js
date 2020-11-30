@@ -19,10 +19,9 @@ export class MapHome extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h3>Future Map</h3>
+      <div id="map-container">
         <Map latitude={this.props.latitude} longitude={this.props.longitude} />
-        <h6>{this.props.stateTotals.averageSalary}</h6>
+        {/* <h6>{this.props.stateTotals.averageSalary}</h6> */}
       </div>
     )
   }
