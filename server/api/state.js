@@ -18,7 +18,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
     const {data} = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=50&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
     )
 
     console.log('returns ' + data.results.length + ' jobs')
@@ -28,10 +28,10 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
           .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
           .split(' ')
           .join('%20')
-        // regex = '/[a-z]/i'
         console.log('run google place API search on this one for', name)
+        // Need to do a promise all to speed it up -- later
         // const {data} = await axios.get(`
-        //   https://maps.googleapis.com/maps/api/place/findplacefromtext/json?${key}&${data.results[i].company.display_name}
+        //   https://maps.googleapis.com/maps/api/place/findplacefromtext/json?${key}&${name}
         // `)
         // console.log("new data for this^", data)
       }
