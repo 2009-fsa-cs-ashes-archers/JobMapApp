@@ -8,8 +8,9 @@ const Navbar = props => (
   <nav id="nav">
     <div className="navbar navbar-left">
       {/* The navbar will show these links after you log in */}
-      <h3>🌎 JavaScript Country</h3>
-      {/* <Link to="/">Home</Link> */}
+      <Link to="/">
+        <h3>🌎 JavaScript Jobs USA</h3>
+      </Link>
     </div>
     <div className="navbar navbar-right">
       {/* {if user is not logged in show this} */}
