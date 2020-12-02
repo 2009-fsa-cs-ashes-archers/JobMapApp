@@ -6,7 +6,6 @@ import {fetchCountry} from '../store/country'
 import {fetchStateJobs} from '../store/stateJobs'
 import {fetchStateTotals} from '../store/stateTotals'
 import {fetchLocation} from '../store/user'
-import Map from '../components/Map'
 
 /**
  * COMPONENT
@@ -22,6 +21,7 @@ export class MapHome extends React.Component {
     return (
       <div id="map-container">
         <Map jobs={this.props.stateJobs} />
+        {console.log(this.props)}
       </div>
     )
   }
