@@ -2,10 +2,10 @@ const router = require('express').Router()
 const axios = require('axios')
 const calculatePercHistogram = require('./histogramHelper')
 const jobDataHelper = require('./jobDataHelper')
+const googleApiHelper = require('./googleApiHelper')
 
 module.exports = router
 
-const key = 'PLACEHOLDER'
 // For 2-word states and multiple filters, please submit them to this route with each word separated by a '-'
 // For example: 'New-Jersey/jobs/react-redux-node
 
@@ -18,26 +18,45 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
     const {data} = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=50&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=3&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
     )
 
-    console.log('returns ' + data.results.length + ' jobs')
-    for (let i = 0; i < data.results.length; i++) {
-      if (data.results[i].location.area.length < 3) {
-        const name = data.results[i].company.display_name
-          .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
-          .split(' ')
-          .join('%20')
-        console.log('run google place API search on this one for', name)
-        // Need to do a promise all to speed it up -- later
-        // const {data} = await axios.get(`
-        //   https://maps.googleapis.com/maps/api/place/findplacefromtext/json?${key}&${name}
-        // `)
-        // console.log("new data for this^", data)
-      }
-    }
+    let jobs = jobDataHelper(data.results)
+    console.log('returns ' + jobs + ' jobs')
 
-    const jobs = jobDataHelper(data.results)
+    // Promise All to set lat/lng
+    jobs = await Promise.all(
+      jobs.map(async job => {
+        const location = await googleApiHelper(
+          job.company,
+          job.longitude,
+          job.latitude
+        )
+        console.log('returned from Google:', location)
+        if (location) {
+          job.longitude = location.lng
+          job.latitude = location.lat
+        }
+        return job
+      })
+    )
+
+    // For Loop through Jobs to set lat/lng
+    // for (let i = 0; i < jobs.length; i++) {
+    //   const job = jobs[i]
+    //   const companyName = job.company
+    //     .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    //     .split(' ')
+    //     .join('%20')
+    //   const location = await googleApiHelper(companyName, job.longitude, job.latitude)
+    //   console.log("returned from Google:", location)
+    //   if (location) {
+    //     job.longitude = location.lng
+    //     job.latitude = location.lat
+    //   }
+    //     // Need to do a promise all to speed it up -- later
+    // }
+
     res.json({
       count: data.count,
       // Depeneding on the specificity of the search, none of the results might have a salary attached, and this field will be undefined
