@@ -6,7 +6,6 @@ import {fetchCountry} from '../store/country'
 import {fetchStateJobs} from '../store/stateJobs'
 import {fetchStateTotals} from '../store/stateTotals'
 import {fetchLocation} from '../store/user'
-import Map from '../components/Map'
 
 /**
  * COMPONENT
