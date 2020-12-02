@@ -21,6 +21,7 @@ export class MapHome extends React.Component {
     return (
       <div id="map-container">
         <Map jobs={this.props.stateJobs} />
+        {console.log(this.props)}
       </div>
     )
   }
