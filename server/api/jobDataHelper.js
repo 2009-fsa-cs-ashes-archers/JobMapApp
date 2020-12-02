@@ -1,3 +1,4 @@
+const axios = require('axios')
 // Use this helper function for all routes that return an array of jobs from Adzuna, to keep them all in a clean and consistent format
 const jobDataHelper = jobsArray => {
   return jobsArray.map(job => {

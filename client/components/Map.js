@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+
 import MapGL, {
   Popup,
   NavigationControl,
@@ -121,6 +122,7 @@ export default class Map extends React.Component {
 // https://github.com/visgl/react-map-gl/tree/5.2-release/examples/controls
 // https://visgl.github.io/react-map-gl/examples
 
+// ------------------------------------------------------------------------------------------------------------------------------
 // Agne's other code with hooks, just in case:
 
 // import React, {useState, useEffect} from 'react'
@@ -156,6 +158,7 @@ export default class Map extends React.Component {
 //   );
 // }
 
+// ------------------------------------------------------------------------------------------------------------------------------
 // Peter's ex-code with hooks, just in case:
 
 // import React, {useState, useEffect} from 'react'
@@ -174,6 +177,7 @@ export default class Map extends React.Component {
 //   })
 
 //   const [selectedJob, setSelectedJob] = useState(null)
+
 
 //   useEffect(() => {
 //     const listener = e => {
@@ -194,8 +198,8 @@ export default class Map extends React.Component {
 //         {...viewport}
 //         mapboxApiAccessToken="pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q"
 //         mapStyle="mapbox://styles/boustanip718/cki3sq4370yn119qnt5dpkg5v"
-//         onViewportChange={viewport => setViewport(viewport)}
-//         container="map-container"
+//         onViewportChange={nextViewport => setViewport(nextViewport)}
+//         // container="map-container"
 //       >
 //         {jobs &&
 //           jobs.map((job, idx) => {
@@ -206,6 +210,7 @@ export default class Map extends React.Component {
 //                 longitude={job.longitude}
 //               >
 //                 <button
+//                   type="submit"
 //                   className="marker-btn"
 //                   onClick={e => {
 //                     e.preventDefault()
