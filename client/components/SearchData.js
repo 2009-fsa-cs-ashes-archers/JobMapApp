@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {VictoryAxis, VictoryBar, VictoryChart, VictoryTheme} from 'victory'
+import {VictoryAxis, VictoryBar, VictoryChart} from 'victory'
+import accounting from 'accounting'
 
 export const SearchData = props => {
   const data = props.stateJobs
@@ -23,7 +24,7 @@ export const SearchData = props => {
         <div>
           <h4>*Current GeoState*: *Filters*</h4>
           <h4>Total Matches: {data.count}</h4>
-          <h4>Average Salary: {data.averageSalary}</h4>
+          <h4>Average Salary: {accounting.formatMoney(data.averageSalary)}</h4>
           <VictoryChart domainPadding={20}>
             <VictoryAxis tickFormat={range => `$${range / 1000}K+`} />
             <VictoryAxis dependentAxis tickFormat={per => `${per}%`} />
