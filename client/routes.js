@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, MapHome} from './components'
-import Map from './components/Map'
 import {me} from './store'
 
 /**
