@@ -10,8 +10,8 @@ import stateTotalsReducer from './stateTotals'
 const reducer = combineReducers({
   user,
   country: countryReducer,
-  stateJobs: stateJobsReducer,
-  stateTotals: stateTotalsReducer
+  stateJobs: stateJobsReducer
+  // stateTotals: stateTotalsReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

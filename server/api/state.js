@@ -18,11 +18,11 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
     const {data} = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=3&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=2&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
     )
 
     let jobs = jobDataHelper(data.results)
-    console.log('returns ' + jobs + ' jobs')
+    console.log('returns ' + jobs.length + ' jobs')
 
     // Promise All to set lat/lng
     jobs = await Promise.all(
@@ -41,26 +41,18 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
       })
     )
 
-    // For Loop through Jobs to set lat/lng
-    // for (let i = 0; i < jobs.length; i++) {
-    //   const job = jobs[i]
-    //   const companyName = job.company
-    //     .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
-    //     .split(' ')
-    //     .join('%20')
-    //   const location = await googleApiHelper(companyName, job.longitude, job.latitude)
-    //   console.log("returned from Google:", location)
-    //   if (location) {
-    //     job.longitude = location.lng
-    //     job.latitude = location.lat
-    //   }
-    //     // Need to do a promise all to speed it up -- later
-    // }
+    const histData = await axios.get(
+      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US&location1=${state}`
+    )
+    const histogram = histData.data.histogram
+    const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
 
     res.json({
       count: data.count,
       // Depeneding on the specificity of the search, none of the results might have a salary attached, and this field will be undefined
       averageSalary: data.mean,
+      histogram,
+      histogramByPercent,
       jobs: jobs
     })
   } catch (err) {
@@ -70,7 +62,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
 
 // Next route could be called when a user clicks on a specific state to get more thorough info on that state, but before making the above api call for jobs
 
-// Dynamic State Totals -- * USE THIS ROUTE *
+// Dynamic State Totals -- * NO LONGER NECESSARY *
 router.get('/:state/totals-ranges/:filter', async (req, res, next) => {
   try {
     const state = req.params.state.split('-').join('%20')

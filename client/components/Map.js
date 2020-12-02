@@ -86,7 +86,6 @@ export default class Map extends React.Component {
   render() {
     const {viewport} = this.state
     const jobs = this.props.jobs.jobs
-    console.log(jobs)
 
     return (
       <MapGL
@@ -177,7 +176,6 @@ export default class Map extends React.Component {
 //   })
 
 //   const [selectedJob, setSelectedJob] = useState(null)
-
 
 //   useEffect(() => {
 //     const listener = e => {

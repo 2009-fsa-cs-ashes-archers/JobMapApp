@@ -26,8 +26,8 @@ const getLocation = (latitude, longitude) => ({
 export const fetchLocation = () => dispatch => {
   navigator.geolocation.getCurrentPosition(location => {
     const {latitude, longitude} = location.coords
-    console.log('location obj:', location.coords)
-    console.log('lat, long:', latitude, longitude)
+    // console.log('location obj:', location.coords)
+    // console.log('lat, long:', latitude, longitude)
     dispatch(getLocation(latitude, longitude))
   })
 }

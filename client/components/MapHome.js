@@ -14,14 +14,13 @@ export class MapHome extends React.Component {
   componentDidMount() {
     this.props.fetchCountry()
     this.props.fetchStateJobs()
-    this.props.fetchStateTotals()
+    // this.props.fetchStateTotals()
     this.props.fetchLocation()
   }
   render() {
     return (
       <div id="map-container">
         <Map jobs={this.props.stateJobs} />
-        {console.log(this.props)}
       </div>
     )
   }
