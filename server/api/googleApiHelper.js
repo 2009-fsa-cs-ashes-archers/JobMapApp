@@ -10,7 +10,9 @@ async function googleApiHelper(company, lng, lat) {
   const {data} = await axios.get(`
   https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${companyStr}&inputtype=textquery&fields=geometry&&locationbias=point:${lat},${lng}&key=${key}
   `)
-  return data.candidates[0].geometry.location
+  if (data.candidates.length) {
+    return data.candidates[0].geometry.location
+  }
 }
 
 module.exports = googleApiHelper

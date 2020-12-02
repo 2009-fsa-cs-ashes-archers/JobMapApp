@@ -18,7 +18,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
     const {data} = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=3&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&results_per_page=25&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&location1=${state}&max_days_old=30&sort_by=relevance`
     )
 
     let jobs = jobDataHelper(data.results)
