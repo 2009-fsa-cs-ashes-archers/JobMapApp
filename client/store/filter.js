@@ -1,22 +1,16 @@
-import axios from 'axios'
-
 const APPLY_FILTERS = 'APPLY_FILTERS'
 
-export const applyFilters = filteredJobs => ({
+export const applyFilter = (filter = '') => ({
   type: APPLY_FILTERS,
-  filteredJobs
+  filter
 })
 
-export const fetchFilteredJobs = (selectedState = 'New York', filter = '') => {
-  return dispatchEvent(applyFilters(filter, selectedState))
-}
-
-const initialState = {}
+const initialState = 'Javascript'
 
 export default function filterReducer(state = initialState, action) {
   switch (action.type) {
     case APPLY_FILTERS:
-      return action.filteredJobs
+      return action.filter
     default:
       return state
   }
