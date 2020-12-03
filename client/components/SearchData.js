@@ -22,7 +22,7 @@ export const SearchData = props => {
     <div className="search-data-container">
       {histData ? (
         <div>
-          <h4>*Current GeoState*: *Filters*</h4>
+          <h4>*New York*: *Javascript*</h4>
           <h4>Total Matches: {data.count}</h4>
           <h4>Average Salary: {accounting.formatMoney(data.averageSalary)}</h4>
           <VictoryChart domainPadding={20}>

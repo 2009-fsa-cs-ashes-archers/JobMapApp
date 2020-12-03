@@ -4,6 +4,8 @@ const calculatePercHistogram = require('./histogramHelper')
 const jobDataHelper = require('./jobDataHelper')
 const googleApiHelper = require('./googleApiHelper')
 const getAdzunaJobs = require('./getAdzunaJobs')
+const AdzunaKey = process.env.ADZUNA_API_KEY
+const AdzunaId = process.env.ADZUNA_API_ID
 
 module.exports = router
 
@@ -15,7 +17,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
   try {
     const state = req.params.state.split('-').join('%20')
     const filter = req.params.filter.split('-').join('%20')
-    const data = await getAdzunaJobs(filter, state, 3)
+    const data = await getAdzunaJobs(filter, state, 2)
     let jobs = jobDataHelper(data.results)
     console.log('returns ' + jobs.length + ' jobs')
     // Set accurate lat/lng with Google Place Search API
@@ -35,7 +37,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
       })
     )
     const histData = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US&location1=${state}`
+      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=${AdzunaId}&app_key=${AdzunaKey}&what=${filter}&location0=US&location1=${state}`
     )
     const histogram = histData.data.histogram
     const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
