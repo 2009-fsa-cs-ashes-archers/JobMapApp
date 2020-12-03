@@ -6,11 +6,13 @@ import user from './user'
 import countryReducer from './country'
 import stateJobsReducer from './stateJobs'
 import stateTotalsReducer from './stateTotals'
+import filterReducer from './filter'
 
 const reducer = combineReducers({
   user,
   country: countryReducer,
-  stateJobs: stateJobsReducer
+  stateJobs: stateJobsReducer,
+  filter: filterReducer
   // stateTotals: stateTotalsReducer
 })
 const middleware = composeWithDevTools(

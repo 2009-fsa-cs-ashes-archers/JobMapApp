@@ -37,7 +37,8 @@ const Sidebar = props => {
 
 const mapStateToProps = state => {
   return {
-    filter: state.filter
+    filter: state.filter,
+    selectedState: state.selectedState
   }
 }
 
