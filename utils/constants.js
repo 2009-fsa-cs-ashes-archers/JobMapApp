@@ -4,6 +4,8 @@ const nationalData = {}
 const dataByState = {
   // Sample:
   Alabama: {
+    latitude: 33.6456583,
+    longitude: -86.6836001,
     totalSoftwareDeveloperJobs: 10000,
     medianDevloperSalary: 60000,
     medianRent1Bed: 800,
