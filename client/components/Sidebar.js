@@ -6,8 +6,8 @@ import {applyFilter} from '../store/filter'
 import {applyGeoState} from '../store/selectedState'
 
 const Sidebar = props => {
-  const [filter, setFilter] = useState(props.filter || '')
-  const [geoState, setGeoState] = useState(props.selectedState || 'New York')
+  const [filter, setFilter] = useState(props.filter)
+  const [geoState, setGeoState] = useState(props.selectedState)
 
   const handleSubmit = event => {
     event.preventDefault()
