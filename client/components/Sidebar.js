@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Filter, SearchData} from '../components'
 import {applyFilter} from '../store/filter'
+import {applyGeoState} from '../store/selectedState'
 
 const Sidebar = props => {
   const [filter, setFilter] = useState(props.filter || '')
@@ -10,9 +11,8 @@ const Sidebar = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(filter)
     props.updateFilter(filter)
-    console.log(geoState)
+    props.updateGeoState(geoState)
   }
 
   // useEffect(() => {
@@ -46,7 +46,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateFilter: filter => dispatch(applyFilter(filter))
+    updateFilter: filter => dispatch(applyFilter(filter)),
+    updateGeoState: geoState => dispatch(applyGeoState(geoState))
   }
 }
 
