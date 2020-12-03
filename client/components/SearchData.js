@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {VictoryAxis, VictoryBar, VictoryChart} from 'victory'
 import accounting from 'accounting'
@@ -16,13 +16,14 @@ export const SearchData = props => {
       }
     })
   }
-  console.log(histData)
 
   return (
     <div className="search-data-container">
       {histData ? (
         <div>
-          <h4>*New York*: *Javascript*</h4>
+          <h4>
+            {props.selectedState}: {props.filter}
+          </h4>
           <h4>Total Matches: {data.count}</h4>
           <h4>Average Salary: {accounting.formatMoney(data.averageSalary)}</h4>
           <VictoryChart domainPadding={20}>
@@ -47,7 +48,9 @@ export const SearchData = props => {
 const mapStateToProps = state => {
   return {
     country: state.country,
-    stateJobs: state.stateJobs
+    stateJobs: state.stateJobs,
+    filter: state.filter,
+    selectedState: state.selectedState
   }
 }
 

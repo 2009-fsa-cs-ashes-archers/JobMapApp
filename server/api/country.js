@@ -40,7 +40,6 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     filter === 'Javascript'
       ? (jobsPerState = javaScriptJobsByState)
       : (jobsPerState = [])
-    console.log('FROM DUMMY DATA', jobsPerState)
     const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module, see notes below
     const nationalTotals = {
       count: res1.data.count,
