@@ -11,7 +11,6 @@ export const fetchStateJobs = (state = 'New-York', filter = 'Javascript') => {
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/state/${state}/jobs/${filter}`)
-      // console.log(data)
       dispatch(setStateJobs(data))
     } catch (error) {
       console.log(error)
