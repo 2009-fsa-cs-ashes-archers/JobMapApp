@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const axios = require('axios')
 const calculatePercHistogram = require('./histogramHelper')
+const {states} = require('../../utils/constants')
+const getAdzunaJobs = require('./getAdzunaJobs')
 
 module.exports = router
 
@@ -17,12 +19,29 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     const res2 = await axios.get(
       `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US`
     )
+    // Returns Distribution of Jobs by State
+    const jobsPerState = await Promise.all(
+      states.map(async state => {
+        console.log(state)
+        const formattedState = state.split(' ').join('%20')
+        const data = await getAdzunaJobs(filter, formattedState, 0)
+        console.log('returned for state:', data.count, data.mean)
+        return {
+          [state]: {
+            count: data.count,
+            averageSalary: data.mean
+          }
+        }
+      })
+    )
+
     const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module, see notes below
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
       histogram: res2.data.histogram,
-      histogramByPercent
+      histogramByPercent,
+      jobsPerState
     }
     res.json(nationalTotals)
   } catch (err) {
