@@ -1,28 +1,43 @@
 const router = require('express').Router()
 const axios = require('axios')
 const calculatePercHistogram = require('./histogramHelper')
+const {states} = require('../../utils/constants')
+const getAdzunaJobs = require('./getAdzunaJobs')
 
 module.exports = router
 
 // Dynamic US Totals -- * USE THIS ROUTE *
 router.get('/totals-ranges/:filter', async (req, res, next) => {
   try {
-    // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
-    // Returns total matched jobs and avg salary
+    // Returns total country-wide matched jobs and avg salary
     const res1 = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&max_days_old=30&sort_by=relevance`
+      `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&max_days_old=60&sort_by=relevance`
     )
     // Returns Histogram of Salary Distribution
     const res2 = await axios.get(
       `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=bc9f8e70&app_key=83d35d0e2fa37d07733767a7b28952ca&what=${filter}&location0=US`
     )
+    // Returns Distribution of Jobs by State
+    const jobsPerState = await Promise.all(
+      states.map(async state => {
+        const formattedState = state.split(' ').join('%20')
+        const data = await getAdzunaJobs(filter, formattedState, 0)
+        return {
+          [state]: {
+            count: data.count,
+            // This might be undefined:
+            averageSalary: data.mean
+          }
+        }
+      })
+    )
     const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module, see notes below
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
-      histogram: res2.data.histogram,
-      histogramByPercent
+      histogramByPercent,
+      jobsPerState
     }
     res.json(nationalTotals)
   } catch (err) {

@@ -17,7 +17,7 @@ export const SearchData = props => {
     })
   }
   console.log(histData)
-  // `${salaryRange.slice(0, -3)}K+`
+
   return (
     <div className="search-data-container">
       {histData ? (
