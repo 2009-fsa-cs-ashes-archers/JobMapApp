@@ -10,18 +10,15 @@ module.exports = router
 // For 2-word states and multiple filters, please submit them to this route with each word separated by a '-'
 // For example: 'New-Jersey/jobs/react-redux-node
 
-// ** The two routes below can be combined to return state-wide information AND a list of jobs **
-
 // Dynamic State Jobs -- * USE THIS ROUTE *
 router.get('/:state/jobs/:filter', async (req, res, next) => {
   try {
     const state = req.params.state.split('-').join('%20')
-    // Please Pass in 'Javascript' to req.params.filter if user leaves field empty
     const filter = req.params.filter.split('-').join('%20')
     const data = await getAdzunaJobs(filter, state, 3)
     let jobs = jobDataHelper(data.results)
     console.log('returns ' + jobs.length + ' jobs')
-    // Promise All to set lat/lng
+    // Set accurate lat/lng with Google Place Search API
     jobs = await Promise.all(
       jobs.map(async job => {
         const location = await googleApiHelper(
@@ -44,9 +41,8 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
     res.json({
       count: data.count,
-      // Depeneding on the specificity of the search, none of the results might have a salary attached, and this field will be undefined
+      // This might be undefined:
       averageSalary: data.mean,
-      histogram,
       histogramByPercent,
       jobs: jobs
     })
@@ -54,6 +50,8 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     next(err)
   }
 })
+
+//----------------------------------------------------------------------------
 
 // Next route could be called when a user clicks on a specific state to get more thorough info on that state, but before making the above api call for jobs
 
