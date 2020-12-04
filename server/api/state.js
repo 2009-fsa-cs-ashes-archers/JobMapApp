@@ -4,6 +4,7 @@ const calculatePercHistogram = require('./histogramHelper')
 const jobDataHelper = require('./jobDataHelper')
 const googleApiHelper = require('./googleApiHelper')
 const getAdzunaJobs = require('./getAdzunaJobs')
+const getAdzunaHistogram = require('./getAdzunaHistogram')
 const AdzunaKey = process.env.ADZUNA_API_KEY
 const AdzunaId = process.env.ADZUNA_API_ID
 
@@ -36,11 +37,8 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
         return job
       })
     )
-    const histData = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=${AdzunaId}&app_key=${AdzunaKey}&what=${filter}&location0=US&location1=${state}`
-    )
-    const histogram = histData.data.histogram
-    const histogramByPercent = calculatePercHistogram(histogram) // Helper function below
+    const histData = await getAdzunaHistogram(filter, state)
+    const histogramByPercent = calculatePercHistogram(histData)
     res.json({
       count: data.count,
       // This might be undefined:

@@ -15,19 +15,24 @@ const Filter = props => {
         />
       </label>
       <label>
-        Choose State:
+        Select State:
         <select
           value={props.state}
           onChange={e => props.handleState(e.target.value)}
         >
+          <option key={0} value="USA">
+            USA
+          </option>
           {states.map((state, i) => (
-            <option key={i} value={state}>
+            <option key={i + 1} value={state}>
               {state}
             </option>
           ))}
         </select>
       </label>
-      <button onClick={props.dealWithSubmit}>Apply Filters</button>
+      <button type="submit" onClick={props.dealWithSubmit}>
+        Apply
+      </button>
     </div>
   )
 }

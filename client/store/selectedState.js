@@ -5,7 +5,7 @@ export const applyGeoState = (geoState = '') => ({
   geoState
 })
 
-const initialState = 'New York'
+const initialState = 'USA'
 
 export default function selectedStateReducer(state = initialState, action) {
   switch (action.type) {
