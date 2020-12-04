@@ -1,11 +1,30 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers'
+import {dataByState} from '../../utils/constants'
+
+// console.log(dataByState)
+
+const geoStatesArray = []
+
+for (let key in dataByState) {
+  // console.log(dataByState[key])
+  geoStatesArray.push({
+    name: key,
+    longitude: dataByState[key].longitude,
+    latitude: dataByState[key].latitude
+  })
+}
+
+// console.log(geoStatesArray)
 
 import MapGL, {
   Popup,
   NavigationControl,
   FullscreenControl,
   ScaleControl,
-  GeolocateControl
+  GeolocateControl,
+  Source,
+  Layer
 } from 'react-map-gl'
 
 import Pins from './pins'
@@ -42,13 +61,29 @@ const scaleControlStyle = {
   padding: '10px'
 }
 
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: geoStatesArray.map(geostate => [
+          geostate.longitude,
+          geostate.latitude
+        ])
+      }
+    }
+  ]
+}
+
 export default class Map extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       viewport: {
-        latitude: 37.785164,
-        longitude: -100,
+        latitude: 37.0,
+        longitude: -85,
         zoom: 3.5,
         bearing: 0,
         pitch: 0
@@ -96,6 +131,18 @@ export default class Map extends React.Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
       >
+        <Source
+          type="geojson"
+          data={geojson}
+          cluster={true}
+          clusterMaxZoom={14}
+          clusterRadius={50}
+          ref={this._sourceRef}
+        >
+          <Layer {...clusterLayer} />
+          <Layer {...clusterCountLayer} />
+          <Layer {...unclusteredPointLayer} />
+        </Source>
         <Pins jobs={jobs} onClick={this._onClickMarker} />
 
         {this._renderPopup()}
