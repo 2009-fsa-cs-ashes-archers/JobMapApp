@@ -12,9 +12,6 @@ import {fetchLocation} from '../store/user'
  */
 export class MapHome extends React.Component {
   componentDidMount() {
-    this.props.fetchCountry()
-    this.props.fetchStateJobs()
-    // this.props.fetchStateTotals()
     this.props.fetchLocation()
   }
   render() {
@@ -39,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCountry: filter => dispatch(fetchCountry(filter)),
+    // fetchCountry: filter => dispatch(fetchCountry(filter)),
     fetchStateJobs: (state, filter) => dispatch(fetchStateJobs(state, filter)),
     fetchStateTotals: (state, filter) =>
       dispatch(fetchStateTotals(state, filter)),

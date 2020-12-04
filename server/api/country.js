@@ -3,6 +3,7 @@ const axios = require('axios')
 const calculatePercHistogram = require('./histogramHelper')
 const {states} = require('../../utils/constants')
 const getAdzunaJobs = require('./getAdzunaJobs')
+const getAdzunaHistogram = require('./getAdzunaHistogram')
 const AdzunaKey = process.env.ADZUNA_API_KEY
 const AdzunaId = process.env.ADZUNA_API_ID
 const {javaScriptJobsByState} = require('../../utils/dummyData')
@@ -18,10 +19,9 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
       `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${AdzunaId}&app_key=${AdzunaKey}&what_and=${filter}&what_or=software%20developer%20engineer%20web%20javascript%20full%20stack&location0=US&max_days_old=60&sort_by=relevance`
     )
     // Returns Histogram of Salary Distribution
-    const res2 = await axios.get(
-      `https://api.adzuna.com/v1/api/jobs/us/histogram?app_id=${AdzunaId}&app_key=${AdzunaKey}&what=${filter}&location0=US`
-    )
+    const histData = await getAdzunaHistogram(filter)
     // Returns Distribution of Jobs by State
+    // PLEASE DO NOT DELETE!
     // COMMENTED OUT BECAUSE OF HITS LIMITS - CACHE IN THE FUTURE??
     // const jobsPerState = await Promise.all(
     //   states.map(async state => {
@@ -40,7 +40,7 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     filter === 'Javascript'
       ? (jobsPerState = javaScriptJobsByState)
       : (jobsPerState = [])
-    const histogramByPercent = calculatePercHistogram(res2.data.histogram) // Helper function in module, see notes below
+    const histogramByPercent = calculatePercHistogram(histData)
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,

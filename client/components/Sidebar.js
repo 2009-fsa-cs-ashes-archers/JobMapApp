@@ -4,16 +4,44 @@ import {connect} from 'react-redux'
 import {Filter, SearchData} from '../components'
 import {applyFilter} from '../store/filter'
 import {applyGeoState} from '../store/selectedState'
+import {fetchStateJobs} from '../store/stateJobs'
+import {fetchCountry} from '../store/country'
 
 const Sidebar = props => {
   const [filter, setFilter] = useState(props.filter)
   const [geoState, setGeoState] = useState(props.selectedState)
+  const [loading, toggleLoading] = useState(true)
 
-  const handleSubmit = event => {
+  // Runs once when the app loads
+  useEffect(() => {
+    async function loadCountry() {
+      await props.updateCountry()
+    }
+    loadCountry()
+    toggleLoading(false)
+  }, [])
+
+  // Handler to apply new geo & keyword filter
+  const handleSubmit = async event => {
+    toggleLoading(true)
     event.preventDefault()
     props.updateFilter(filter)
     props.updateGeoState(geoState)
+    const fmFilter = filter.split(' ').join('-')
+    const fmGeoState = geoState.split(' ').join('-')
+    if (geoState !== 'USA') {
+      await props.updateStateJobs(fmGeoState, fmFilter)
+      toggleLoading(false)
+    } else {
+      console.log(
+        "Switched back to USA. Time to get national data from cache if we have for the current filter or trigger a thunk if we don't"
+      )
+      props.updateCountry(fmFilter)
+      toggleLoading(false)
+    }
   }
+
+  useEffect(() => console.log(loading), [loading])
 
   return (
     <div id="sidebar-container">
@@ -24,7 +52,7 @@ const Sidebar = props => {
         handleState={setGeoState}
         dealWithSubmit={handleSubmit}
       />
-      <SearchData />
+      <SearchData loading={loading} />
     </div>
   )
 }
@@ -32,14 +60,18 @@ const Sidebar = props => {
 const mapStateToProps = state => {
   return {
     filter: state.filter,
-    selectedState: state.selectedState
+    selectedState: state.selectedState,
+    country: state.country
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     updateFilter: filter => dispatch(applyFilter(filter)),
-    updateGeoState: geoState => dispatch(applyGeoState(geoState))
+    updateGeoState: geoState => dispatch(applyGeoState(geoState)),
+    updateStateJobs: (geoState, filter) =>
+      dispatch(fetchStateJobs(geoState, filter)),
+    updateCountry: filter => dispatch(fetchCountry(filter))
   }
 }
 
