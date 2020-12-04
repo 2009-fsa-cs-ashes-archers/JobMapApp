@@ -5,8 +5,10 @@ const jobDataHelper = require('./jobDataHelper')
 const googleApiHelper = require('./googleApiHelper')
 const getAdzunaJobs = require('./getAdzunaJobs')
 const getAdzunaHistogram = require('./getAdzunaHistogram')
-const AdzunaKey = process.env.ADZUNA_API_KEY
-const AdzunaId = process.env.ADZUNA_API_ID
+const {
+  californiaJavascriptJobs,
+  californiaJavascriptData
+} = require('../../utils/dummyData')
 
 module.exports = router
 
@@ -16,36 +18,67 @@ module.exports = router
 // Dynamic State Jobs -- * USE THIS ROUTE *
 router.get('/:state/jobs/:filter', async (req, res, next) => {
   try {
+    let jobs
     const state = req.params.state.split('-').join('%20')
     const filter = req.params.filter.split('-').join('%20')
-    const data = await getAdzunaJobs(filter, state, 2)
-    let jobs = jobDataHelper(data.results)
-    console.log('returns ' + jobs.length + ' jobs')
-    // Set accurate lat/lng with Google Place Search API
-    jobs = await Promise.all(
-      jobs.map(async job => {
-        const location = await googleApiHelper(
-          job.company,
-          job.longitude,
-          job.latitude
-        )
-        console.log('returned from Google:', location)
-        if (location) {
-          job.longitude = location.lng
-          job.latitude = location.lat
-        }
-        return job
+    // For Demo -- Use California Dummy Data with 250 Jobs
+    if (state === 'California' && filter === 'Javascript') {
+      res.json({
+        count: californiaJavascriptData.count,
+        averageSalary: californiaJavascriptData.averageSalary,
+        histogramByPercent: californiaJavascriptData.histogramByPercent,
+        jobs: californiaJavascriptJobs
       })
-    )
-    const histData = await getAdzunaHistogram(filter, state)
-    const histogramByPercent = calculatePercHistogram(histData)
-    res.json({
-      count: data.count,
-      // This might be undefined:
-      averageSalary: data.mean,
-      histogramByPercent,
-      jobs: jobs
-    })
+    } else {
+      // Multiple Pages -- We may want to comment this back in for production
+      // let data = await Promise.all(
+      //   [6, 7, 8, 9, 10].map(async page => {
+      //     const pageJobs = await getAdzunaJobs(filter, state, 50, page)
+      //     return pageJobs
+      //   })
+      // )
+      // // Reformat Data
+      // data = {
+      //   count: data[0].count,
+      //   mean: data[0].mean,
+      //   results: data.reduce((arr, obj) => {
+      //     // console.log('arr:', arr, 'currentObj:', obj)
+      //     return [...arr, ...obj.results]
+      //   }, [])
+      // }
+      // Only 1 Page (no need to Promise.all)
+      const data = await getAdzunaJobs(filter, state, 3, 1)
+
+      jobs = jobDataHelper(data.results)
+      console.log('returns ' + jobs.length + ' jobs')
+      // Set accurate lat/lng with Google Place Search API
+      jobs = await Promise.all(
+        jobs.map(async job => {
+          const location = await googleApiHelper(
+            job.company,
+            job.longitude,
+            job.latitude
+          )
+          // console.log('returned from Google:', location)
+          if (location) {
+            job.longitude = location.lng
+            job.latitude = location.lat
+          }
+          return job
+        })
+      )
+
+      const histData = await getAdzunaHistogram(filter, state)
+      const histogramByPercent = calculatePercHistogram(histData)
+
+      res.json({
+        count: data.count,
+        // This might be undefined:
+        averageSalary: data.mean,
+        histogramByPercent,
+        jobs: jobs
+      })
+    }
   } catch (err) {
     next(err)
   }

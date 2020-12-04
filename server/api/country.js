@@ -26,7 +26,7 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     // const jobsPerState = await Promise.all(
     //   states.map(async state => {
     //     const formattedState = state.split(' ').join('%20')
-    //     const data = await getAdzunaJobs(filter, formattedState, 0)
+    //     const data = await getAdzunaJobs(filter, formattedState, 0, 1)
     //     return {
     //       [state]: {
     //         count: data.count,
