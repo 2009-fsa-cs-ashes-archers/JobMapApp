@@ -41,7 +41,7 @@ const Sidebar = props => {
     }
   }
 
-  useEffect(() => console.log(loading), [loading])
+  // useEffect(() => console.log(loading), [loading])
 
   return (
     <div id="sidebar-container">

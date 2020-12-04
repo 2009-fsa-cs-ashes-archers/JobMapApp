@@ -7,7 +7,11 @@ export default class JobInfo extends PureComponent {
 
     return (
       <div>
-        <div>{displayName}</div>
+        <div>
+          {displayName}
+          {info.area}
+          {info.locationName}
+        </div>
       </div>
     )
   }

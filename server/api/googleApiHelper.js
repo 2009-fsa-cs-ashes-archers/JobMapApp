@@ -6,7 +6,7 @@ async function googleApiHelper(company, lng, lat) {
     .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
     .split(' ')
     .join('%20')
-  console.log(companyStr, lng, lat)
+  // console.log(companyStr, lng, lat)
   const {data} = await axios.get(`
   https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${companyStr}&inputtype=textquery&fields=geometry&&locationbias=point:${lat},${lng}&key=${key}
   `)
