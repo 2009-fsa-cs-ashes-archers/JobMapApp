@@ -5,9 +5,10 @@ import MapGL, {
   NavigationControl,
   FullscreenControl,
   ScaleControl,
-  GeolocateControl
+  GeolocateControl,
+  FlyToInterpolator
 } from 'react-map-gl'
-
+import NationalViewButton from './NationalViewButton'
 import Pins from './pins'
 import JobInfo from './job-info'
 
@@ -21,16 +22,27 @@ const geolocateStyle = {
   padding: '10px'
 }
 
-const fullscreenControlStyle = {
+const nationalViewStyle = {
   position: 'absolute',
   top: 36,
+  left: 0,
+  width: '49px',
+  height: '49px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
+const fullscreenControlStyle = {
+  position: 'absolute',
+  top: 72,
   left: 0,
   padding: '10px'
 }
 
 const navStyle = {
   position: 'absolute',
-  top: 72,
+  top: 108,
   left: 0,
   padding: '10px'
 }
@@ -42,19 +54,22 @@ const scaleControlStyle = {
   padding: '10px'
 }
 
+const defaultViewport = {
+  latitude: 37.785164,
+  longitude: -85,
+  zoom: 3.5,
+  bearing: 0,
+  pitch: 0
+}
+
 export default class Map extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      viewport: {
-        latitude: 50.785164,
-        longitude: -100,
-        zoom: 5.5,
-        bearing: 0,
-        pitch: 0
-      },
+      viewport: defaultViewport,
       popupInfo: null
     }
+    this._goToNational = this._goToNational.bind(this)
   }
   _updateViewport = viewport => {
     this.setState({viewport})
@@ -62,6 +77,17 @@ export default class Map extends React.Component {
 
   _onClickMarker = job => {
     this.setState({popupInfo: job})
+  }
+
+  _goToNational = () => {
+    console.log('clicked button')
+    this.setState({
+      viewport: {
+        ...defaultViewport,
+        transitionDuration: 1500,
+        transitionInterpolator: new FlyToInterpolator()
+      }
+    })
   }
 
   _renderPopup() {
@@ -102,6 +128,9 @@ export default class Map extends React.Component {
 
         <div style={geolocateStyle}>
           <GeolocateControl />
+        </div>
+        <div style={nationalViewStyle}>
+          <NationalViewButton goToNational={this._goToNational} />
         </div>
         <div style={fullscreenControlStyle}>
           <FullscreenControl />

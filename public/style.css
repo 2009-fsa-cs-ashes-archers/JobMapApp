@@ -108,3 +108,14 @@ form div {
   height: 100vh;
   width: 100vw;
 }
+
+.national-button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  height: 29px;
+  width: 29px;
+  font-size: 18pt;
+  text-align: center;
+  padding: 0 2px;
+}
