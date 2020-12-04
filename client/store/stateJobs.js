@@ -7,11 +7,7 @@ export const setStateJobs = stateJobs => ({
   stateJobs
 })
 
-export const fetchStateJobs = (state = 'New-York', fil) => {
-  let filter = fil
-  if (!filter || !filter.length) {
-    filter = 'Javascript'
-  }
+export const fetchStateJobs = (state = 'New-York', filter) => {
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/state/${state}/jobs/${filter}`)

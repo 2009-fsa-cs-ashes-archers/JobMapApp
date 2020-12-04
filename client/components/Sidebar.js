@@ -25,9 +25,14 @@ const Sidebar = props => {
   const handleSubmit = async event => {
     toggleLoading(true)
     event.preventDefault()
-    props.updateFilter(filter)
+    let fil = filter
+    if (!fil || !fil.length) {
+      fil = 'Javascript'
+    }
+    console.log('fil in  Sidebar:', fil)
+    props.updateFilter(fil)
     props.updateGeoState(geoState)
-    const fmFilter = filter.split(' ').join('-')
+    const fmFilter = fil.split(' ').join('-')
     const fmGeoState = geoState.split(' ').join('-')
     console.log(fmFilter)
     if (geoState !== 'USA') {
