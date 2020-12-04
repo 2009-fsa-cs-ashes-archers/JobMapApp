@@ -7,7 +7,11 @@ export const setCountry = country => ({
   country
 })
 
-export const fetchCountry = (filter = 'Javascript') => {
+export const fetchCountry = fil => {
+  let filter = fil
+  if (!filter || !filter.length) {
+    filter = 'Javascript'
+  }
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/country/totals-ranges/${filter}`)
