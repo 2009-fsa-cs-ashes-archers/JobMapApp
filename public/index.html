@@ -6,9 +6,27 @@
     <title>JavaScript Jobs USA</title>
     <link rel="stylesheet" href="/style.css" />
     <script defer src="/bundle.js"></script>
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
   </head>
   <body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('serviceWorker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+          // registration failed 
+          console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
     <div id="app"></div>
+    <noscript>Please enable JavaScript</noscript>
   </body>
 </html>
 
