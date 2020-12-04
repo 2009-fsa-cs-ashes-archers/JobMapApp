@@ -1,0 +1,21 @@
+{
+  "name": "JavaScript Jobs USA",
+  "short_name": "JJ USA",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src":
+        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/88e30824-3c9a-4957-b6ab-394cb783aa20/dcvy5dz-3aed5864-11f6-476a-944d-d73a78643bd3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvODhlMzA4MjQtM2M5YS00OTU3LWI2YWItMzk0Y2I3ODNhYTIwXC9kY3Z5NWR6LTNhZWQ1ODY0LTExZjYtNDc2YS05NDRkLWQ3M2E3ODY0M2JkMy5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.jSmoxs8e7J4yL5UQTHfU4y-_KO7i1UpppJ6ArBoaF-c",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://www.scambs.gov.uk/media/12178/jobs.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#3E4EB8",
+  "display": "standalone",
+  "theme_color": "#2E3AA1"
+}
