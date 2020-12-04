@@ -29,6 +29,7 @@ const Sidebar = props => {
     props.updateGeoState(geoState)
     const fmFilter = filter.split(' ').join('-')
     const fmGeoState = geoState.split(' ').join('-')
+    console.log(fmFilter)
     if (geoState !== 'USA') {
       await props.updateStateJobs(fmGeoState, fmFilter)
       toggleLoading(false)
