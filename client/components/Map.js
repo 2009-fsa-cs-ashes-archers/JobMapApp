@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-
+import {connect} from 'react-redux'
 import MapGL, {
   Popup,
   NavigationControl,
@@ -62,7 +62,7 @@ const defaultViewport = {
   pitch: 0
 }
 
-export default class Map extends React.Component {
+export class Map extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -71,6 +71,16 @@ export default class Map extends React.Component {
     }
     this._goToNational = this._goToNational.bind(this)
   }
+
+  componentDidUpdate(prevProps) {
+    const {selectedState} = this.props
+    if (prevProps.selectedState !== selectedState) {
+      if (selectedState === 'USA') {
+        this._goToNational()
+      }
+    }
+  }
+
   _updateViewport = viewport => {
     this.setState({viewport})
   }
@@ -80,7 +90,6 @@ export default class Map extends React.Component {
   }
 
   _goToNational = () => {
-    console.log('clicked button')
     this.setState({
       viewport: {
         ...defaultViewport,
@@ -145,6 +154,14 @@ export default class Map extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    selectedState: state.selectedState
+  }
+}
+
+export default connect(mapStateToProps)(Map)
 
 // Reference (code above):
 // https://github.com/visgl/react-map-gl/tree/5.2-release/examples/controls

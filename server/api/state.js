@@ -21,7 +21,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     let jobs
     const state = req.params.state.split('-').join('%20')
     const filter = req.params.filter.split('-').join('%20')
-    // For Demo -- Use California Dummy Data with 250 Jobs
+    // For Demo -- Use California Dummy Data with 500 Jobs
     if (state === 'California' && filter === 'Javascript') {
       res.json({
         count: californiaJavascriptData.count,
@@ -46,6 +46,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
       //     return [...arr, ...obj.results]
       //   }, [])
       // }
+
       // Only 1 Page (no need to Promise.all)
       const data = await getAdzunaJobs(filter, state, 3, 1)
 
