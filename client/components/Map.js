@@ -85,23 +85,6 @@ export class Map extends React.Component {
     }
   }
 
-  // Listens for clicks outside of popup
-  // componentDidMount() {
-  //   document.addEventListener('mousedown', this._handleClick, false)
-  // }
-  // componentWillUnmount() {
-  //   document.removeEventListener('mousedown', this._handleClick, false)
-  // }
-  // _handleClick (e) {
-  //   if (this.node.contains(e.target)) {
-  //     return
-  //   }
-  //   this.handleClickOutside()
-  // }
-  // _handleClickOutside = () => {
-  //   this.setState({popupInfo: null})
-  // }
-
   _updateViewport = viewport => {
     this.setState({viewport})
   }
@@ -117,6 +100,7 @@ export class Map extends React.Component {
   _onLeaveHover = () => {
     this.setState({hoverInfo: null})
   }
+
   _onClickAwayPopup = () => {
     this.setState({popupInfo: null})
   }
