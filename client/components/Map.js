@@ -11,6 +11,7 @@ import MapGL, {
 import NationalViewButton from './NationalViewButton'
 import Pins from './pins'
 import JobInfo from './job-info'
+import JobDetails from './job-details'
 
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
@@ -67,19 +68,39 @@ export class Map extends React.Component {
     super(props)
     this.state = {
       viewport: defaultViewport,
-      popupInfo: null
+      popupInfo: null,
+      hoverInfo: null
     }
-    this._goToNational = this._goToNational.bind(this)
+    this._goToNewView = this._goToNewView.bind(this)
   }
 
   componentDidUpdate(prevProps) {
     const {selectedState} = this.props
     if (prevProps.selectedState !== selectedState) {
       if (selectedState === 'USA') {
-        this._goToNational()
+        this._goToNewView(defaultViewport)
+      } else {
+        console.log('Time to transition to', selectedState, 'view.')
       }
     }
   }
+
+  // Listens for clicks outside of popup
+  // componentDidMount() {
+  //   document.addEventListener('mousedown', this._handleClick, false)
+  // }
+  // componentWillUnmount() {
+  //   document.removeEventListener('mousedown', this._handleClick, false)
+  // }
+  // _handleClick (e) {
+  //   if (this.node.contains(e.target)) {
+  //     return
+  //   }
+  //   this.handleClickOutside()
+  // }
+  // _handleClickOutside = () => {
+  //   this.setState({popupInfo: null})
+  // }
 
   _updateViewport = viewport => {
     this.setState({viewport})
@@ -89,10 +110,21 @@ export class Map extends React.Component {
     this.setState({popupInfo: job})
   }
 
-  _goToNational = () => {
+  _onHoverMarker = job => {
+    this.setState({hoverInfo: job})
+  }
+
+  _onLeaveHover = () => {
+    this.setState({hoverInfo: null})
+  }
+  _onClickAwayPopup = () => {
+    this.setState({popupInfo: null})
+  }
+
+  _goToNewView = stateViewport => {
     this.setState({
       viewport: {
-        ...defaultViewport,
+        ...stateViewport,
         transitionDuration: 1500,
         transitionInterpolator: new FlyToInterpolator()
       }
@@ -109,10 +141,28 @@ export class Map extends React.Component {
           anchor="top"
           longitude={popupInfo.longitude}
           latitude={popupInfo.latitude}
-          closeOnClick={false}
+          closeOnClick={true}
           onClose={() => this.setState({popupInfo: null})}
         >
-          <JobInfo info={popupInfo} />
+          <JobDetails info={popupInfo} onClickAway={this._onClickAwayPopup} />
+        </Popup>
+      )
+    )
+  }
+
+  _renderHover() {
+    const {hoverInfo, popupInfo} = this.state
+    return (
+      hoverInfo &&
+      hoverInfo !== popupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={hoverInfo.longitude}
+          latitude={hoverInfo.latitude}
+          closeOnClick={false}
+        >
+          <JobInfo info={hoverInfo} />
         </Popup>
       )
     )
@@ -131,15 +181,23 @@ export class Map extends React.Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
       >
-        <Pins jobs={jobs} onClick={this._onClickMarker} />
+        <Pins
+          jobs={jobs}
+          onClick={this._onClickMarker}
+          onMouseEnter={this._onHoverMarker}
+          onMouseLeave={this._onLeaveHover}
+        />
 
         {this._renderPopup()}
+        {this._renderHover()}
 
         <div style={geolocateStyle}>
           <GeolocateControl />
         </div>
         <div style={nationalViewStyle}>
-          <NationalViewButton goToNational={this._goToNational} />
+          <NationalViewButton
+            goToNational={() => this._goToNewView(defaultViewport)}
+          />
         </div>
         <div style={fullscreenControlStyle}>
           <FullscreenControl />
