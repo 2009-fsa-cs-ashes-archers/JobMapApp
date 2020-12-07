@@ -23,8 +23,8 @@ const Sidebar = props => {
 
   // Handler to apply new geo & keyword filter
   const handleSubmit = async event => {
-    toggleLoading(true)
     event.preventDefault()
+    toggleLoading(true)
     let fil = filter
     if (!fil || !fil.length) {
       fil = 'Javascript'
