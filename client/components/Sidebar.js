@@ -15,7 +15,7 @@ const Sidebar = props => {
   // Runs once when the app loads
   useEffect(() => {
     async function loadCountry() {
-      await props.updateCountry()
+      await props.updateCountry(filter)
     }
     loadCountry()
     toggleLoading(false)

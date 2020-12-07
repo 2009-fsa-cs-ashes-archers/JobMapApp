@@ -1,37 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers'
-import {dataByState} from '../../utils/constants'
+import {dataByState, states} from '../../utils/constants'
 import MapGL, {
   Popup,
   NavigationControl,
   FullscreenControl,
   ScaleControl,
   GeolocateControl,
-  Source,
-  Layer,
   FlyToInterpolator
 } from 'react-map-gl'
-import NationalViewButton from './NationalViewButton'
-import Pins from './pins'
-import NationalPins from './nationalPins'
-import JobInfo from './job-info'
-import JobDetails from './job-details'
-
-// console.log(dataByState)
-
-const geoStatesArray = []
-
-for (let key in dataByState) {
-  // console.log(dataByState[key])
-  geoStatesArray.push({
-    name: key,
-    longitude: dataByState[key].longitude,
-    latitude: dataByState[key].latitude
-  })
-}
-
-// console.log(geoStatesArray)
+import {applyGeoState} from '../store/selectedState'
+import {fetchStateJobs} from '../store/stateJobs'
+import {
+  Pins,
+  NationalPins,
+  JobInfo,
+  JobDetails,
+  NationalViewButton,
+  StateInfo
+} from '../components'
 
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
@@ -75,33 +62,6 @@ const scaleControlStyle = {
   padding: '10px'
 }
 
-// const geojson = {
-//   type: 'FeatureCollection',
-//   features: geoStatesArray.map((geostate) => {
-//     return {
-//       type: 'Feature',
-//       geometry: {
-//         type: 'Point',
-//         coordinates: [geostate.longitude, geostate.latitude],
-//       },
-//     }
-//   }),
-// }
-
-// console.log(geojson)
-
-// export default class Map extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       viewport: {
-//         latitude: 37.0,
-//         longitude: -85,
-//         zoom: 3.5,
-//         bearing: 0,
-//         pitch: 0
-//       },
-//       popupInfo: null
 const defaultViewport = {
   latitude: 37.785164,
   longitude: -85,
@@ -115,17 +75,20 @@ export class Map extends React.Component {
     super(props)
     this.state = {
       viewport: defaultViewport,
-      popupInfo: null,
-      hoverInfo: null
+      jobPopupInfo: null,
+      jobHoverInfo: null,
+      stateHoverInfo: null
     }
-    this._goToNewView = this._goToNewView.bind(this)
+    this._goToNationalView = this._goToNationalView.bind(this)
+    this._goToStateView = this._goToStateView.bind(this)
   }
 
+  // Listens for a new selectedState
   componentDidUpdate(prevProps) {
     const {selectedState} = this.props
     if (prevProps.selectedState !== selectedState) {
       if (selectedState === 'USA') {
-        this._goToNewView(defaultViewport)
+        this._goToNationalView()
       } else {
         console.log('Time to transition to', selectedState, 'view.')
       }
@@ -136,72 +99,110 @@ export class Map extends React.Component {
     this.setState({viewport})
   }
 
+  // Methods for Job Nodes
   _onClickMarker = job => {
-    this.setState({popupInfo: job})
+    this.setState({jobPopupInfo: job})
   }
-
   _onHoverMarker = job => {
-    this.setState({hoverInfo: job})
+    this.setState({jobHoverInfo: job})
   }
-
   _onLeaveHover = () => {
-    this.setState({hoverInfo: null})
+    this.setState({jobHoverInfo: null})
   }
-
   _onClickAwayPopup = () => {
-    this.setState({popupInfo: null})
+    this.setState({jobPopupInfo: null})
   }
 
-  _onClickNode = () => {
-    console.log('clicked job')
+  // Methods for State Nodes
+  _onClickStateNode = async geoState => {
+    console.log('here')
+    this.setState({stateHoverInfo: null})
+    this._goToStateView(geoState)
+    const {filter, updateSelectedState, updateStateJobs} = this.props
+    updateSelectedState(geoState.name)
+    await updateStateJobs(geoState.name, filter)
+  }
+  _onHoverStateNode = geoState => {
+    this.setState({stateHoverInfo: geoState})
+  }
+  _onLeaveHoverStateNode = () => {
+    this.setState({stateHoverInfo: null})
   }
 
-  _onClickCluster = () => {
-    console.log('clicked cluster')
-  }
-
-  _goToNewView = stateViewport => {
+  // Methods for Changing View
+  _goToNationalView = () => {
     this.setState({
       viewport: {
-        ...stateViewport,
+        ...defaultViewport,
+        transitionDuration: 1500,
+        transitionInterpolator: new FlyToInterpolator()
+      }
+    })
+    this.props.updateSelectedState('USA')
+  }
+  _goToStateView = geoState => {
+    console.log('in the future we will go to the ' + geoState.name + ' view')
+    this.setState({
+      viewport: {
+        ...defaultViewport,
         transitionDuration: 1500,
         transitionInterpolator: new FlyToInterpolator()
       }
     })
   }
 
+  // Popups for Job Nodes
   _renderPopup() {
-    const {popupInfo} = this.state
-
+    const {jobPopupInfo} = this.state
     return (
-      popupInfo && (
+      jobPopupInfo && (
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={popupInfo.longitude}
-          latitude={popupInfo.latitude}
+          longitude={jobPopupInfo.longitude}
+          latitude={jobPopupInfo.latitude}
           closeOnClick={true}
-          onClose={() => this.setState({popupInfo: null})}
+          onClose={() => this.setState({jobPopupInfo: null})}
         >
-          <JobDetails info={popupInfo} onClickAway={this._onClickAwayPopup} />
+          <JobDetails
+            info={jobPopupInfo}
+            onClickAway={this._onClickAwayPopup}
+          />
+        </Popup>
+      )
+    )
+  }
+  _renderHover() {
+    const {jobHoverInfo, jobPopupInfo} = this.state
+    return (
+      jobHoverInfo &&
+      jobHoverInfo !== jobPopupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={jobHoverInfo.longitude}
+          latitude={jobHoverInfo.latitude}
+          closeOnClick={false}
+        >
+          <JobInfo info={jobHoverInfo} />
         </Popup>
       )
     )
   }
 
-  _renderHover() {
-    const {hoverInfo, popupInfo} = this.state
+  // Popup for State Node
+  _renderStateHover() {
+    const {stateHoverInfo} = this.state
     return (
-      hoverInfo &&
-      hoverInfo !== popupInfo && (
+      stateHoverInfo && (
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={hoverInfo.longitude}
-          latitude={hoverInfo.latitude}
+          longitude={stateHoverInfo.longitude}
+          latitude={stateHoverInfo.latitude}
           closeOnClick={false}
         >
-          <JobInfo info={hoverInfo} />
+          <StateInfo info={stateHoverInfo} />
         </Popup>
       )
     )
@@ -209,26 +210,24 @@ export class Map extends React.Component {
 
   render() {
     const {viewport} = this.state
+    const {country} = this.props
     const jobs = this.props.jobs.jobs
     let selectedState = this.props.selectedState
-    // let geojson
-    // if (jobs) {
-    //   geojson = {
-    //     type: 'FeatureCollection',
-    //     features: jobs.map((job) => {
-    //       return {
-    //         type: 'Feature',
-    //         properties: {company: job.company},
-    //         geometry: {
-    //           type: 'Point',
-    //           coordinates: [job.longitude, job.latitude],
-    //         },
-    //       }
-    //     }),
-    //   }
-    // }
-
-    console.log(selectedState)
+    // Set up geostates for rendering national pins
+    const geostates =
+      Object.keys(country).length === 0 && country.constructor === Object
+        ? []
+        : states.map(state => {
+            const jobsInState = country.jobsPerState[state]
+            const dataForState = dataByState[state]
+            return {
+              name: state,
+              latitude: dataForState.latitude,
+              longitude: dataForState.longitude,
+              count: jobsInState.count,
+              averageSalary: jobsInState.averageSalary
+            }
+          })
 
     return (
       <MapGL
@@ -238,41 +237,35 @@ export class Map extends React.Component {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
-        // onClick={this._onClickCluster}
       >
-        {/* {geojson && (
-          <Source
-            type="geojson"
-            data={geojson}
-            cluster={true}
-            clusterMaxZoom={14}
-            clusterRadius={50}
-            // ref={this._sourceRef}
-          >
-            <Layer {...clusterLayer} />
-            <Layer {...clusterCountLayer} />
-            <Layer {...unclusteredPointLayer} />
-          </Source>
-        )} */}
-        <Pins
-          jobs={jobs}
-          onClick={this._onClickMarker}
-          onMouseEnter={this._onHoverMarker}
-          onMouseLeave={this._onLeaveHover}
-        />
+        {/* Show Job Pins if a state is selected */}
+        {selectedState !== 'USA' && (
+          <Pins
+            jobs={jobs}
+            onClick={this._onClickMarker}
+            onMouseEnter={this._onHoverMarker}
+            onMouseLeave={this._onLeaveHover}
+          />
+        )}
 
-        {selectedState === 'USA' && <NationalPins geostates={geoStatesArray} />}
-
+        {/* Show National Pins if USA selected */}
+        {selectedState === 'USA' && (
+          <NationalPins
+            geostates={geostates}
+            onClick={this._onClickStateNode}
+            onMouseEnter={this._onHoverStateNode}
+            onMouseLeave={this._onLeaveHoverStateNode}
+          />
+        )}
         {this._renderPopup()}
         {this._renderHover()}
+        {this._renderStateHover()}
 
         <div style={geolocateStyle}>
           <GeolocateControl />
         </div>
         <div style={nationalViewStyle}>
-          <NationalViewButton
-            goToNational={() => this._goToNewView(defaultViewport)}
-          />
+          <NationalViewButton goToNational={() => this._goToNationalView()} />
         </div>
         <div style={fullscreenControlStyle}>
           <FullscreenControl />
@@ -290,8 +283,18 @@ export class Map extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    selectedState: state.selectedState
+    selectedState: state.selectedState,
+    country: state.country,
+    filter: state.filter
   }
 }
 
-export default connect(mapStateToProps)(Map)
+const mapDispatchToProps = dispatch => {
+  return {
+    updateSelectedState: stateName => dispatch(applyGeoState(stateName)),
+    updateStateJobs: (stateName, filter) =>
+      dispatch(fetchStateJobs(stateName, filter))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map)
