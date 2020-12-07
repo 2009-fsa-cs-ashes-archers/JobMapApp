@@ -10,7 +10,7 @@ const SIZE = 20
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 export default class Pins extends PureComponent {
   render() {
-    const {jobs, onClick} = this.props
+    const {jobs, onClick, onMouseEnter, onMouseLeave} = this.props
 
     return jobs
       ? jobs.map((job, index) => (
@@ -29,6 +29,8 @@ export default class Pins extends PureComponent {
                 transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
               }}
               onClick={() => onClick(job)}
+              onMouseEnter={() => onMouseEnter(job)}
+              onMouseLeave={onMouseLeave}
             >
               <path d={ICON} />
             </svg>

@@ -23,11 +23,15 @@ const Sidebar = props => {
 
   // Handler to apply new geo & keyword filter
   const handleSubmit = async event => {
-    toggleLoading(true)
     event.preventDefault()
-    props.updateFilter(filter)
+    toggleLoading(true)
+    let fil = filter
+    if (!fil || !fil.length) {
+      fil = 'Javascript'
+    }
+    props.updateFilter(fil)
     props.updateGeoState(geoState)
-    const fmFilter = filter.split(' ').join('-')
+    const fmFilter = fil.split(' ').join('-')
     const fmGeoState = geoState.split(' ').join('-')
     if (geoState !== 'USA') {
       await props.updateStateJobs(fmGeoState, fmFilter)
@@ -41,7 +45,7 @@ const Sidebar = props => {
     }
   }
 
-  useEffect(() => console.log(loading), [loading])
+  // useEffect(() => console.log(loading), [loading])
 
   return (
     <div id="sidebar-container">
