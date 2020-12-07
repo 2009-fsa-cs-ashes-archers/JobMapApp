@@ -133,7 +133,7 @@ export default class Map extends React.Component {
       >
         <Source
           type="geojson"
-          data={geojson}
+          data="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
           cluster={true}
           clusterMaxZoom={14}
           clusterRadius={50}
