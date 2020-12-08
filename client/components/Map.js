@@ -19,6 +19,7 @@ import {
   NationalViewButton,
   StateInfo
 } from '../components'
+import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
 
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
@@ -116,7 +117,6 @@ export class Map extends React.Component {
   // Methods for State Nodes
   _onClickStateNode = async geoState => {
     this.setState({stateHoverInfo: null})
-    // this._goToStateView(geoState)
     const {filter, updateSelectedState, updateStateJobs} = this.props
     updateSelectedState(geoState.name)
     await updateStateJobs(geoState.name, filter)
@@ -159,19 +159,28 @@ export class Map extends React.Component {
     const {jobPopupInfo} = this.state
     return (
       jobPopupInfo && (
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={jobPopupInfo.longitude}
-          latitude={jobPopupInfo.latitude}
-          closeOnClick={true}
-          onClose={() => this.setState({jobPopupInfo: null})}
+        <ClickAwayListener
+          onClickAway={this._onClickAwayPopup}
+          // style={{margin: 0, padding: 0}}
         >
-          <JobDetails
-            info={jobPopupInfo}
-            onClickAway={this._onClickAwayPopup}
-          />
-        </Popup>
+          <Popup
+            tipSize={5}
+            anchor="top"
+            longitude={jobPopupInfo.longitude}
+            latitude={jobPopupInfo.latitude}
+            closeOnClick={false}
+            closeButton={false}
+            onClose={() => this.setState({jobPopupInfo: null})}
+            // style={{padding: 0,
+            // margin: 0,
+            // }}
+          >
+            <JobDetails
+              info={jobPopupInfo}
+              // style={{margin: 0, padding: 0}}
+            />
+          </Popup>
+        </ClickAwayListener>
       )
     )
   }
@@ -186,6 +195,7 @@ export class Map extends React.Component {
           longitude={jobHoverInfo.longitude}
           latitude={jobHoverInfo.latitude}
           closeOnClick={false}
+          closeButton={false}
         >
           <JobInfo info={jobHoverInfo} />
         </Popup>
@@ -204,6 +214,7 @@ export class Map extends React.Component {
           longitude={stateHoverInfo.longitude}
           latitude={stateHoverInfo.latitude}
           closeOnClick={false}
+          closeButton={false}
         >
           <StateInfo info={stateHoverInfo} />
         </Popup>
@@ -215,6 +226,8 @@ export class Map extends React.Component {
     const {viewport} = this.state
     const {country} = this.props
     const jobs = this.props.jobs.jobs
+    // ? this.props.jobs.jobs.filter(j => j.minSalary)
+    // : []
     let selectedState = this.props.selectedState
     // Set up geostates for rendering national pins
     const geostates =

@@ -119,3 +119,17 @@ form div {
   text-align: center;
   padding: 0 2px;
 }
+
+/* Popup Styles */
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  width: 150px;
+  padding: 0;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
