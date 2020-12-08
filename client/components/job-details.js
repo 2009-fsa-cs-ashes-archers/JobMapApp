@@ -38,8 +38,13 @@ export default class JobDetails extends PureComponent {
               alignItems: 'flex-end'
             }}
           >
-            <a href={info.url} style={{color: '#457B9D'}}>
-              Apply on Adzuna
+            <a
+              href={info.url}
+              style={{color: '#457B9D'}}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apply now with Adzuna
             </a>
             {info.minSalary
               ? `est. $${Math.round(info.minSalary / 1000)}K-${Math.round(
