@@ -10,7 +10,11 @@ export const setStateJobs = stateJobs => ({
 export const fetchStateJobs = (state = 'New-York', filter) => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/state/${state}/jobs/${filter}`)
+      const fmFilter = filter.split(' ').join('-')
+      const fmGeoState = state.split(' ').join('-')
+      const {data} = await Axios.get(
+        `/api/state/${fmGeoState}/jobs/${fmFilter}`
+      )
       console.log(`Got back ${data.jobs.length} jobs from server`)
       dispatch(setStateJobs(data))
     } catch (error) {
