@@ -226,8 +226,6 @@ export class Map extends React.Component {
     const {viewport} = this.state
     const {country} = this.props
     const jobs = this.props.jobs.jobs
-    // ? this.props.jobs.jobs.filter(j => j.minSalary)
-    // : []
     let selectedState = this.props.selectedState
     // Set up geostates for rendering national pins
     const geostates =
