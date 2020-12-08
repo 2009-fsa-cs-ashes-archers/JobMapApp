@@ -4,6 +4,7 @@ const calculatePercHistogram = require('./histogramHelper')
 const {states} = require('../../utils/constants')
 const getAdzunaJobs = require('./getAdzunaJobs')
 const getAdzunaHistogram = require('./getAdzunaHistogram')
+const jobByStateHelper = require('./jobsByStateHelper')
 const AdzunaKey = process.env.ADZUNA_API_KEY
 const AdzunaId = process.env.ADZUNA_API_ID
 const {javaScriptJobsByState} = require('../../utils/dummyData')
@@ -20,31 +21,36 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     )
     // Returns Histogram of Salary Distribution
     const histData = await getAdzunaHistogram(filter)
-    // Returns Distribution of Jobs by State
-    // PLEASE DO NOT DELETE!
-    // COMMENTED OUT BECAUSE OF HITS LIMITS - CACHE IN THE FUTURE??
-    // const jobsPerState = await Promise.all(
-    //   states.map(async state => {
-    //     const formattedState = state.split(' ').join('%20')
-    //     const data = await getAdzunaJobs(filter, formattedState, 0, 1)
-    //     return {
-    //       [state]: {
-    //         count: data.count,
-    //         // This might be undefined:
-    //         averageSalary: data.mean
-    //       }
-    //     }
-    //   })
-    // )
-    let jobsPerState
-    filter === 'Javascript'
-      ? (jobsPerState = javaScriptJobsByState)
-      : (jobsPerState = [])
     const histogramByPercent = calculatePercHistogram(histData)
+    // Returns Distribution of Jobs by State
+    let jobsPerState
+    if (filter === 'Javascript') {
+      // Use dummy data
+      jobsPerState = javaScriptJobsByState
+    } else {
+      // 50 Adzuna Queries (1 for each state)
+      jobsPerState = await Promise.all(
+        states.map(async state => {
+          const formattedState = state.split(' ').join('%20')
+          const data = await getAdzunaJobs(filter, formattedState, 0, 1)
+          return {
+            [state]: {
+              count: data.count,
+              // This might be undefined:
+              averageSalary: data.mean
+            }
+          }
+        })
+      )
+      // Format Array into an object with states as keys
+      jobsPerState = jobByStateHelper(jobsPerState)
+    }
+    // Country Response Object
     const nationalTotals = {
       count: res1.data.count,
       averageSalary: res1.data.mean,
       histogramByPercent,
+      // This needs to be an object, not an array
       jobsPerState
     }
     res.json(nationalTotals)

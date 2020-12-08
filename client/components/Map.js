@@ -90,7 +90,7 @@ export class Map extends React.Component {
       if (selectedState === 'USA') {
         this._goToNationalView()
       } else {
-        console.log('Time to transition to', selectedState, 'view.')
+        this._goToStateView(dataByState[selectedState])
       }
     }
   }
@@ -115,9 +115,8 @@ export class Map extends React.Component {
 
   // Methods for State Nodes
   _onClickStateNode = async geoState => {
-    console.log('here')
     this.setState({stateHoverInfo: null})
-    this._goToStateView(geoState)
+    // this._goToStateView(geoState)
     const {filter, updateSelectedState, updateStateJobs} = this.props
     updateSelectedState(geoState.name)
     await updateStateJobs(geoState.name, filter)
@@ -141,10 +140,14 @@ export class Map extends React.Component {
     this.props.updateSelectedState('USA')
   }
   _goToStateView = geoState => {
-    console.log('in the future we will go to the ' + geoState.name + ' view')
     this.setState({
       viewport: {
-        ...defaultViewport,
+        latitude: geoState.latitude,
+        // Offset the lng
+        longitude: geoState.longitude + 3,
+        zoom: 6,
+        bearing: 0,
+        pitch: 0,
         transitionDuration: 1500,
         transitionInterpolator: new FlyToInterpolator()
       }

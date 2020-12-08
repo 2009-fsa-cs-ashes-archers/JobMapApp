@@ -32,7 +32,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
     } else {
       // Multiple Pages -- We may want to comment this back in for production
       // let data = await Promise.all(
-      //   [6, 7, 8, 9, 10].map(async page => {
+      //   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(async page => {
       //     const pageJobs = await getAdzunaJobs(filter, state, 50, page)
       //     return pageJobs
       //   })

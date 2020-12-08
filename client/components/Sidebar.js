@@ -21,6 +21,14 @@ const Sidebar = props => {
     toggleLoading(false)
   }, [])
 
+  // Listens for changes in selectedState to update the dropdown
+  useEffect(
+    () => {
+      setGeoState(props.selectedState)
+    },
+    [props.selectedState]
+  )
+
   // Handler to apply new geo & keyword filter
   const handleSubmit = async event => {
     event.preventDefault()
@@ -31,16 +39,14 @@ const Sidebar = props => {
     }
     props.updateFilter(fil)
     props.updateGeoState(geoState)
-    const fmFilter = fil.split(' ').join('-')
-    const fmGeoState = geoState.split(' ').join('-')
     if (geoState !== 'USA') {
-      await props.updateStateJobs(fmGeoState, fmFilter)
+      await props.updateStateJobs(geoState, fil)
       toggleLoading(false)
     } else {
       console.log(
         "Switched back to USA. Time to get national data from cache if we have for the current filter or trigger a thunk if we don't"
       )
-      props.updateCountry(fmFilter)
+      props.updateCountry(fil)
       toggleLoading(false)
     }
   }
