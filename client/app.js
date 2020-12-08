@@ -7,10 +7,10 @@ const App = () => {
   return (
     <div className="app-row">
       <div className="app-column">
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes />
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   )
 }
