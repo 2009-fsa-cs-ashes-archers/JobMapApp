@@ -23,64 +23,12 @@ import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
 // import Clusters from './Clusters'
 // import Supercluster from 'supercluster'
 
-// CREATING STATE NODES ARRAY
-const geoStatesArray = []
-
-for (let key in dataByState) {
-  // console.log(dataByState[key])
-  geoStatesArray.push({
-    name: key,
-    longitude: dataByState[key].longitude,
-    latitude: dataByState[key].latitude
-  })
-}
-
 // TOKEN
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
 
 // MAPREF
 // const mapRef = useRef()
-
-// STYLE (could be put into CSS file)
-const geolocateStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  padding: '10px'
-}
-
-const nationalViewStyle = {
-  position: 'absolute',
-  top: 36,
-  left: 0,
-  width: '49px',
-  height: '49px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}
-
-const fullscreenControlStyle = {
-  position: 'absolute',
-  top: 72,
-  left: 0,
-  padding: '10px'
-}
-
-const navStyle = {
-  position: 'absolute',
-  top: 108,
-  left: 0,
-  padding: '10px'
-}
-
-const scaleControlStyle = {
-  position: 'absolute',
-  bottom: 36,
-  left: 0,
-  padding: '10px'
-}
 
 // VIEWPORT
 const defaultViewport = {
@@ -104,23 +52,8 @@ export const Map = ({
   const [jobHoverInfo, setJobHoverInfo] = useState(null)
   const [stateHoverInfo, setStateHoverInfo] = useState(null)
 
-  // REFACTORING JOBS
+  // GRAB ALL JOBS
   const jobs = jobsInfo.jobs
-  console.log(jobs)
-
-  // CREATE GEOJSON ARRAY POINTS FOR LAYERS
-  let geojsonJobs = []
-
-  if (jobs) {
-    geojsonJobs = jobs.map(job => ({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Point',
-        coordinates: [job.longitude, job.latitude]
-      }
-    }))
-  }
 
   // Set up geostates for rendering national pins
   const geostates =
@@ -139,17 +72,6 @@ export const Map = ({
         })
 
   // listens for change in selectedState to change a viewport
-  useEffect(
-    () => {
-      if (selectedState === 'USA') {
-        _goToNationalView()
-      } else {
-        _goToStateView(dataByState[selectedState])
-      }
-    },
-    [selectedState]
-  )
-
   const _goToNationalView = () => {
     setViewport({
       ...defaultViewport,
@@ -170,6 +92,16 @@ export const Map = ({
       transitionInterpolator: new FlyToInterpolator()
     })
   }
+  useEffect(
+    () => {
+      if (selectedState === 'USA') {
+        _goToNationalView()
+      } else {
+        _goToStateView(dataByState[selectedState])
+      }
+    },
+    [selectedState]
+  )
 
   // Methods for Job Nodes
   const _onClickMarker = job => {
@@ -288,19 +220,19 @@ export const Map = ({
       {_renderHover()}
       {_renderStateHover()}
 
-      <div style={geolocateStyle}>
+      <div className="geolocateStyle">
         <GeolocateControl />
       </div>
-      <div style={nationalViewStyle}>
+      <div className="nationalViewStyle">
         <NationalViewButton goToNational={() => _goToNationalView()} />
       </div>
-      <div style={fullscreenControlStyle}>
+      <div className="fullscreenControlStyle">
         <FullscreenControl />
       </div>
-      <div style={navStyle}>
+      <div className="navStyle">
         <NavigationControl />
       </div>
-      <div style={scaleControlStyle}>
+      <div className="scaleControlStyle">
         <ScaleControl />
       </div>
     </MapGL>
