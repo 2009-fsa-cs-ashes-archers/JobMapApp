@@ -11,10 +11,8 @@ const SIZE = 20
 export default class NationalPins extends PureComponent {
   render() {
     const {geostates, onClick, onMouseEnter, onMouseLeave} = this.props
-
-    return (
-      geostates &&
-      geostates.map((geostate, index) => (
+    return geostates.map((geostate, index) => {
+      return (
         <Marker
           key={`marker-${index}`}
           longitude={geostate.longitude}
@@ -29,14 +27,14 @@ export default class NationalPins extends PureComponent {
               stroke: 'none',
               transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
             }}
-            // onClick={() => onClick(geostate)}
-            // onMouseEnter={() => onMouseEnter(geostate)}
-            // onMouseLeave={onMouseLeave}
+            onClick={() => onClick(geostate)}
+            onMouseEnter={() => onMouseEnter(geostate)}
+            onMouseLeave={onMouseLeave}
           >
             <path d={ICON} />
           </svg>
         </Marker>
-      ))
-    )
+      )
+    })
   }
 }

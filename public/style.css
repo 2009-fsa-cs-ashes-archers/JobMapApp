@@ -39,10 +39,19 @@ form div {
 #nav {
   display: flex;
   justify-content: space-between;
-  height: 60px;
-  border-bottom: 6px groove rgba(19, 92, 164, 0.56);
-  background: rgb(129, 176, 223);
+  height: 80px;
+  background: #2c4e63;
+  background: -moz-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
+  background: -webkit-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
+  background: linear-gradient(to bottom, #2c4e63 0%, #457b9d 100%);
   z-index: 3;
+}
+
+#logo {
+  height: 120px;
+  position: relative;
+  top: -50px;
+  left: -40px;
 }
 
 .navbar {
@@ -65,17 +74,29 @@ form div {
 #sidebar-container {
   width: 25vw;
   height: 100%;
-  border-left: 6px groove rgba(19, 92, 164, 0.56);
+  /* border-left: 6px groove #457B9D; */
   margin-right: -15px;
   text-align: center;
-  background: rgb(186, 138, 138);
+  background: #eaebea;
   z-index: 3;
   border-radius: 0px 0px 0px 40px;
 }
 
 .search-data-container {
   margin: 20px;
-  background-color: rgb(224, 233, 255);
+  padding-top: 10px;
+  /* background-color: white; */
+  border-radius: 5px;
+  border: black solid 1px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  height: 200px;
+  color: white;
 }
 
 /* Map Styles */
