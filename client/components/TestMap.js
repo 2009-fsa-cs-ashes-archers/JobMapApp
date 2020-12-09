@@ -50,7 +50,7 @@ export default function TestMap() {
         .getBounds()
         .toArray()
         .flat()
-    : console.log('mapRef.current is undefined')
+    : null
 
   // console.log('bounds', bounds)
 
