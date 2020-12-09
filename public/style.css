@@ -140,3 +140,42 @@ form div {
   text-align: center;
   padding: 0 2px;
 }
+
+.geolocateStyle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.nationalViewStyle {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  width: 49px;
+  height: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreenControlStyle {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  padding: 10px;
+}
+
+.navStyle {
+  position: absolute;
+  top: 108px;
+  left: 0;
+  padding: 10px;
+}
+
+.scaleControlStyle {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  padding: 10px;
+}
