@@ -9,7 +9,7 @@ const Navbar = props => (
     <div className="navbar navbar-left">
       {/* The navbar will show these links after you log in */}
       <Link to="/">
-        <h4>🇺🇸 JavaScript Jobs USA</h4>
+        <img src="Logo-Yellow.png" alt="Logo" id="logo" />
       </Link>
     </div>
     <div className="navbar navbar-right">
