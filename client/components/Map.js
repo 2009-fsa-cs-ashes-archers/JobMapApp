@@ -19,6 +19,7 @@ import {
   NationalViewButton,
   StateInfo
 } from '../components'
+import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
 
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
@@ -116,7 +117,6 @@ export class Map extends React.Component {
   // Methods for State Nodes
   _onClickStateNode = async geoState => {
     this.setState({stateHoverInfo: null})
-    // this._goToStateView(geoState)
     const {filter, updateSelectedState, updateStateJobs} = this.props
     updateSelectedState(geoState.name)
     await updateStateJobs(geoState.name, filter)
@@ -159,19 +159,19 @@ export class Map extends React.Component {
     const {jobPopupInfo} = this.state
     return (
       jobPopupInfo && (
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={jobPopupInfo.longitude}
-          latitude={jobPopupInfo.latitude}
-          closeOnClick={true}
-          onClose={() => this.setState({jobPopupInfo: null})}
-        >
-          <JobDetails
-            info={jobPopupInfo}
-            onClickAway={this._onClickAwayPopup}
-          />
-        </Popup>
+        <ClickAwayListener onClickAway={this._onClickAwayPopup}>
+          <Popup
+            tipSize={5}
+            anchor="top"
+            longitude={jobPopupInfo.longitude}
+            latitude={jobPopupInfo.latitude}
+            closeOnClick={false}
+            closeButton={false}
+            onClose={() => this.setState({jobPopupInfo: null})}
+          >
+            <JobDetails info={jobPopupInfo} />
+          </Popup>
+        </ClickAwayListener>
       )
     )
   }
@@ -186,6 +186,7 @@ export class Map extends React.Component {
           longitude={jobHoverInfo.longitude}
           latitude={jobHoverInfo.latitude}
           closeOnClick={false}
+          closeButton={false}
         >
           <JobInfo info={jobHoverInfo} />
         </Popup>
@@ -204,6 +205,7 @@ export class Map extends React.Component {
           longitude={stateHoverInfo.longitude}
           latitude={stateHoverInfo.latitude}
           closeOnClick={false}
+          closeButton={false}
         >
           <StateInfo info={stateHoverInfo} />
         </Popup>
