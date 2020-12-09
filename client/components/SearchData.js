@@ -26,15 +26,15 @@ export const SearchData = props => {
     <div className="search-data-container">
       {!props.loading && histData ? (
         <div>
-          <h4>
+          <h5 style={{fontWeight: 'bold'}}>
             {props.selectedState}: {props.filter}
-          </h4>
-          <h4>Total Matches: {data.count}</h4>
-          <h4>
+          </h5>
+          <h5>Total Matches: {data.count}</h5>
+          <h5>
             Average Salary{data.averageSalary
               ? ': ' + accounting.formatMoney(data.averageSalary)
               : ' N/A'}
-          </h4>
+          </h5>
           {data.averageSalary && (
             <VictoryChart domainPadding={20}>
               <VictoryAxis tickFormat={range => `$${range / 1000}K+`} />

@@ -6,7 +6,7 @@ export default class JobInfo extends PureComponent {
 
     return (
       <div style={{maxWidth: '24rem', margin: '-10px', padding: '10px'}}>
-        <h3 style={{padding: '0', margin: '0'}}>{info.title}</h3>
+        <h4 style={{padding: '0', margin: '0'}}>{info.title}</h4>
         <p
           style={{
             fontStyle: 'italic',

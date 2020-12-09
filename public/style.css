@@ -40,8 +40,8 @@ form div {
   display: flex;
   justify-content: space-between;
   height: 60px;
-  border-bottom: 6px groove rgba(19, 92, 164, 0.56);
-  background: rgb(129, 176, 223);
+  /* border-bottom: 6px groove #457B9D; */
+  background: #457b9d;
   z-index: 3;
 }
 
@@ -65,17 +65,29 @@ form div {
 #sidebar-container {
   width: 25vw;
   height: 100%;
-  border-left: 6px groove rgba(19, 92, 164, 0.56);
+  /* border-left: 6px groove #457B9D; */
   margin-right: -15px;
   text-align: center;
-  background: rgb(186, 138, 138);
+  background: #d4e4ed;
   z-index: 3;
   border-radius: 0px 0px 0px 40px;
 }
 
 .search-data-container {
   margin: 20px;
-  background-color: rgb(224, 233, 255);
+  padding-top: 10px;
+  /* background-color: white; */
+  border-radius: 5px;
+  border: black solid 1px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  height: 200px;
+  color: white;
 }
 
 /* Map Styles */
@@ -118,18 +130,4 @@ form div {
   font-size: 18pt;
   text-align: center;
   padding: 0 2px;
-}
-
-/* Popup Styles */
-.mapboxgl-popup-close-button {
-  display: none;
-}
-
-.mapboxgl-popup-content {
-  width: 150px;
-  padding: 0;
-}
-
-.mapboxgl-popup-content-wrapper {
-  padding: 1%;
 }

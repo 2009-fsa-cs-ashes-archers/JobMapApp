@@ -14,7 +14,7 @@ export default class JobDetails extends PureComponent {
             borderRadius: '2px 2px 0 0'
           }}
         >
-          <h3 style={{padding: '0', margin: '0'}}>{info.title}</h3>
+          <h4 style={{padding: '0', margin: '0'}}>{info.title}</h4>
           <p
             style={{
               fontStyle: 'italic',

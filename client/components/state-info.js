@@ -15,7 +15,7 @@ export default class StateInfo extends PureComponent {
             borderRadius: '2px 2px 0 0'
           }}
         >
-          <h3 style={{padding: '0', margin: '0'}}>{info.name}</h3>
+          <h4 style={{padding: '0', margin: '0'}}>{info.name}</h4>
         </div>
         <div style={{padding: '10px', backgroundColor: 'white'}}>
           <span style={{fontWeight: 'bold'}}>{info.count || 0}</span> Matches

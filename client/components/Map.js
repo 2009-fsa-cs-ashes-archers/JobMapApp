@@ -159,10 +159,7 @@ export class Map extends React.Component {
     const {jobPopupInfo} = this.state
     return (
       jobPopupInfo && (
-        <ClickAwayListener
-          onClickAway={this._onClickAwayPopup}
-          // style={{margin: 0, padding: 0}}
-        >
+        <ClickAwayListener onClickAway={this._onClickAwayPopup}>
           <Popup
             tipSize={5}
             anchor="top"
@@ -171,14 +168,8 @@ export class Map extends React.Component {
             closeOnClick={false}
             closeButton={false}
             onClose={() => this.setState({jobPopupInfo: null})}
-            // style={{padding: 0,
-            // margin: 0,
-            // }}
           >
-            <JobDetails
-              info={jobPopupInfo}
-              // style={{margin: 0, padding: 0}}
-            />
+            <JobDetails info={jobPopupInfo} />
           </Popup>
         </ClickAwayListener>
       )
