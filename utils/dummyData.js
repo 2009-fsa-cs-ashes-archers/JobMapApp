@@ -51,6 +51,191 @@ const javaScriptJobsByState = {
   Wyoming: {count: 52, averageSalary: undefined}
 }
 
+const reactJobsByState = {
+  Alabama: {
+    count: 195
+  },
+  Alaska: {
+    count: 63
+  },
+  Arizona: {
+    count: 494,
+    averageSalary: 139000
+  },
+  Arkansas: {
+    count: 140
+  },
+  California: {
+    count: 3287,
+    averageSalary: 144043.76
+  },
+  Colorado: {
+    count: 832,
+    averageSalary: 126994.12
+  },
+  Connecticut: {
+    count: 266,
+    averageSalary: 125000
+  },
+  Delaware: {
+    count: 102
+  },
+  Florida: {
+    count: 1233,
+    averageSalary: 77476.67
+  },
+  Georgia: {
+    count: 879,
+    averageSalary: 82612
+  },
+  Hawaii: {
+    count: 44
+  },
+  Idaho: {
+    count: 137,
+    averageSalary: 175000
+  },
+  Illinois: {
+    count: 1105,
+    averageSalary: 126612.73
+  },
+  Indiana: {
+    count: 330,
+    averageSalary: 67740
+  },
+  Iowa: {
+    count: 186
+  },
+  Kansas: {
+    count: 162,
+    averageSalary: 115000
+  },
+  Kentucky: {
+    count: 181
+  },
+  Louisiana: {
+    count: 124
+  },
+  Maine: {
+    count: 60
+  },
+  Maryland: {
+    count: 595,
+    averageSalary: 105937.5
+  },
+  Massachusetts: {
+    count: 1032,
+    averageSalary: 126410.77
+  },
+  Michigan: {
+    count: 670,
+    averageSalary: 113750
+  },
+  Minnesota: {
+    count: 630,
+    averageSalary: 113333.33
+  },
+  Mississippi: {
+    count: 89,
+    averageSalary: 96000
+  },
+  Missouri: {
+    count: 483,
+    averageSalary: 122300
+  },
+  Montana: {
+    count: 60
+  },
+  Nebraska: {
+    count: 147,
+    averageSalary: 54260
+  },
+  Nevada: {
+    count: 146,
+    averageSalary: 112265.71
+  },
+  'New Hampshire': {
+    count: 115,
+    averageSalary: 119187.5
+  },
+  'New Jersey': {
+    count: 913,
+    averageSalary: 120000
+  },
+  'New Mexico': {
+    count: 97
+  },
+  'New York': {
+    count: 1488,
+    averageSalary: 154366.7
+  },
+  'North Carolina': {
+    count: 887,
+    averageSalary: 82831.43
+  },
+  'North Dakota': {
+    count: 44
+  },
+  Ohio: {
+    count: 817,
+    averageSalary: 108858.33
+  },
+  Oklahoma: {
+    count: 281
+  },
+  Oregon: {
+    count: 470,
+    averageSalary: 156000
+  },
+  Pennsylvania: {
+    count: 1016,
+    averageSalary: 71055
+  },
+  'Rhode Island': {
+    count: 128
+  },
+  'South Carolina': {
+    count: 204,
+    averageSalary: 40629.12
+  },
+  'South Dakota': {
+    count: 55
+  },
+  Tennessee: {
+    count: 588,
+    averageSalary: 19200
+  },
+  Texas: {
+    count: 2210,
+    averageSalary: 129660
+  },
+  Utah: {
+    count: 410,
+    averageSalary: 141250
+  },
+  Vermont: {
+    count: 72
+  },
+  Virginia: {
+    count: 1444,
+    averageSalary: 117083.33
+  },
+  Washington: {
+    count: 1158,
+    averageSalary: 138490.88
+  },
+  'West Virginia': {
+    count: 53
+  },
+  Wisconsin: {
+    count: 337,
+    averageSalary: 49920
+  },
+  Wyoming: {
+    count: 34
+  }
+}
+
 const californiaJavascriptData = {
   count: 4445,
   averageSalary: 142949.9,
@@ -62,6 +247,20 @@ const californiaJavascriptData = {
     '100000': 8,
     '120000': 22,
     '140000': 62
+  }
+}
+
+const newYorkReactData = {
+  count: 1489,
+  averageSalary: 154366.7,
+  histogramByPercent: {
+    '20000': 5,
+    '40000': 9,
+    '60000': 5,
+    '80000': 0,
+    '100000': 5,
+    '120000': 14,
+    '140000': 64
   }
 }
 
@@ -7683,8 +7882,1161 @@ const californiaJavascriptJobs = [
   }
 ]
 
+const newYorkReactJobs = [
+  {
+    title: 'Full Stack Web Developer - 5G Lab',
+    company: 'Verizon',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.52913099999999,
+    latitude: 42.4990945,
+    url:
+      'https://www.adzuna.com/land/ad/1854026870?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=AC6E2FAE7B6329A21E9BC26E2B03F2BE70B83A38',
+    description:
+      ": Bachelor's degree or four or more years of work experience. Four or more years of relevant work experience. Two or more years of experienceas a full-stack developer writing in Javascript ...  (ES7), and React.javascript:void('Black') . Experience working closely with a product manager or product team. Even better if you have: An ability to marry code quality and business ...",
+    created: '2020-12-01T02:21:02Z'
+  },
+  {
+    title: 'Full Stack Web Developer',
+    company: 'CPS Recruitment',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Syracuse, Onondaga County',
+    area: ['US', 'New York', 'Onondaga County', 'Syracuse'],
+    longitude: -76.17287739999999,
+    latitude: 43.0694166,
+    url:
+      'https://www.adzuna.com/land/ad/1842488101?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=6D392DB7750965EEA44C2CE59D9AE6E50431DB77',
+    description:
+      'CPS Recruitment is searching for an experienced Full Stack Web Developer for a well-established and respected company in the Syracuse, New York area. Why do you want to work ...  years of experience using Web Frameworks like Vue, Angular and React 4 years of demonstrated experience with C, JavaScript, REST Services Experience with XAML, Azure Cloud Services ...',
+    created: '2020-11-24T15:13:24Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack React.js Developer',
+    company: 'Perennial Resources International',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9765189,
+    latitude: 40.75701480000001,
+    url:
+      'https://www.adzuna.com/land/ad/1791050048?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=C9A8A476E4295833C9A817CAB2324896867565BE',
+    description:
+      'THIS ROLE WILL START OFF REMOTE BUT WILL BE FULL-TIME ONSITE IN NYC WHEN THE PANDEMIC SUBSIDES. Looking for Full Stack Developers that can work on the backend with Java Spring ...  for maximum performance across a vast array of web-capable devices and browsers Skills Strong proficiency in JavaScript, including DOM manipulation and the JavaScript object model Strong ...',
+    created: '2020-10-29T16:47:07Z'
+  },
+  {
+    title: 'Sr. Full Stack Developer - React',
+    company: 'Chenoa Information services',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.4194948,
+    latitude: 40.6610127,
+    url:
+      'https://www.adzuna.com/land/ad/1867317610?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=1EE6176DA28FD91F4CCB13BBE0DFED61EE2150AC',
+    description:
+      'Full Time position Sr. Front End Developer Full Stack Developer Sr. React Developer Location NYC working remotely until mid-2021 Job type Full Time Permanent positions with client ...  of React SPA development Mastery of web fundamentals, including vanilla Javascript, HTML and CSS Experience in…',
+    created: '2020-12-07T12:38:09Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Senior Full-Stack Developer',
+    company: 'Howard Sloan Tech',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.97884379999999,
+    latitude: 40.7556825,
+    url:
+      'https://www.adzuna.com/land/ad/1819943166?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=5FB51CD03C53BC22BA9127446E16954F0108D616',
+    description:
+      'This well-known boutique food company is looking for a Senior Full-Stack Developer to join their team. Focused on web-site development. Engineers build and own innovative web ...  applications powered by advanced JavaScript, CSS, and HTML. The ideal candidate would have 7 years of professional software development experience Ad…',
+    created: '2020-11-13T04:12:26Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Software Engineer',
+    company: 'Open Systems Technologies',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Albany County, New York',
+    area: ['US', 'New York', 'Albany County'],
+    longitude: -72.7459114,
+    latitude: 41.760461,
+    url:
+      'https://www.adzuna.com/land/ad/1820834737?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=152459AB9E7EBC77AD1DC6F221C892524BD54A41',
+    description:
+      '...  experience5 years of C#/.NET with proficiency in a web framework such as ASP.NET MVC4 years of WebUI/Javascript/HTML/CSS with proficiency in at least one web framework such as Angular, React ...  industry. With the Global Services division, starting Jan-2012, Open Systems has expanded into the ITO & BPO Projects/Solutions business.Job DescriptionOur client is seeking a Full Stack ...',
+    created: '2020-11-13T12:32:11Z'
+  },
+  {
+    title: 'Engineer, Full Stack Javascript',
+    company: 'Tiro',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.56431119999999,
+    latitude: 42.6605452,
+    url:
+      'https://www.adzuna.com/land/ad/1839327528?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=6B91CB059987452D212EA89D3FED9C54F5D6B6F2',
+    description:
+      'Job Description Engineer, JavaScript Full Stack NEW YORK, NEW YORK ENGINEERING FULL TIME Founded in 2015, Even Financial, a NYC based FinTech company, is the leading search ...  using Node and NestJS. Ask important questions, speak candidly, and try to move the needle every single day. Must haves: 2 years software engineering experience or a strong academic ...',
+    created: '2020-11-22T20:45:27Z'
+  },
+  {
+    title: '100% REMOTE Full Stack Web Developer (Golang/React)',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1868500160?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=E3CD8583E3FBA33430BA23291B7BF16C9817FDE1',
+    description:
+      'Job Title: Senior Full Stack Web Developer Location: 100% REMOTE Salary Range: $150k - $175k Requirements: React.js, Golang, Typescript, Node.js, Docker, GCP Based in the DC area ... , we are one of the premier CyberSecurity Automation companies in the US. Due to growth, we are actively seeking to hire a Senior Full Stack Web Developer to join …',
+    created: '2020-12-08T02:13:33Z'
+  },
+  {
+    title: 'Full Stack Java Developer',
+    company: 'The Judge Group, Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Manhattan, New York City',
+    area: ['US', 'New York', 'New York City', 'Manhattan'],
+    longitude: -74.0054731,
+    latitude: 40.7052493,
+    url:
+      'https://www.adzuna.com/land/ad/1827943635?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=94A3B72705F37832D727B8A2DE3EF92F07091F14',
+    description:
+      "...  of study, or equivalent experience 4-6 years of experience with full-stack web development 3 years working professionally with React Redux, and modern JavaScript frameworks javascript ... Location Manhattan, NY Description Our client is currently seeking a Full Stack Java Developer Requirements Bachelor's degree in compute…",
+    created: '2020-11-17T00:56:04Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Java Developer',
+    company: 'The Judge Group',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Grand Central, Manhattan',
+    area: ['US', 'New York', 'New York City', 'Manhattan', 'Grand Central'],
+    longitude: -74.0054731,
+    latitude: 40.7052493,
+    url:
+      'https://www.adzuna.com/land/ad/1830348882?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=B2E85681AA73B56391AA38F815B53857528F7A98',
+    description:
+      '...  field of study, or equivalent experience 4-6 years of experience with full-stack web development 3 years working professionally with React / Redux, and modern JavaScript frameworks à ... Location: Manhattan, NY Description: Our client is currently seeking a Full Stack Java Developer Requirements: Bachelor’s degree in computer science, <str…',
+    created: '2020-11-18T06:07:43Z'
+  },
+  {
+    title: 'Full stack Java/J2EE developers',
+    company: 'Diaspark Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.4142972,
+    latitude: 40.526427,
+    url:
+      'https://www.adzuna.com/land/ad/1839352572?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=A0E4C09900BDF56CB76392D53B93FF716E57751C',
+    description:
+      'Required Skills 7 yearsrsquo experience in software design and application development, utilizing server-side Java technology stack Bachelorrsquos Degree in Computer Science ...  one or more of the following JavaScript frameworks jQuery, Angular, Bootstrap, Node.js, React js, Vue.Js Database design development, using Microsoft SQL or similar database ...',
+    created: '2020-11-22T20:58:09Z'
+  },
+  {
+    title: 'Full-Stack Developer',
+    company: 'Howard Sloan Tech',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.97884379999999,
+    latitude: 40.7556825,
+    url:
+      'https://www.adzuna.com/land/ad/1855181375?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=25AFC262AF8D8CE45748781540BC6B840F530F33',
+    description:
+      'This marketing and advertising agency is looking for a Full-Stack Developer to join their team. This role will be working on their website. The ideal candidate would have 5 years ...  of relevant experience including e-commerce, web application development, andor systems. 4 yeatrs HTML, CSS, React, AWS is a Plus Demonstrable senior level expertise in both back end ...',
+    created: '2020-12-01T12:36:43Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Java Developer',
+    company: 'The Judge Group',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Grand Central, Manhattan',
+    area: ['US', 'New York', 'New York City', 'Manhattan', 'Grand Central'],
+    longitude: -74.0054731,
+    latitude: 40.7052493,
+    url:
+      'https://www.adzuna.com/land/ad/1833405266?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=49EC76A119E9B025481F989142E5F216F334B0DD',
+    description:
+      '...  of study, or equivalent experience4-6 years of experience with full-stack web development3 years working professionally with React / Redux, and modern JavaScript frameworks javascript ... Location: Manhattan, NY Description: Our client is currently seeking a Full Stack Java Developer Requirements:Bachelors degree in computer science, <stro…',
+    created: '2020-11-19T11:22:08Z'
+  },
+  {
+    title: 'Senior Full-stack Software Engineer',
+    company: 'JK Partners, Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.23384659999999,
+    latitude: 40.8055341,
+    url:
+      'https://www.adzuna.com/land/ad/1819747928?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=BAE1912F7EE77CBDC6BD729C39B862FE7F93B091',
+    description:
+      'Senior Full-stack Software Engineer in NY, NY. FTE, contract or Try and buy 6 years of proven development experience Education in engineering, mathematics, or computer science ...  analytical and reasoning minded that result in clear technical execution Strong experience in one or more development language, such as C, F, Java, C++, Python, JavaScript, Typescrip…',
+    created: '2020-11-13T00:52:24Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Open Systems Technologies',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Albany County, New York',
+    area: ['US', 'New York', 'Albany County'],
+    longitude: -72.7459114,
+    latitude: 41.760461,
+    url:
+      'https://www.adzuna.com/land/ad/1820835313?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=13237FF523F92B09ABEC9A5AAB88A33C555EBE5B',
+    description:
+      '...  is looking for a strong Full Stack Developer. ResponsibilitiesBuilding features, creating tools, and maintaining code for everything users touchBuild great softwareTake ownership of large ...  years of engineering experience building large-scale technical applicationsStrong leadership experienceStrong understanding of software development lifecycleAdditional InformationAll ...',
+    created: '2020-11-13T12:32:19Z'
+  },
+  {
+    title: 'Full Stack Software Engineer (React, Python, AWS, Node)',
+    company: 'Thompson Technologies, Inc',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -84.4638025,
+    latitude: 33.8857698,
+    url:
+      'https://www.adzuna.com/land/ad/1858364410?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=C7F3EFC8B134797C997715DB54D2038066CC5809',
+    description:
+      'Thompson Technologies is seeking multiple Senior Software Engineers (JavaScript- ReactNode, Python, AWS) with our client in NYC. These are permanent positions with an incredible ...  Package Equity and Bonus Growing company Relocation assistance What is required? 3 years of development experience preferably with Python, React, Node, PostgreSQL, AWS, etc. Excellent ...',
+    created: '2020-12-02T20:06:14Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Lead Full Stack Engineer - JavaScript, C#',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1858934659?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=52CA6E51FB99C1441C359C020154A69AD386F82B',
+    description:
+      'Are you a Lead level Full Stack Engineer with JavaScript and C# experience? Is your skillset broad? Do you have a strong collaborative mindset and an interest in working to solve ...  compensation  excellent engineering team  disruptive and exciting product  growth stageIf you are a Lead Full Stack Engineer with JavaScript and C# and you can im…',
+    created: '2020-12-03T02:26:42Z'
+  },
+  {
+    title: 'Senior Software Engineer',
+    company: 'CIGNA',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.72712829999999,
+    latitude: 41.8725799,
+    url:
+      'https://www.adzuna.com/land/ad/1854028205?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=B580B3D85E539012F28A3A5B7952EA238E2F64F0',
+    description:
+      '...  technology to make healthcare simple, transparent, and more affordable. We are seeking full stack software / data engineers to join us and help modernize the healthcare industry. This team ...  that are scalable, robust, and thoughtfully designed. You are comfortable with all layers of the stack, from the database to the front-end. • You will be involved in the full software</stron…',
+    created: '2020-12-01T02:21:30Z'
+  },
+  {
+    title: 'Full Stack Java Developer',
+    company: 'Mitchell Martin',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9923058,
+    latitude: 40.7551382,
+    url:
+      'https://www.adzuna.com/land/ad/1868499123?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=0BA731C1B6F0EFEF3309A9A91F618821F03B9225',
+    description:
+      'Our client, one of the largest financial services firms, is seeking a Full Stack Java Developer Location: New York, NY Position Type: Contract Who are we looking for? We ...  are looking for a full stack developer that will act as a Hacker in Residence with a focus on rapid prototyping to build innovative new fintech products at Ventures D10X. Overview ...',
+    created: '2020-12-08T02:10:46Z'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Liberty Maritime Corporation',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Lake Success, Nassau County',
+    area: ['US', 'New York', 'Nassau County', 'Lake Success'],
+    longitude: -73.69356239999999,
+    latitude: 40.75502729999999,
+    url:
+      'https://www.adzuna.com/land/ad/1833685925?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=A1F6F87F81F9FBA9FD57DD9EA8E5B31FFE3B774B',
+    description:
+      'We are looking for a Full Stack Developer to use a range of different technologies and languages to develop scalable software solutions. Yoursquoll be part of a cross-functional ...  team thatrsquos responsible for the full software development life cycle, from conception to deployment of multiple software projects. As a Full <…',
+    created: '2020-11-19T14:58:56Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Developer (Remote Work)',
+    company: 'Digital Intelligence Systems, LLC',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.03758599999999,
+    latitude: 40.718477,
+    url:
+      'https://www.adzuna.com/land/ad/1828985090?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=E4C5CBBCBE60FBA3A69717ABA9109B6503FD75EE',
+    description:
+      'Job Title Full Stack Java Developer (Java, Angular, React, Kafka, Microservices) Location New York Duration 12 Months  High Possibility of extension Required Skills HTML CSS ... , JavaScript, Angular, Java, Python knowledge, APIrsquos, REST, React , Flutter and micro service, Mobile and web development experience Technical Skills Rapid prototyping experience Mo…',
+    created: '2020-11-17T16:55:21Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'React Developer',
+    company: 'Disys',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Scotchtown Branch, Orange County',
+    area: ['US', 'New York', 'Orange County', 'Scotchtown Branch'],
+    longitude: -74.03758599999999,
+    latitude: 40.718477,
+    url:
+      'https://www.adzuna.com/land/ad/1843041514?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=207BF903F043F73309B5A2811E33D8249208F229',
+    description:
+      '...  of study, or equivalent experience. · 4-6 years of experience with web development. · 3 years working professionally with React / Redux, Ruby on Rails and modern JavaScript frameworks ...  software tools that support our mission to expand access to mental health care. · Develop web-based applications using front-end and back-end technologies such as React,…',
+    created: '2020-11-24T22:04:24Z'
+  },
+  {
+    title: 'React/JavaScript Engineer',
+    company: 'Vaco Technology',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Lincoln, Madison County',
+    area: ['US', 'New York', 'Madison County', 'Lincoln'],
+    longitude: -86.0681958,
+    latitude: 39.9153277,
+    url:
+      'https://www.adzuna.com/land/ad/1830349886?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=23ADEC9D387D64A87F8980EA96B24C151A45943E',
+    description:
+      'Vaco is looking for a mid level JavaScript Engineer with strong React skills to assist a super cool health tech start up in Brookfield. This engineer will be able to work remotely ...  on a timeline -2 years JavaScript/React experience -Git Hub, Windows knowledge We will pay you virtually anything you ask for. So come ready with the skills and an hourly pay rate number.',
+    created: '2020-11-18T06:08:02Z'
+  },
+  {
+    title: 'Full Stack Rails/React Engineer',
+    company: 'The Lifetime Value Co.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.574677,
+    latitude: 42.522869,
+    url:
+      'https://www.adzuna.com/land/ad/1868013565?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=5643351A3C72F911ECB1CADED2FD5433D256A6F1',
+    description:
+      'Job Description About the Job LTV is looking for a Full Stack Rails/React Engineer to join our growing team. This is a remote-friendly position. Your experience here will give you ...  "leave it better than you found it." What You Bring to the Table BS or MS in Computer Science, Math, Engineering, or even a Ruby-centric, full-stack developer boot camp. Minimum …',
+    created: '2020-12-07T20:45:58Z'
+  },
+  {
+    title: 'Java Full Stack Developer',
+    company: 'Blockchain Council US Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.574677,
+    latitude: 42.522869,
+    url:
+      'https://www.adzuna.com/land/ad/1852952906?se=uPUqBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=EF1110D2AC17A1C39C1C99F21A64B2056EDDCB1E',
+    description:
+      'Requirements Proven experience as a Full Stack Developer or similar role Experience developing desktop and mobile applications Familiarity with common stacks Knowledge of multiple ... , React, Node.js) Familiarity with databases (e.g. MySQL, MongoDB), web servers (e.g. Apache) and UIUX design Excellent communication and teamwork skills Great attention to detail ...',
+    created: '2020-11-30T16:25:00Z'
+  },
+  {
+    title: 'Software Engineer Intern, Full Stack',
+    company: 'TuSimple',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Ithaca, Tompkins County',
+    area: ['US', 'New York', 'Tompkins County', 'Ithaca'],
+    longitude: -110.7898068,
+    latitude: 32.0926114,
+    url:
+      'https://www.adzuna.com/land/ad/1864590587?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=0EB42C752F2B249D7104C3BD05F5C8D842608F8E',
+    description:
+      'Job Description For immediate consideration, please send you resume to: sw_eng___internship_software_engineer___full_stack_e81b729c2usivy.greenhouse.io Artificial intelligence ...  to the above listed items. For immediate consideration, please send you resume to: sw_eng___internship_software_engineer___full_stack_e81b729c2usivy.greenhouse.io ...',
+    created: '2020-12-05T20:42:08Z'
+  },
+  {
+    title: 'Software Engineer Intern, Full Stack',
+    company: 'TuSimple',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.574677,
+    latitude: 42.522869,
+    url:
+      'https://www.adzuna.com/land/ad/1864591448?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=67CB795E40C0F1599244AC686AA9E33FD8E17E5A',
+    description:
+      'Job Description For immediate consideration, please send you resume to: sw_eng___internship_software_engineer___full_stack_e81b729c2usivy.greenhouse.io Artificial intelligence ...  to the above listed items. For immediate consideration, please send you resume to: sw_eng___internship_software_engineer___full_stack_e81b729c2usivy.greenhouse.io ...',
+    created: '2020-12-05T20:42:22Z'
+  },
+  {
+    title: 'Remote Full Stack RoR Engineer - RoR, React, TypeScript',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1868500174?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=5378B2E93DAB28F7A21C3593228E3995A89EB15E',
+    description:
+      '...  - Personal Growth in a company with limitless potentialSo, if you are a Full Stack Engineer with RoR, React, JavaScript and MySQL experience, please apply today ...  the industry by storm and we aim to continue our campaign to produce something that our clients/consumers truly benefit from. Currently, we are looking for a skilled Full Stack Engineer ...',
+    created: '2020-12-08T02:13:34Z'
+  },
+  {
+    title: 'Java Full Stack Developer-Mobile & Web-Fintech',
+    company: 'RMS Computer Corporation',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.98241949999999,
+    latitude: 40.7578343,
+    url:
+      'https://www.adzuna.com/land/ad/1786919634?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=4162BE033907954815D4EE69E3A014C9BD94486E',
+    description:
+      '...  services, and wealth management. We are looking for a full stack developer who can create new products concepts with a focus on rapid prototyping to build innovative new Fintech products ...  concept development and UI implementation - Basic frontend development skills (HTML, CSS, JavaScript, Angular, Flutter, React) - Basic backend development skills (Pyt…',
+    created: '2020-10-27T20:16:55Z'
+  },
+  {
+    title: 'React Development',
+    company: 'C&A Resources',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -121.4976944,
+    latitude: 38.5755233,
+    url:
+      'https://www.adzuna.com/land/ad/1821108322?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=74CFF264CD628D4922233D288111C4B55BBCCC8F',
+    description:
+      'Main Duties Responsibilities - Front-end development including transforming beautiful UI designs into working applications. - Leverage HTML5, JavaScript, React, RESTful services ...  and feature requests. - Write code that is cross-platform and cross-device compatible. Skills Experience - Experience with front-end web development on responsivemobile-first sites. - React ...',
+    created: '2020-11-13T16:31:22Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Engineer (Contract)',
+    company: 'Randstad Corporate Services',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -84.45336499999999,
+    latitude: 33.884306,
+    url:
+      'https://www.adzuna.com/land/ad/1844749447?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=FBB0B0CB1E67C8C0DC54AB02B9845DE27B729E6B',
+    description:
+      '...  the following qualifications Exceptional coding and software design ability. 10 years of experience with multiple languages, especially on the front end Javascript, UI frameworks ... , Computer Engineering, or a scientific discipline. An obsession with building quality and well-designed software. We are open-minded in our search for critical thinkers who are passionate ...',
+    created: '2020-11-25T19:17:33Z'
+  },
+  {
+    title: 'React Developer',
+    company: 'Disys',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Scotchtown Branch, Orange County',
+    area: ['US', 'New York', 'Orange County', 'Scotchtown Branch'],
+    longitude: -74.03758599999999,
+    latitude: 40.718477,
+    url:
+      'https://www.adzuna.com/land/ad/1843801019?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=00EE7D7AF46C752D7FC0537DC10B62A4018B808D',
+    description:
+      '...  of experience with web development. 3 years working professionally with React / Redux, Ruby on Rails and modern JavaScript frameworks. Experience with React/Redux on the front-end and Ruby ... React Developer DISYS is currently looking for a React Developer for a Temp to Permposition here in the Tampa area. The React <stro…',
+    created: '2020-11-25T07:27:44Z'
+  },
+  {
+    title: 'Senior Javascript Developer ( Full Stack, Angular / Node )',
+    company: 'TxMQ, Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Buffalo, Erie County',
+    area: ['US', 'New York', 'Erie County', 'Buffalo'],
+    longitude: -78.784601,
+    latitude: 43.018122,
+    url:
+      'https://www.adzuna.com/land/ad/1823297156?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=4A8451432C7D1B05D6E89E810EA4635DC9A90B9B',
+    description:
+      'Senior Javascript (Angular/Node) Developer (Full Stack) Summary Since 1979, TxMQ has been building, integrating, managing, supporting and securing critical business systems ... . Job Requirements: Required: • 5 years of experience developing web applications, with strong recent experience developing single-page web applications: Angular, React,…',
+    created: '2020-11-14T14:18:53Z'
+  },
+  {
+    title: 'Full Stack Developer (C#)',
+    company: 'Pactera EDGE',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.574677,
+    latitude: 42.522869,
+    url:
+      'https://www.adzuna.com/land/ad/1786613139?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=9329AFDF0CDE4594620EFF63FC6FE156292CEAC1',
+    description:
+      '...  and solution building workshops Comments THIS IS NOT A FRONT END ROLE BUT A FULL STACK ENGINEER WITH ANGULAR REACT AND C Expertise besides other skills. NEED POWER CODERS ...  the back end databases and integrations using conventional SQL and NoSQL databases -Support Client facing workshops to build the end to end solution architecture from a full-stack ...',
+    created: '2020-10-27T16:55:25Z',
+    contract: 'full_time'
+  },
+  {
+    title: '.Net Full Stack Developer',
+    company: 'Pactera Edge',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -122.1405944,
+    latitude: 47.6387207,
+    url:
+      'https://www.adzuna.com/land/ad/1855557358?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=331B7AC7518F731D059B66233AC938E72396405E',
+    description:
+      "Job Title .Net Full Stack Developer Location NYC, NY (Initially Remote opportunity due to covid-19) FTE Opportunity with Pactera Edge About Pactera EDGE - Pactera EDGE is a global ...  to build the end to end solution architecture from a full stack perspective -Interact with AIML engineers to design the front end and API's including dashboards needed for visualizing ...",
+    created: '2020-12-01T16:34:28Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Junior Software Developer',
+    company: "Dave & Adam's",
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Tonawanda, Erie County',
+    area: ['US', 'New York', 'Erie County', 'Tonawanda'],
+    longitude: -78.8967132,
+    latitude: 42.9897155,
+    url:
+      'https://www.adzuna.com/land/ad/1769145231?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=3DE8450E9333C2B733AEAA47BE00C40D70CC8B92',
+    description:
+      "...  during the application development process  Assisting the Director of Marketing and the Director of Web Technologies with daily tasks  Engineer complex software solutions for internal ... What We Need We're looking for a Software Developer who is bright, self-motivated, and comfortable working in a team. Should be experienced building for the web using PHP, Python ...",
+    created: '2020-10-17T19:26:48Z'
+  },
+  {
+    title: 'Full-Stack Senior Software Developer',
+    company: 'SOHO Square Solutions',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9893869,
+    latitude: 40.7485519,
+    url:
+      'https://www.adzuna.com/land/ad/1861509270?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=4214B44A27BCB6C73C56BD4853021AF9D254CF2A',
+    description:
+      'Description The Full Stack Software Developer position will be contributing to the design and implementation of software applications within the Broker Products development team ... . Responsibilities Developing software in multiple parts of the stack Help continuously improve our development process Participate in a Scrum <str…',
+    created: '2020-12-04T06:10:52Z'
+  },
+  {
+    title: 'Senior Full-Stack Engineer (React/NodeJS)',
+    company: 'Talkspace',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9833311,
+    latitude: 40.7696975,
+    url:
+      'https://www.adzuna.com/land/ad/1858493406?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=CDA50BEBB93A92EAC76352E53C75989EDFA2F393',
+    description:
+      '...  of experience working with: NodeJS, React, Javascript, CSS3, and HTML5 Led significant changes to complex systems Extensive experience with full-stack development, distributed systems ...  over one million people feel better. Were looking for a Senior Full-Stack engineer to push forward the experience, interaction and visual language of our products across…',
+    created: '2020-12-02T20:47:12Z'
+  },
+  {
+    title: 'Javascript/REACT Instructor - Remote',
+    company: 'Eliassen Group',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.01255259999999,
+    latitude: 40.7070853,
+    url:
+      'https://www.adzuna.com/land/ad/1853838819?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=258A119B540157A311288BA4FB3B3A8A696119E6',
+    description:
+      '. Working experience in both front-end and back-end development and are fluent inHTML/5 and CSS/3 Full-stack JavaScript (strong JavaScript highly preferred) At least one JS MV framework ... Job Description We have an exciting opportunity for a Javascript/REACT Instructor with our industry-leading client. 100% Remote opportunity We will accept corp to corp or w2 ...',
+    created: '2020-12-01T01:12:12Z'
+  },
+  {
+    title: 'Full Stack Engineer',
+    company: 'Fuzz',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -79.40554379999999,
+    latitude: 43.6467401,
+    url:
+      'https://www.adzuna.com/land/ad/1856311019?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=FA9C700D04A85E42633902CF29C435B053DBF4A1',
+    description:
+      '...  with other web developers, as well as marketing teams and engineers, to ensure the right look and necessary features are included in your work. Ensuring your software is well designed ... , documented and built to last. Engineering Skills 5 Years Experience and proficiency with HTML and CSS - the ability to code with languages like JavaScript and TypeScript Proficient ...',
+    created: '2020-12-01T20:42:58Z'
+  },
+  {
+    title: 'Senior Javascript Developer ( Full Stack, Angular / Node )',
+    company: 'TxMQ, Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Buffalo, Erie County',
+    area: ['US', 'New York', 'Erie County', 'Buffalo'],
+    longitude: -78.784601,
+    latitude: 43.018122,
+    url:
+      'https://www.adzuna.com/land/ad/1843797723?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=BF1011594A8B843E651671C078DCF9ECB035E5A0',
+    description:
+      'Senior Javascript (Angular/Node) Developer (Full Stack) Summary Since 1979, TxMQ has been building, integrating, managing, supporting and securing critical business systems ... : 5 years of experience developing web applications, with strong recent experience developing single-page web applications:Angular, React, Vue, etc. 5 years of experienc…',
+    created: '2020-11-25T07:25:27Z'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'JK Partners, Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.23384659999999,
+    latitude: 40.8055341,
+    url:
+      'https://www.adzuna.com/land/ad/1819748000?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=F17C234E57EFB33329407ACDB8CD47CFCD5B3B9C',
+    description:
+      '...  when delivering solutions. Qualifications Requirements Experience as a Full Stack Developer with a focus on Microsoft Technologies (C, .NET Framework, ASP.NET, Web API) Experience ...  building front-end web applications using modern web technologies using Angular 2 or React. Strong UIUX Design skills. Must be proficient with CSS. Basic knowledge of MSSQL.',
+    created: '2020-11-13T00:52:42Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Senior JavaScript Engineer - JavaScript, React / Angular',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1820840450?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=E3F08C12A21461F85F36FA36BB930C08BB96750D',
+    description:
+      'New York, NY Full-time $160k - $200kPosted 11/19/2020Senior JavaScript Engineer - JavaScript, React / Angular Are you a React and Angular JavaScript Engineer with a broad skillset ...  JavaScript Engineer with React experience and you can imagine a future working back onsite in Manhattan, please apply today Fee…',
+    created: '2020-11-13T12:33:08Z'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Xoriant Corporation',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.336002,
+    latitude: 40.560501,
+    url:
+      'https://www.adzuna.com/land/ad/1821099820?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=A78511853ACF298C8F138504A5A718146D005DCD',
+    description:
+      '...  Mobile and web development experience bull UX concept development and UI implementation bull Basic frontend development skills (HTML, CSS, JavaScript, Angular, Flutter, React) bull ...  Basic backend development skills (Python, PHP, R, Java) bull Experience with APIrsquos, REST and micro service bull Experience with rational databases bull Knowledge of code versioning ...',
+    created: '2020-11-13T16:30:38Z'
+  },
+  {
+    title: 'Senior JavaScript Engineer - JavaScript, React / Angular',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1870822226?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=AD4D36857CFDE628E8AAB368F4142BF9DA8F29FA',
+    description:
+      'Senior JavaScript Engineer - JavaScript, React / Angular Are you a React and Angular JavaScript Engineer with a broad skillset, a strong collaborative mindset, and an interest ...  or a Lead level role, so the right person will be fluent in JavaScript and will ideally have a broad front-end skill set. - JavaScript - React - Ang…',
+    created: '2020-12-09T03:44:36Z'
+  },
+  {
+    title: 'React Developer',
+    company: 'Insight Global Inc.',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.16971459999999,
+    latitude: 39.95534869999999,
+    url:
+      'https://www.adzuna.com/land/ad/1853575097?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=2E2C78EDAFD5246E74E87C6F23748CA80B1972FD',
+    description:
+      '-Day An employer in Tempe, AZ or NYC is looking for a React Developer who has a great understanding of CSS, JavaScript, and knowledge of React.js. This individual will be a part ... Position React Developer Location Tempe, AZ 85281 or New York, NY 10285 (Remote until after 2021) Duration 6-month contract to hire Must Haves - 4-5 years of Front-End Developer ...',
+    created: '2020-11-30T22:01:36Z'
+  },
+  {
+    title: 'JavaScript Developer - Albany, NY',
+    company: 'Taos',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Albany County, New York',
+    area: ['US', 'New York', 'Albany County'],
+    longitude: -105.5733788,
+    latitude: 36.4072134,
+    url:
+      'https://www.adzuna.com/land/ad/1869294051?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=5986BD6EE15D9B2C21008AA0EBCFBFE0F130F182',
+    description:
+      '...  of experience with modern web development technologies like React ReactJS, React Native, JavaScript, HTML5, and CSS3. bull At least 5 years of experience building responsive, cross browser UIs ...  and designing reusable code Who You Are bull At least 5 years of experience in development, debugging, and optimization of enterprise web based software applica…',
+    created: '2020-12-08T12:36:26Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Canoe Intelligence',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.00156199999999,
+    latitude: 40.720199,
+    url:
+      'https://www.adzuna.com/land/ad/1860602439?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=81EA566330001F1A76B447BFC10A16629DAE8004',
+    description:
+      ', or willingness and ability to pick it up quickly Knowledge of HTML, CSS, JavaScript and front-end frameworks (Angular, React, Vue) Familiar with agile development environment, continuous ...  of developments in web applications and programming languages REQUIRED SKILLS & COMPETENCIES: 5 years of web applications development experience PHP and/or Python development</st…',
+    created: '2020-12-03T21:15:08Z'
+  },
+  {
+    title: 'Software Engineering Lead (Back-End/Full-Stack)',
+    company: 'Headway',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -81.01973559999999,
+    latitude: 46.4769081,
+    url:
+      'https://www.adzuna.com/land/ad/1817181077?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=164BEC71FDAB9CB16E0E1663D1F57D403805DFEE',
+    description:
+      '. Experience in product, design, or other position complementary to software engineering. Experience managing AWS infrastructure You will: Push code, own architectural decisions ...  for an engineering team deploying daily across consumer-facing, therapist-facing, and internal-facing platforms; back-end web services; and machine learning models. Our back-end is python, our ...',
+    created: '2020-11-11T20:55:14Z'
+  },
+  {
+    title: 'Full Stack Engineer (Contract)',
+    company: 'Randstad',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -77.4584045,
+    latitude: 43.0377805,
+    url:
+      'https://www.adzuna.com/land/ad/1861496258?se=PuQpBGU66xG4VqzfFfrIig&utm_medium=api&utm_source=bc9f8e70&v=CCB2572AD3FCE75BA6642E379D5589F7A4695C42',
+    description:
+      'Full Stack Engineer (Contract)job details: location:New York, NY salary:$65 - $80 per hour date posted:Wednesday, November 25, 2020 job type:Contract industry:Finance ...  and Insurance reference:809875job descriptionFull Stack Engineer (Contract)job summary:Since 2001, we have used data science and technology to derive insights that forecast the future ...',
+    created: '2020-12-04T06:09:30Z'
+  },
+  {
+    title: 'JavaScript Developer',
+    company: 'Stratacent',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York City, New York',
+    area: ['US', 'New York', 'New York City'],
+    longitude: -74.0349825,
+    latitude: 40.7160849,
+    url:
+      'https://www.adzuna.com/land/ad/1867654625?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=D0A816F9805200C2DA60BA1E16866C9A1AECF328',
+    description:
+      '. httpstratacent.comeventstratacent-holiday-networking-2018 (short video and some pics) Job Title JavaScript - React JS Developer Location ndash NYC, NY Jersey City, NJ (Remote until new guidelines come ... ) Job Description We are looking for a solid JavaScript Developer who is proficient with React.js. Your primary focus will be on developing user interface components and imp…',
+    created: '2020-12-07T17:12:04Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Senior Full Stack Developer',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1867461352?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=C6B26F5D5C2F09A470D333622E8D16AA0D3E501A',
+    description:
+      'Minimum Required Skills OpenID, Golang, Python, React.JS, Vue.js, TypeScript, Node.js, SAML, Kratos, Keycloak Job Title Senior Full Stack Web Developer Location 100 REMOTE Salary ...  in the US. Due to growth, we are actively seeking to hire a Senior Full Stack Web Developer to join our team remotely. The ideal candidate will have strong experi…',
+    created: '2020-12-07T14:34:02Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'React Developer',
+    company: 'Rivi Consulting Group',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -84.28592669999999,
+    latitude: 34.0587702,
+    url:
+      'https://www.adzuna.com/land/ad/1867166051?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=C033741DCAECD6F1F8B6DC7A4D689220F476F648',
+    description:
+      'Role Overview As a Front- End developer, you will design andor develop informative, interactive, well-designed web sites to support business strategy. You will contribute ...  to solution specifications and develop the solution to client specifications. Responsibilities Design, code, test, debug, document and implement applications using JavaScript, ReactJS ...',
+    created: '2020-12-07T10:31:05Z'
+  },
+  {
+    title: 'PHP Full Stack Developer',
+    company: 'Kforce Technology',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Brooklyn Heights, Brooklyn',
+    area: ['US', 'New York', 'New York City', 'Brooklyn', 'Brooklyn Heights'],
+    longitude: -73.99170339999999,
+    latitude: 40.7517499,
+    url:
+      'https://www.adzuna.com/land/ad/1823269476?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=4396C7AB41348D54679D19DBA9D24B27AB778E7C',
+    description:
+      'RESPONSIBILITIES: Kforce has a client seeking two passionate PHP Full Stack Developer to join their Web Performance team in Brooklyn, NY. The contractors will be data mining ... , running data jobs and creating new metrics for the team. Job Requirements: REQUIREMENTS: A minimum of 3-5 years experience Experience with PHP, React, jQuery, extensive knowledge ...',
+    created: '2020-11-14T14:08:29Z'
+  },
+  {
+    title: 'Remote Full Stack RoR Engineer - RoR, React, TypeScript',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1864232715?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=58F80D2229D6DCB909F494699EECA65FCBCF53F4',
+    description:
+      '. Currently, we are looking for a skilled Full Stack Engineer with RoR, React, JavaScript and MySQL experience. If this sounds like you, we would love to tell you more about this incredible ...  PTO to Start - Paid Holidays - Personal Growth in a company with limitless potentialSo, if you are a Full Stack Engineer with RoR, React, JavaS…',
+    created: '2020-12-05T16:46:13Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Javascript/REACT Instructor - Remote',
+    company: 'Eliassen Group',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.01255259999999,
+    latitude: 40.7070853,
+    url:
+      'https://www.adzuna.com/land/ad/1828435913?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=D6FD56D8846E14EFDE6769516FF6959D3C44E0FC',
+    description:
+      '...  and back-end development and are fluent inHTML5 and CSS3 Full-stack JavaScript (strong JavaScript highly preferred) At least one JS MV framework (Angular, Backbone, or React preferred ...  training and assessments to prepare students for entry-level to mid-level careers in the field of software development Deliver training in but not limited to HTML, CSS, …',
+    created: '2020-11-17T06:58:18Z'
+  },
+  {
+    title: '100% REMOTE Full Stack Engineer',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1868500004?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=AA187B603FE2DD7C9587EF29CC96F8B7F509BAAB',
+    description:
+      '...  nowWhat You Need for this Position - Python - AWS - SQL - REACT - JavaScriptSo, if you are a 100% REMOTE Full Stack Engineer with experience, please apply today ...  around We are currently looking for one senior-level engineer who has experience with Python, AWS, SQL and ideally with Javascript/React as well. We are looking to hire ASAP, so apply ...',
+    created: '2020-12-08T02:13:22Z'
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Hired Recruiters',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9842168,
+    latitude: 40.7529715,
+    url:
+      'https://www.adzuna.com/land/ad/1868002292?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=B9D1C94CA1B19F69076153D64DAE4BF1E98467DB',
+    description:
+      '...  on engineering and sustainment services in development, security and operations activities Design and develop new features such as operational dashboards from a full-stack perspective Automate ... Job Description Full-Stack Developer Expedition Technology (EXP) is seeking a full-stack developer to help us …',
+    created: '2020-12-07T20:45:02Z'
+  },
+  {
+    title: 'Full Stack Software Engineer',
+    company: 'LogMeIn',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Astoria, Queens',
+    area: ['US', 'New York', 'New York City', 'Queens', 'Astoria'],
+    longitude: -74.0334549,
+    latitude: 40.7167267,
+    url:
+      'https://www.adzuna.com/land/ad/1818820311?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=3A04C74DAF01616D0BD030F3441D903655D66EE5',
+    description:
+      'Job Description Full Stack Software Engineer LogMeIn has a unique opportunity to leverage the breadth of our product portfolio, helping organizations embrace the future of work ...  and customer-focus - Experience in Backend development (NodeJS, PHP, Java, .NET, etc.) - Experience in Frontend development (JavaScript, TypeScript, Angular, React, etc.) - Overview…',
+    created: '2020-11-12T14:52:46Z'
+  },
+  {
+    title: 'Software Development Engineer',
+    company: 'amazon',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -75.524986,
+    latitude: 42.549568,
+    url:
+      'https://www.adzuna.com/land/ad/1870237731?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=CDDECEDE7FFE5AC33B7C77F29185A2EC8C81B8F6',
+    description:
+      ', and connectivity to advertising exchanges.Job Responsibilities:We’re looking for motivated software engineers to build web applications and services. We need full stack engineers with a range ...  of skills from HTML5/Javascript on the UI to Java for middle tier services. The more of these skills you have the better. You should feel comfortable developing in …',
+    created: '2020-12-08T20:35:20Z'
+  },
+  {
+    title: 'Full-Stack Trading Platform Software Engineer',
+    company: 'J Harlan Group, LLC',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9749305,
+    latitude: 40.7585337,
+    url:
+      'https://www.adzuna.com/land/ad/1856280391?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=D86DF80AB93FE7889E086BD0E4D80AAE966C6AF2',
+    description:
+      '...  solutions Fintech organization in NYC. An exciting opportunity for an experienced Full-Stack Trading Platform Software Engineer to develop next-generation institutional-grade, ultra-low ...  or equivalent experience. • Professional experience as a full-stack trading platform software engineer including experience with Java, React</…',
+    created: '2020-12-01T20:36:11Z'
+  },
+  {
+    title: 'Full Stack Engineer',
+    company: 'Naztec International Group LLC',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -80.14890679999999,
+    latitude: 26.6843279,
+    url:
+      'https://www.adzuna.com/land/ad/1858062847?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=C4ACEBCA2D7DB6DC2412F0E3B62E62EEE144DAE2',
+    description:
+      "Required Skills .NET, Angular 7, Restful Web Services, understanding of DockerKubernetes (everything is containerized) Basic Qualifications 5 years of fullstack .Net developer ...  experience Additional Skills AWS is a plus- they will work with S3 buckets, RD's on occasion Top Requirements Angular 7 - will take reacttypescript, but needs to have typescript with react ...",
+    created: '2020-12-02T16:29:56Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Full Stack Engineer',
+    company: 'Archibus Serraview',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -71.05962459999999,
+    latitude: 42.3587826,
+    url:
+      'https://www.adzuna.com/land/ad/1862692511?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=1B5CA1EA0DBC0326C01F382C5C78A9EBC506E6D5',
+    description:
+      '...  as described in the project timeline. Requirements Extensive experience in backend development with Ruby on Rails Knowledge of frontend stack (JavaScript, React, Redux, GraphQL, HTML, CSS ...   Serraview & SpaceIQ and help take workplace management to a whole, new level. Responsibilities Design, build and maintain backend for new features in Rails/JavaScript/React application ...',
+    created: '2020-12-04T21:04:27Z'
+  },
+  {
+    title: 'Javascript Engineer',
+    company: 'Comrise',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.2998128,
+    latitude: 40.5517951,
+    url:
+      'https://www.adzuna.com/land/ad/1827680736?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=0C1958FEADECDC298B5929282E7A68E741DBB7D6',
+    description:
+      '...  engineers today have committed themselves to a single SPA (typically React, but also Vue, Ember, or Angular, etc.). While they may be technically skilled, these developers would ... Job Title Javascript Engineer Location New York, NY (Remote to start during the pandemic) Term Contract ndash with possible extensions and conversion to perm Salary Negotiable ...',
+    created: '2020-11-16T22:25:09Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Software Engineer Full Stack',
+    company: 'Datadog',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York City, New York',
+    area: ['US', 'New York', 'New York City'],
+    longitude: -73.9901119,
+    latitude: 40.7560866,
+    url:
+      'https://www.adzuna.com/land/ad/1837740674?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=4E5A8C75FB6CEC5162C95A6066D9EBB888105523',
+    description:
+      '...  pragmatism, honesty, and simplicity to solve hard problems the right way. The opportunity: Full stack engineers work across the Datadog backend and frontendpython, go, postgres, cassandra ... , and more on the backend and react/redux on the frontendto build and scale new features for the core Datadog web application. Join us to build the next generation of high-scale, data ...',
+    created: '2020-11-21T18:59:18Z'
+  },
+  {
+    title: 'Senior Software Engineer',
+    company: 'Mitchell Martin',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9923058,
+    latitude: 40.7551382,
+    url:
+      'https://www.adzuna.com/land/ad/1871761861?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=1F07723F94922378816BD9986E46ACADD45F70F6',
+    description:
+      'Our client, a global provider of information technology products and services, is seeking a Senior Software Engineer Location: New York, NY Position Type: Full Time Who are we ...  looking for? We’re looking for a mid-level Software Engineer to help build the world’s best digital operations platform for restaurants. Our current technology stack consists mostly ...',
+    created: '2020-12-09T14:36:41Z'
+  },
+  {
+    title: 'Full Stack Engineer - New Venture',
+    company: 'M&T Bank',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Buffalo, Erie County',
+    area: ['US', 'New York', 'Erie County', 'Buffalo'],
+    longitude: -78.87442999999999,
+    latitude: 42.883781,
+    url:
+      'https://www.adzuna.com/land/ad/1843087460?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=D6FF380401381C1622660D1A1D152C3EB5430CF5',
+    description:
+      '...  education and/or work experience, including a minimum of 5 years’ systems analysis/application development experience Education and Experience Preferred: 5 years Software Engineering ...  experience with expertise developing Java applications and working with the JVM 2 years experience developing modern frontend interfaces via JavaScript frameworks such as React, Angular .…',
+    created: '2020-11-24T22:16:53Z'
+  },
+  {
+    title: 'Senior Full Stack Developer',
+    company: 'Edgewater Markets',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York City, New York',
+    area: ['US', 'New York', 'New York City'],
+    longitude: -73.97524349999999,
+    latitude: 40.759823,
+    url:
+      'https://www.adzuna.com/land/ad/1867515496?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=C34D4E605FF4087C076AE6B2E6F4287D617ABA87',
+    description:
+      'Please note, we_do_not_sponsor_visas. Must have 5_years_of_professional_experience, not including internships, as a Full Stack Developer extremely proficient in JavaScript ...  phases of the technology lifecycle.  Full-stack development experience which includes strong JavaScript with a focus on ReactJS 16 & Node.JS skills  Responsible for high-quality code ...',
+    created: '2020-12-07T15:17:11Z'
+  },
+  {
+    title: 'Principal Web Developer - Content accessibility',
+    company: 'Marlabs, Inc',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.4551826,
+    latitude: 40.5503307,
+    url:
+      'https://www.adzuna.com/land/ad/1857902416?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=9511692E45241028C67A95F822E4C7A58AC1BC0F',
+    description:
+      'Principal Web Developer - Content accessibility Duration Multiple year Location NYC, NY Job Description User Interface Front-End Software Engineer Position Client is seeking ...  in a dynamic environment with talented team members to deliver quality software. As a User Interface Front-End Software Engineer, you will use CSSSass, vanilla JavaScript, and …',
+    created: '2020-12-02T14:04:52Z'
+  },
+  {
+    title: 'Senior Full-Stack Engineer (React/NodeJS)',
+    company: 'Talkspace',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York City, New York',
+    area: ['US', 'New York', 'New York City'],
+    longitude: -73.9833311,
+    latitude: 40.7696975,
+    url:
+      'https://www.adzuna.com/land/ad/1864088535?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=404F377A2234650EC83B6990AD0E4C74E37F776D',
+    description:
+      '...  with: NodeJS, React, Javascript, CSS3, and HTML5  Led significant changes to complex systems  Extensive experience with full-stack development, distributed systems, and relational databases ...  people feel better. Were looking for a Senior Full-Stack engineer to push forward the experience, interaction and visual language of our products across the <stron…',
+    created: '2020-12-05T13:14:13Z'
+  },
+  {
+    title: 'Senior Software Engineer',
+    company: 'EDP World',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.97560829999999,
+    latitude: 40.7497508,
+    url:
+      'https://www.adzuna.com/land/ad/1825225598?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=584FEC741B76CD8BE4CDDD21CE6100FABAF1B563',
+    description:
+      'Sr. Software Engineer who will work on online platform for salesleads for ecommerce advisory. Primary development in modern React based applications using cutting edge ...  technologies. Required skillsexperience 5 years of full stack development experience. Expert in front end development in React and Storybook Experience in implementing desig…',
+    created: '2020-11-15T16:47:39Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Senior Full Stack Developer',
+    company: 'Canoe Intelligence',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -74.00156199999999,
+    latitude: 40.720199,
+    url:
+      'https://www.adzuna.com/land/ad/1860599304?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=CAF57B26EA2A6317747ED0BD3AA6A748E94CCA07',
+    description:
+      '...  in PHP and/or Python development and architecture Advanced knowledge of HTML, CSS, JavaScript and front-end frameworks (Angular, React, Vue) Expert with OOP, MVC, and commonly used ...  & COMPETENCIES: At least 5 years of web applications development experience At least 2 years experience managing teams, developing team members, and encouraging professional growth Fluent ...',
+    created: '2020-12-03T21:14:33Z'
+  },
+  {
+    title: 'Full Stack Engineer - New Venture',
+    company: 'M&T Bank',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'Buffalo, Erie County',
+    area: ['US', 'New York', 'Erie County', 'Buffalo'],
+    longitude: -78.87442999999999,
+    latitude: 42.883781,
+    url:
+      'https://www.adzuna.com/land/ad/1753747135?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=2C75CBE4E274959F3C1AA92023D6452C70521744',
+    description:
+      '...  experience, including a minimum of 5 years systems analysis/application development experience Education and Experience Preferred: 5 years Software Engineering experience with expertise ...  developing Java applications and working with the JVM2 years experience developing modern frontend interfaces via JavaScript frameworks such as React, Angular, Vue, etc.Experience desi…',
+    created: '2020-10-10T04:21:19Z'
+  },
+  {
+    title: 'Senior Full Stack Engineer',
+    company: 'Randstad Corporate Services',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -84.45336499999999,
+    latitude: 33.884306,
+    url:
+      'https://www.adzuna.com/land/ad/1833603389?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=38DB154B87E875BC31B3AC648E4681380E4DA256',
+    description:
+      'job summary Our client, an established leader in the marketing space is looking for a Senior Full Stack Engineer to play a key role in the planning and growth of the engineering ...  Years experience in software 5 Years experience w Ruby  Rails 4 Years experience w Javascript  React location New York, New York job type Permanent salary 120,000 - 150,000 per year ...',
+    created: '2020-11-19T12:46:52Z',
+    contract: 'full_time'
+  },
+  {
+    title: 'Lead Full Stack Engineer',
+    company: 'CyberCoders',
+    maxSalary: null,
+    minSalary: null,
+    locationName: 'New York, US',
+    area: ['US', 'New York'],
+    longitude: -73.9793758,
+    latitude: 40.7507617,
+    url:
+      'https://www.adzuna.com/land/ad/1871588823?se=ihoqBGU66xGzCbJerbJBJA&utm_medium=api&utm_source=bc9f8e70&v=210952B47980F624577FA63A6EBAD05557A7149B',
+    description:
+      'Minimum Required Skills JavaScript, REACT, NoSQL, JIRA, AWS, GIT, Docker, Angular Are you a Lead level Full Stack Engineer with JavaScript and C experience? Is your skillset broad ...  are a Lead Full Stack Engineer with JavaScript and C and you can imagine a future working back onsite in Manhattan, leading a team in a hands-on…',
+    created: '2020-12-09T12:40:41Z',
+    contract: 'full_time'
+  }
+]
+
 module.exports = {
   javaScriptJobsByState,
+  reactJobsByState,
   californiaJavascriptJobs,
-  californiaJavascriptData
+  californiaJavascriptData,
+  newYorkReactData,
+  newYorkReactJobs
 }

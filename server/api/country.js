@@ -7,7 +7,10 @@ const getAdzunaHistogram = require('./getAdzunaHistogram')
 const jobByStateHelper = require('./jobsByStateHelper')
 const AdzunaKey = process.env.ADZUNA_API_KEY
 const AdzunaId = process.env.ADZUNA_API_ID
-const {javaScriptJobsByState} = require('../../utils/dummyData')
+const {
+  javaScriptJobsByState,
+  reactJobsByState
+} = require('../../utils/dummyData')
 
 module.exports = router
 
@@ -27,6 +30,9 @@ router.get('/totals-ranges/:filter', async (req, res, next) => {
     if (filter === 'Javascript') {
       // Use dummy data
       jobsPerState = javaScriptJobsByState
+    } else if (filter === 'React') {
+      // Use dummy Data
+      jobsPerState = reactJobsByState
     } else {
       // 50 Adzuna Queries (1 for each state)
       jobsPerState = await Promise.all(

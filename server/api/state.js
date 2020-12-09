@@ -7,7 +7,9 @@ const getAdzunaJobs = require('./getAdzunaJobs')
 const getAdzunaHistogram = require('./getAdzunaHistogram')
 const {
   californiaJavascriptJobs,
-  californiaJavascriptData
+  californiaJavascriptData,
+  newYorkReactJobs,
+  newYorkReactData
 } = require('../../utils/dummyData')
 
 module.exports = router
@@ -29,12 +31,19 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
         histogramByPercent: californiaJavascriptData.histogramByPercent,
         jobs: californiaJavascriptJobs
       })
+    } else if (state === 'New%20York' && filter === 'React') {
+      res.json({
+        count: newYorkReactData.count,
+        averageSalary: newYorkReactData.averageSalary,
+        histogramByPercent: newYorkReactData.histogramByPercent,
+        jobs: newYorkReactJobs
+      })
     } else {
       // Multiple Pages -- We may want to comment this back in for production
       // let data = await Promise.all(
       // // EXAMPLE: 10 Pages = 500 Jobs
-      //   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(async page => {
-      //     const pageJobs = await getAdzunaJobs(filter, state, 50, page)
+      //   [1, 2, 3].map(async page => {
+      //     const pageJobs = await getAdzunaJobs(filter, state, 25, page)
       //     return pageJobs
       //   })
       // )
@@ -49,7 +58,7 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
       // }
 
       // Only 1 Page (no need to Promise.all)
-      const data = await getAdzunaJobs(filter, state, 3, 1)
+      const data = await getAdzunaJobs(filter, state, 10, 1)
 
       jobs = jobDataHelper(data.results)
       console.log('returns ' + jobs.length + ' jobs')
@@ -61,7 +70,6 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
             job.longitude,
             job.latitude
           )
-          // console.log('returned from Google:', location)
           if (location) {
             job.longitude = location.lng
             job.latitude = location.lat
@@ -69,17 +77,17 @@ router.get('/:state/jobs/:filter', async (req, res, next) => {
           return job
         })
       )
-
       const histData = await getAdzunaHistogram(filter, state)
       const histogramByPercent = calculatePercHistogram(histData)
-
-      res.json({
+      const jobsInfo = {
         count: data.count,
         // This might be undefined:
         averageSalary: data.mean,
         histogramByPercent,
         jobs: jobs
-      })
+      }
+      console.log(jobsInfo)
+      res.json(jobsInfo)
     }
   } catch (err) {
     next(err)
