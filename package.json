@@ -70,6 +70,9 @@
     "redux-thunk": "^2.3.0",
     "sequelize": "^5.3.1",
     "socket.io": "^2.2.0",
+    "supercluster": "^7.1.0",
+    "swr": "^0.3.9",
+    "use-supercluster": "^0.2.9",
     "victory": "^35.4.2"
   },
   "devDependencies": {
