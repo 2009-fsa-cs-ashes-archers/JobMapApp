@@ -12,16 +12,19 @@ notifications:
     on_failure: always # default: always (which is annoying, as it should be)
 install:
   - npm ci # faster, goes only from package-lock
-before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+# before_script:
+#   - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test # test the code
+  # - npm test # test the code
   - npm run build-client # make the bundle
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: javascript-jobs-usa
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: mOuoMudwoJoxIR7m1XIqgIGgapRCUqRn3IZzmkcnusn/VVQTjItnIUW6NOPJTNL5Ao67RpzfY9rG0coksvUglNl3Xq/0PPEMuD7PdphFlWmNUQla+d1aZ+O129Bj6Z7PoZw6b3v/VWZn6ZUGZc1G4aRYxW649RA7rrh7Synu9DOkWlxpW0xoo0DbR+9DHRlUsoyCKVufAAyvO1fw2WlfglGpisipfgj6vq6wldwKGdKmVg8P/3XdKX3Ysszu4zd9QdZx/hYsVfyHCXrdMhtl5nrs1ewCyuwmjOzEb/tODpr0d90XShvEkVlrqK4rG82kuAe5SR6FwgfdhhGGV+GhInYMfnpF9zWnrmT1CpqM5zyQ/ow0Ze2DA5jswCTLAeXEA2H0cwCU71/iUp0zMeeczW0GQ/31H0QTePg82Af6ca6Jb8RjyTMvg8sDVzit2rrgiyr8WltumaeGyJgC8cHJC4v7F/FtdWdgr59LEOzUxZJkdOvPGfwAkUB8jyBHvMgQwSnWEd0I1RVlAn2WMtBhe3siBztGtCBMcVNfDiGS7WkinXri0nBhPgLiEsqv3/4dKSxhg2pkqh+zJmsq/i/PQcuOrW0p2RGqA+U+FUOjl9CuVOYG5iJKpXa0trC3itSJ1xUAJC1UBR3cnhgDNtyie9yog4lOh681o24c52cRhtI=
