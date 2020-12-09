@@ -40,8 +40,8 @@ export default function TestMap() {
     }
   }))
 
-  // console.log('points', points)
-  // console.log('crimes', crimes)
+  console.log('points', points)
+  console.log('crimes', crimes)
 
   // get map bounds
   const bounds = mapRef.current

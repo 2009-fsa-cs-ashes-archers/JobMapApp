@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import {Login, Signup, MapHome} from './components'
 import {me} from './store'
 import TestMap from './components/TestMap'
-// import TestMap2 from './components/Testmap2'
 
 /**
  * COMPONENT

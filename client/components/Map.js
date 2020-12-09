@@ -9,7 +9,8 @@ import MapGL, {
   FullscreenControl,
   ScaleControl,
   GeolocateControl,
-  FlyToInterpolator
+  FlyToInterpolator,
+  Marker
 } from 'react-map-gl'
 import {
   Pins,
@@ -20,27 +21,11 @@ import {
   StateInfo
 } from '../components'
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
-// import Clusters from './Clusters'
-// import Supercluster from 'supercluster'
-
-// CREATING STATE NODES ARRAY
-const geoStatesArray = []
-
-for (let key in dataByState) {
-  // console.log(dataByState[key])
-  geoStatesArray.push({
-    name: key,
-    longitude: dataByState[key].longitude,
-    latitude: dataByState[key].latitude
-  })
-}
+import useSupercluster from 'use-supercluster'
 
 // TOKEN
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
-
-// MAPREF
-// const mapRef = useRef()
 
 // STYLE (could be put into CSS file)
 const geolocateStyle = {
@@ -109,18 +94,53 @@ export const Map = ({
   console.log(jobs)
 
   // CREATE GEOJSON ARRAY POINTS FOR LAYERS
-  let geojsonJobs = []
+  let points = []
 
   if (jobs) {
-    geojsonJobs = jobs.map(job => ({
+    points = jobs.map((job, idx) => ({
       type: 'Feature',
-      properties: {},
+      properties: {
+        jobId: idx,
+        area: job.area,
+        company: job.company,
+        description: job.description,
+        lat: job.latitude,
+        long: job.longitude,
+        title: job.title
+      },
       geometry: {
         type: 'Point',
         coordinates: [job.longitude, job.latitude]
       }
     }))
   }
+
+  console.log('jobs', jobs)
+
+  // MAPREF
+  const mapRef = useRef()
+
+  // get map bounds
+  const bounds = mapRef.current
+    ? mapRef.current
+        .getMap()
+        .getBounds()
+        .toArray()
+        .flat()
+    : null
+
+  console.log('bounds', bounds)
+  console.log('mapRef', mapRef)
+
+  // get clusters
+  const {clusters, supercluster} = useSupercluster({
+    points,
+    bounds,
+    zoom: viewport.zoom,
+    options: {radius: 75, maxZoom: 20}
+  })
+
+  console.log('cluster', clusters)
 
   // Set up geostates for rendering national pins
   const geostates =
@@ -264,6 +284,7 @@ export const Map = ({
         setViewport(newViewport)
       }}
       mapboxApiAccessToken={TOKEN}
+      ref={mapRef}
     >
       {/* Show Job Pins if a state is selected */}
       {selectedState !== 'USA' && (
@@ -273,7 +294,71 @@ export const Map = ({
           onMouseEnter={_onHoverMarker}
           onMouseLeave={_onLeaveHover}
         />
-      )}
+      )
+      // clusters.map((cluster) => {
+      //   // every cluster point has coordinates
+      //   const [longitude, latitude] = cluster.geometry.coordinates
+      //   // the point may be either a cluster or a job point
+      //   const {
+      //     cluster: isCluster,
+      //     point_count: pointCount,
+      //   } = cluster.properties
+
+      //   // we have a cluster to render
+      //   if (isCluster) {
+      //     return (
+      //       <Marker
+      //         key={`cluster-${cluster.id}`}
+      //         latitude={latitude}
+      //         longitude={longitude}
+      //       >
+      //         <div
+      //           className="cluster-marker"
+      //           style={{
+      //             width: `${10 + (pointCount / points.length) * 20}px`,
+      //             height: `${10 + (pointCount / points.length) * 20}px`,
+      //           }}
+      //           onClick={() => {
+      //             const expansionZoom = Math.min(
+      //               supercluster.getClusterExpansionZoom(cluster.id),
+      //               20
+      //             )
+
+      //             setViewport({
+      //               ...viewport,
+      //               latitude,
+      //               longitude,
+      //               zoom: expansionZoom,
+      //               transitionInterpolator: new FlyToInterpolator({
+      //                 speed: 2,
+      //               }),
+      //               transitionDuration: 'auto',
+      //             })
+      //           }}
+      //         >
+      //           {pointCount}
+      //         </div>
+      //       </Marker>
+      //     )
+      //   } else {
+      //     // we have a single point (job) to render
+      //     return (
+      //       <Marker
+      //         key={`job-${cluster.properties.jobId}`}
+      //         latitude={latitude}
+      //         longitude={longitude}
+      //       >
+      //         <button className="job-marker">
+      //           <img
+      //             src="https://img2.pngio.com/map-marker-png-transparent-images-png-all-map-pins-markers-png-512_512.png"
+      //             alt="jobs don't pay"
+      //           />
+      //         </button>
+      //       </Marker>
+      //     )
+      //   }
+      // })
+      }
 
       {/* Show National Pins if USA selected */}
       {selectedState === 'USA' && (
@@ -292,7 +377,7 @@ export const Map = ({
         <GeolocateControl />
       </div>
       <div style={nationalViewStyle}>
-        <NationalViewButton goToNational={() => _goToNationalView()} />
+        <NationalViewButton goToNational={_goToNationalView} />
       </div>
       <div style={fullscreenControlStyle}>
         <FullscreenControl />

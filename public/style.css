@@ -140,3 +140,23 @@ form div {
   text-align: center;
   padding: 0 2px;
 }
+
+/* Style for Clusters */
+.cluster-marker {
+  color: #fff;
+  background: #1978c8;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-marker {
+  background: none;
+  border: none;
+}
+
+.job-marker img {
+  width: 25px;
+}
