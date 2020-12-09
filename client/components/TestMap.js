@@ -2,32 +2,24 @@ import React, {useState, useRef} from 'react'
 import useSwr from 'swr'
 import ReactMapGL, {Marker, FlyToInterpolator} from 'react-map-gl'
 import useSupercluster from 'use-supercluster'
-// import './TestMap.css'
-
-console.log('useSupercluster', useSupercluster)
-
-const TOKEN =
-  'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
+// import './App.css'
 
 const fetcher = (...args) => fetch(...args).then(response => response.json())
 
 export default function TestMap() {
-  // setup map
   const [viewport, setViewport] = useState({
-    latitude: 37.785164,
-    longitude: -85,
+    latitude: 52.6376,
+    longitude: -1.135171,
     width: '100vw',
     height: '100vh',
     zoom: 12
   })
   const mapRef = useRef()
-  console.log(mapRef)
 
-  // load and prepare data
   const url =
     'https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10'
   const {data, error} = useSwr(url, {fetcher})
-  const crimes = data && !error ? data : []
+  const crimes = data && !error ? data.slice(0, 2000) : []
   const points = crimes.map(crime => ({
     type: 'Feature',
     properties: {cluster: false, crimeId: crime.id, category: crime.category},
@@ -40,10 +32,6 @@ export default function TestMap() {
     }
   }))
 
-  console.log('points', points)
-  console.log('crimes', crimes)
-
-  // get map bounds
   const bounds = mapRef.current
     ? mapRef.current
         .getMap()
@@ -52,9 +40,9 @@ export default function TestMap() {
         .flat()
     : null
 
-  // console.log('bounds', bounds)
+  console.log('bounds', bounds)
+  console.log('mapRef', mapRef)
 
-  // get clusters
   const {clusters, supercluster} = useSupercluster({
     points,
     bounds,
@@ -62,62 +50,61 @@ export default function TestMap() {
     options: {radius: 75, maxZoom: 20}
   })
 
-  console.log('cluster', clusters)
-
-  // return map
   return (
-    <ReactMapGL
-      {...viewport}
-      mapboxApiAccessToken={TOKEN}
-      onViewportChange={newViewport => {
-        setViewport({...newViewport})
-      }}
-      ref={mapRef}
-    >
-      {clusters.map(cluster => {
-        // every cluster point has coordinates
-        const [longitude, latitude] = cluster.geometry.coordinates
-        // the point may be either a cluster or a crime point
-        const {cluster: isCluster, point_count: pointCount} = cluster.properties
+    <div>
+      <ReactMapGL
+        {...viewport}
+        maxZoom={20}
+        mapboxApiAccessToken="pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q"
+        onViewportChange={newViewport => {
+          setViewport({...newViewport})
+        }}
+        ref={mapRef}
+      >
+        {clusters.map(cluster => {
+          const [longitude, latitude] = cluster.geometry.coordinates
+          const {
+            cluster: isCluster,
+            point_count: pointCount
+          } = cluster.properties
 
-        // we have a cluster to render
-        if (isCluster) {
-          return (
-            <Marker
-              key={`cluster-${cluster.id}`}
-              latitude={latitude}
-              longitude={longitude}
-            >
-              <div
-                className="cluster-marker"
-                style={{
-                  width: `${10 + pointCount / points.length * 20}px`,
-                  height: `${10 + pointCount / points.length * 20}px`
-                }}
-                onClick={() => {
-                  const expansionZoom = Math.min(
-                    supercluster.getClusterExpansionZoom(cluster.id),
-                    20
-                  )
-
-                  setViewport({
-                    ...viewport,
-                    latitude,
-                    longitude,
-                    zoom: expansionZoom,
-                    transitionInterpolator: new FlyToInterpolator({
-                      speed: 2
-                    }),
-                    transitionDuration: 'auto'
-                  })
-                }}
+          if (isCluster) {
+            return (
+              <Marker
+                key={`cluster-${cluster.id}`}
+                latitude={latitude}
+                longitude={longitude}
               >
-                {pointCount}
-              </div>
-            </Marker>
-          )
-        } else {
-          // we have a single point (crime) to render
+                <div
+                  className="cluster-marker"
+                  style={{
+                    width: `${10 + pointCount / points.length * 20}px`,
+                    height: `${10 + pointCount / points.length * 20}px`
+                  }}
+                  onClick={() => {
+                    const expansionZoom = Math.min(
+                      supercluster.getClusterExpansionZoom(cluster.id),
+                      20
+                    )
+
+                    setViewport({
+                      ...viewport,
+                      latitude,
+                      longitude,
+                      zoom: expansionZoom,
+                      transitionInterpolator: new FlyToInterpolator({
+                        speed: 2
+                      }),
+                      transitionDuration: 'auto'
+                    })
+                  }}
+                >
+                  {pointCount}
+                </div>
+              </Marker>
+            )
+          }
+
           return (
             <Marker
               key={`crime-${cluster.properties.crimeId}`}
@@ -129,8 +116,8 @@ export default function TestMap() {
               </button>
             </Marker>
           )
-        }
-      })}
-    </ReactMapGL>
+        })}
+      </ReactMapGL>
+    </div>
   )
 }
