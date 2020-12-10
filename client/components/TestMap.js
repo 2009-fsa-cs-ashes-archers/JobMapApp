@@ -2,11 +2,10 @@ import React, {useState, useRef} from 'react'
 import useSwr from 'swr'
 import ReactMapGL, {Marker, FlyToInterpolator} from 'react-map-gl'
 import useSupercluster from 'use-supercluster'
-// import './App.css'
 
 const fetcher = (...args) => fetch(...args).then(response => response.json())
 
-export default function TestMap() {
+export default function App() {
   const [viewport, setViewport] = useState({
     latitude: 52.6376,
     longitude: -1.135171,
@@ -39,9 +38,6 @@ export default function TestMap() {
         .toArray()
         .flat()
     : null
-
-  console.log('bounds', bounds)
-  console.log('mapRef', mapRef)
 
   const {clusters, supercluster} = useSupercluster({
     points,
