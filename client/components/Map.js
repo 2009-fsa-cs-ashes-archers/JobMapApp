@@ -314,7 +314,7 @@ export const Map = ({
                     height: `${10 + pointCount / points.length * 20}px`
                   }}
                   onClick={() => {
-                    const expansionZoom = Math.min(
+                    const expansionZoom = Math.max(
                       supercluster.getClusterExpansionZoom(cluster.id),
                       20
                     )
