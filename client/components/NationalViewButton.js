@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCountry} from '../store/country'
 import {applyGeoState} from '../store/selectedState'
-// import {MapController} from 'react-map-gl'
 
 const NationalViewButton = props => {
   return (

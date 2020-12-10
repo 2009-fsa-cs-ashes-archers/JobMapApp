@@ -54,7 +54,6 @@ export const Map = ({
 
   // GRAB ALL JOBS
   const jobs = jobsInfo.jobs
-
   // Set up geostates for rendering national pins
   const geostates =
     Object.keys(country).length === 0 && country.constructor === Object
