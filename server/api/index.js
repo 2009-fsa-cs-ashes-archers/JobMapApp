@@ -1,12 +1,15 @@
-const router = require('express').Router()
-module.exports = router
+const apiRouter = require('express').Router()
+const redis = require('redis')
+const REDIS_PORT = process.env.REDIS_PORT || 6379
+const redisClient = redis.createClient(REDIS_PORT)
+module.exports = {apiRouter, redisClient}
 
-router.use('/users', require('./users'))
-router.use('/country', require('./country'))
-router.use('/state', require('./state'))
-router.use('/city', require('./city'))
+apiRouter.use('/users', require('./users'))
+apiRouter.use('/country', require('./country'))
+apiRouter.use('/state', require('./state'))
+apiRouter.use('/city', require('./city'))
 
-router.use((req, res, next) => {
+apiRouter.use((req, res, next) => {
   const error = new Error('Not Found')
   error.status = 404
   next(error)

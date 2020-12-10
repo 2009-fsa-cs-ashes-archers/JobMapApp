@@ -8,11 +8,11 @@ export default class JobDetails extends PureComponent {
       <div style={{width: '24rem', margin: '-10px'}}>
         <div
           style={{
-            backgroundColor: '#457B9D',
             color: 'white',
             padding: '10px',
             borderRadius: '2px 2px 0 0'
           }}
+          className="gradient-style"
         >
           <h4 style={{padding: '0', margin: '0'}}>{info.title}</h4>
           <p
