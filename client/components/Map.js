@@ -78,7 +78,6 @@ export const Map = ({
       transitionDuration: 1500,
       transitionInterpolator: new FlyToInterpolator()
     })
-    updateSelectedState('USA')
   }
   const _goToStateView = geoState => {
     setViewport({
@@ -224,7 +223,7 @@ export const Map = ({
         <GeolocateControl />
       </div>
       <div className="nationalViewStyle">
-        <NationalViewButton goToNational={() => _goToNationalView()} />
+        <NationalViewButton />
       </div>
       <div className="fullscreenControlStyle">
         <FullscreenControl />
