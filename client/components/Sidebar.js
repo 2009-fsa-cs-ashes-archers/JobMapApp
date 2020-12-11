@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Filter, SearchData} from '../components'
 import {applyFilter} from '../store/filter'
@@ -38,14 +37,11 @@ const Sidebar = props => {
       fil = 'Javascript'
     }
     props.updateFilter(fil)
-    props.updateGeoState(geoState)
+    props.updateSelectedState(geoState)
     if (geoState !== 'USA') {
       await props.updateStateJobs(geoState, fil)
       toggleLoading(false)
     } else {
-      console.log(
-        "Switched back to USA. Time to get national data from cache if we have for the current filter or trigger a thunk if we don't"
-      )
       props.updateCountry(fil)
       toggleLoading(false)
     }
@@ -78,7 +74,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateFilter: filter => dispatch(applyFilter(filter)),
-    updateGeoState: geoState => dispatch(applyGeoState(geoState)),
+    updateSelectedState: geoState => dispatch(applyGeoState(geoState)),
     updateStateJobs: (geoState, filter) =>
       dispatch(fetchStateJobs(geoState, filter)),
     updateCountry: filter => dispatch(fetchCountry(filter))
