@@ -180,36 +180,6 @@ form div {
   padding: 10px;
 }
 
-.heatMapButtonStyle {
-  position: absolute;
-  top: 200px;
-  left: 0;
-  width: 49px;
-  height: 49px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.heatmap-button {
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  height: 29px;
-  width: 29px;
-  font-size: 18pt;
-  padding: 0 2px;
-  position: relative;
-}
-
-#heat-map-logo {
-  position: absolute;
-  height: 33px;
-  width: 33px;
-  bottom: -3px;
-  left: -2px;
-}
-
 .toggleButtonsStyle {
   position: absolute;
   top: 210px;
