@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, MapHome} from './components'
 import {me} from './store'
-import TestMap from './components/TestMap'
+// import TestMap from './components/TestMap'
 
 /**
  * COMPONENT
@@ -23,7 +23,6 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {/* Displays our Home component as a fallback */}
-        <Route path="/test" component={TestMap} />
       </Switch>
     )
   }

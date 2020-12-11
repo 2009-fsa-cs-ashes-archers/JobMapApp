@@ -40,11 +40,14 @@ form div {
   display: flex;
   justify-content: space-between;
   height: 80px;
+  z-index: 3;
+}
+
+.gradient-style {
   background: #2c4e63;
   background: -moz-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
   background: -webkit-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
   background: linear-gradient(to bottom, #2c4e63 0%, #457b9d 100%);
-  z-index: 3;
 }
 
 #logo {
@@ -147,6 +150,21 @@ form div {
   background: #1978c8;
   border-radius: 50%;
   padding: 10px;
+}
+
+.geolocateStyle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.nationalViewStyle {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  width: 49px;
+  height: 49px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,4 +177,25 @@ form div {
 
 .job-marker img {
   width: 25px;
+}
+
+.fullscreenControlStyle {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  padding: 10px;
+}
+
+.navStyle {
+  position: absolute;
+  top: 108px;
+  left: 0;
+  padding: 10px;
+}
+
+.scaleControlStyle {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  padding: 10px;
 }
