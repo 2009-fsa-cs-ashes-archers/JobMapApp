@@ -40,10 +40,6 @@ form div {
   display: flex;
   justify-content: space-between;
   height: 80px;
-  background: #2c4e63;
-  background: -moz-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
-  background: -webkit-linear-gradient(top, #2c4e63 0%, #457b9d 100%);
-  background: linear-gradient(to bottom, #2c4e63 0%, #457b9d 100%);
   z-index: 3;
 }
 
