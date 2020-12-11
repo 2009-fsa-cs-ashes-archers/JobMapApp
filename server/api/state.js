@@ -52,7 +52,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
       // }
 
       // Only 1 Page (no need to Promise.all)
-      const data = await getAdzunaJobs(filter, state, 20, 1)
+      const data = await getAdzunaJobs(filter, state, 5, 1)
 
       jobs = jobDataHelper(data.results)
       console.log('returns ' + jobs.length + ' jobs')
@@ -62,7 +62,8 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
           const location = await googleApiHelper(
             job.company,
             job.longitude,
-            job.latitude
+            job.latitude,
+            req.params.state.split('-').join(' ')
           )
           // console.log('returned from Google:', location)
           if (location) {
