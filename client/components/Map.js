@@ -9,7 +9,9 @@ import MapGL, {
   FullscreenControl,
   ScaleControl,
   GeolocateControl,
-  FlyToInterpolator
+  FlyToInterpolator,
+  Source,
+  Layer
 } from 'react-map-gl'
 import {
   Pins,
@@ -17,11 +19,11 @@ import {
   JobInfo,
   JobDetails,
   NationalViewButton,
-  StateInfo
+  StateInfo,
 } from '../components'
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
-// import Clusters from './Clusters'
-// import Supercluster from 'supercluster'
+import {heatmapLayer} from './heatmap-style'
+import ToggleButtonsMapView from './ToggleButtonsMapView'
 
 // TOKEN
 const TOKEN =
@@ -39,6 +41,8 @@ const defaultViewport = {
   pitch: 0
 }
 
+let firstMapView = 'pins';
+
 export const Map = ({
   filter,
   selectedState,
@@ -51,9 +55,15 @@ export const Map = ({
   const [jobPopupInfo, setJobPopupInfo] = useState(null)
   const [jobHoverInfo, setJobHoverInfo] = useState(null)
   const [stateHoverInfo, setStateHoverInfo] = useState(null)
+  const [mapView, setMapView] = useState(firstMapView)
 
   // GRAB ALL JOBS
   const jobs = jobsInfo.jobs
+
+  // Map view (pins, heatmap, clusters)
+  const handleMapView = (value) => {
+    setMapView(value)
+  };
 
   // Set up geostates for rendering national pins
   const geostates =
@@ -70,6 +80,26 @@ export const Map = ({
             averageSalary: jobsInState.averageSalary
           }
         })
+
+  // GeoJson for the heatmap
+
+  let myGeoJSON = {};
+    myGeoJSON.type = "FeatureCollection";
+    myGeoJSON.features = [];
+    
+    if (jobs) {
+      myGeoJSON.features = jobs.map((job) => ({
+        type: 'Feature',
+        properties: {
+          name: job.title
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [job.longitude, job.latitude],
+        },
+      }))
+    }
+  
 
   // listens for change in selectedState to change a viewport
   const _goToNationalView = () => {
@@ -198,27 +228,49 @@ export const Map = ({
       mapboxApiAccessToken={TOKEN}
     >
       {/* Show Job Pins if a state is selected */}
-      {selectedState !== 'USA' && (
-        <Pins
-          jobs={jobs}
-          onClick={_onClickMarker}
-          onMouseEnter={_onHoverMarker}
-          onMouseLeave={_onLeaveHover}
-        />
-      )}
+      {(() => {
+        if (mapView === 'pins' && selectedState !== 'USA') {
+          return (
+            <Pins
+              jobs={jobs}
+              onClick={_onClickMarker}
+              onMouseEnter={_onHoverMarker}
+              onMouseLeave={_onLeaveHover}
+            />
+          )
+        }
+      })()}
+      
 
       {/* Show National Pins if USA selected */}
-      {selectedState === 'USA' && (
-        <NationalPins
-          geostates={geostates}
-          onClick={_onClickStateNode}
-          onMouseEnter={_onHoverStateNode}
-          onMouseLeave={_onLeaveHoverStateNode}
+      {(() => {
+        if (mapView === 'pins' && selectedState === 'USA') {
+          return (
+            <NationalPins
+              geostates={geostates}
+              onClick={_onClickStateNode}
+              onMouseEnter={_onHoverStateNode}
+              onMouseLeave={_onLeaveHoverStateNode}
         />
-      )}
+          )
+        }
+      })()}
+
+      {/* Show heatmap if mapView as a heatmap selected (works for states) */}
+      {(() => {
+        if (mapView === 'heatMap' && selectedState !== 'USA') {
+          return (
+            <Source type="geojson" data={myGeoJSON}>
+              <Layer {...heatmapLayer} />
+            </Source>
+          )
+        }
+      })()}
+
+    
       {_renderPopup()}
       {_renderHover()}
-      {_renderStateHover()}
+      {_renderStateHover()} 
 
       <div className="geolocateStyle">
         <GeolocateControl />
@@ -234,6 +286,9 @@ export const Map = ({
       </div>
       <div className="scaleControlStyle">
         <ScaleControl />
+      </div>
+      <div className="toggleButtonsStyle">
+        <ToggleButtonsMapView mapView={handleMapView} />
       </div>
     </MapGL>
   )
