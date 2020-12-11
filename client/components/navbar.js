@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = props => (
-  <nav id="nav">
+  <nav id="nav" className="gradient-style">
     <div className="navbar navbar-left">
       {/* The navbar will show these links after you log in */}
       <Link to="/">

@@ -4,15 +4,24 @@ import {Divider} from '@material-ui/core'
 export default class JobDetails extends PureComponent {
   render() {
     const {info} = this.props
+    let salaryInfo
+    if (info.minSalary) {
+      salaryInfo = `est. $${Math.round(info.minSalary / 1000)}K-${Math.round(
+        info.maxSalary / 1000
+      )}K`
+    } else if (info.salary) {
+      salaryInfo = `est. $${Math.round(info.salary / 1000)}K`
+    }
+
     return (
       <div style={{width: '24rem', margin: '-10px'}}>
         <div
           style={{
-            backgroundColor: '#457B9D',
             color: 'white',
             padding: '10px',
             borderRadius: '2px 2px 0 0'
           }}
+          className="gradient-style"
         >
           <h4 style={{padding: '0', margin: '0'}}>{info.title}</h4>
           <p
@@ -46,11 +55,7 @@ export default class JobDetails extends PureComponent {
             >
               Apply now with Adzuna
             </a>
-            {info.minSalary
-              ? `est. $${Math.round(info.minSalary / 1000)}K-${Math.round(
-                  info.maxSalary / 1000
-                )}K`
-              : ''}
+            {salaryInfo ? salaryInfo : ''}
           </div>
         </div>
       </div>

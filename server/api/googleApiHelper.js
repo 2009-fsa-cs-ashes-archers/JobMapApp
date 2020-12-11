@@ -1,6 +1,7 @@
 const axios = require('axios')
+const {dataByState} = require('../../utils/constants')
 
-async function googleApiHelper(company, lng, lat) {
+async function googleApiHelper(company, lng, lat, state) {
   const key = process.env.GOOGLE_PLACES_API_TOKEN
   const companyStr = company
     .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
@@ -8,10 +9,17 @@ async function googleApiHelper(company, lng, lat) {
     .join('%20')
   // console.log(companyStr, lng, lat)
   const {data} = await axios.get(`
-  https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${companyStr}&inputtype=textquery&fields=geometry&&locationbias=point:${lat},${lng}&key=${key}
+  https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${companyStr}&inputtype=textquery&fields=geometry,formatted_address&locationbias=point:${lat},${lng}&key=${key}
   `)
   if (data.candidates.length) {
-    return data.candidates[0].geometry.location
+    for (let i = 0; i < data.candidates.length; i++) {
+      if (
+        data.candidates[i].formatted_address.includes(dataByState[state].abb)
+      ) {
+        return data.candidates[i].geometry.location
+      }
+    }
+    return undefined
   }
 }
 

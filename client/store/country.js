@@ -10,7 +10,10 @@ export const setCountry = country => ({
 export const fetchCountry = filter => {
   return async dispatch => {
     try {
-      const fmFilter = filter.split(' ').join('-')
+      const fmFilter = filter
+        .toLowerCase()
+        .split(' ')
+        .join('-')
       const {data} = await Axios.get(`/api/country/totals-ranges/${fmFilter}`)
       dispatch(setCountry(data))
     } catch (error) {
