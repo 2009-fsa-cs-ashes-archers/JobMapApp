@@ -182,3 +182,12 @@ form div {
   left: 0;
   padding: 10px;
 }
+
+.toggleButtonsStyle {
+  position: absolute;
+  top: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 4px;
+}
