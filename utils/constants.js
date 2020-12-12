@@ -15,7 +15,8 @@ const dataByState = {
   Alaska: {
     latitude: 66.160507,
     longitude: -153.369141,
-    abb: 'AK'
+    abb: 'AK',
+    zoom: 3.5
   },
   Arizona: {
     latitude: 34.048927,
@@ -30,7 +31,8 @@ const dataByState = {
   California: {
     latitude: 36.778259,
     longitude: -119.417931,
-    abb: 'CA'
+    abb: 'CA',
+    zoom: 5
   },
   Colorado: {
     latitude: 39.113014,
@@ -40,12 +42,14 @@ const dataByState = {
   Connecticut: {
     latitude: 41.599998,
     longitude: -72.699997,
-    abb: 'CT'
+    abb: 'CT',
+    zoom: 7.5
   },
   Delaware: {
     latitude: 39.0,
     longitude: -75.5,
-    abb: 'DE'
+    abb: 'DE',
+    zoom: 7.5
   },
   Florida: {
     latitude: 27.994402,
@@ -105,12 +109,14 @@ const dataByState = {
   Maryland: {
     latitude: 39.045753,
     longitude: -76.641273,
-    abb: 'MD'
+    abb: 'MD',
+    zoom: 7
   },
   Massachusetts: {
     latitude: 42.407211,
     longitude: -71.382439,
-    abb: 'MA'
+    abb: 'MA',
+    zoom: 7
   },
   Michigan: {
     latitude: 44.182205,
@@ -150,12 +156,14 @@ const dataByState = {
   'New Hampshire': {
     latitude: 44.0,
     longitude: -71.5,
-    abb: 'NH'
+    abb: 'NH',
+    zoom: 7
   },
   'New Jersey': {
     latitude: 39.833851,
     longitude: -74.871826,
-    abb: 'NJ'
+    abb: 'NJ',
+    zoom: 7
   },
   'New Mexico': {
     latitude: 34.307144,
@@ -200,7 +208,8 @@ const dataByState = {
   'Rhode Island': {
     latitude: 41.700001,
     longitude: -71.5,
-    abb: 'RI'
+    abb: 'RI',
+    zoom: 8
   },
   'South Carolina': {
     latitude: 33.836082,
@@ -220,7 +229,8 @@ const dataByState = {
   Texas: {
     latitude: 31.0,
     longitude: -100.0,
-    abb: 'TX'
+    abb: 'TX',
+    zoom: 5
   },
   Utah: {
     latitude: 39.41922,
@@ -230,7 +240,8 @@ const dataByState = {
   Vermont: {
     latitude: 44.0,
     longitude: -72.699997,
-    abb: 'VT'
+    abb: 'VT',
+    zoom: 7.5
   },
   Virginia: {
     latitude: 37.926868,
