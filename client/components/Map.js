@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {dataByState, states} from '../../utils/constants'
 import {applyGeoState} from '../store/selectedState'
@@ -86,7 +86,7 @@ export const Map = ({
   let myGeoJSON = {};
     myGeoJSON.type = "FeatureCollection";
     myGeoJSON.features = [];
-    
+
     if (jobs) {
       myGeoJSON.features = jobs.map((job) => ({
         type: 'Feature',
@@ -99,7 +99,7 @@ export const Map = ({
         },
       }))
     }
-  
+
 
   // listens for change in selectedState to change a viewport
   const _goToNationalView = () => {
@@ -239,7 +239,7 @@ export const Map = ({
           )
         }
       })()}
-      
+
 
       {/* Show National Pins if USA selected */}
       {(() => {
@@ -266,10 +266,10 @@ export const Map = ({
         }
       })()}
 
-    
+
       {_renderPopup()}
       {_renderHover()}
-      {_renderStateHover()} 
+      {_renderStateHover()}
 
       <div className="geolocateStyle">
         <GeolocateControl />
@@ -297,7 +297,8 @@ const mapStateToProps = state => {
   return {
     selectedState: state.selectedState,
     country: state.country,
-    filter: state.filter
+    filter: state.filter,
+    jobsInfo: state.stateJobs,
   }
 }
 
