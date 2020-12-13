@@ -29,13 +29,10 @@ import ToggleButtonsMapView from './ToggleButtonsMapView'
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
 
-// MAPREF
-// const mapRef = useRef()
-
 // VIEWPORT
 const defaultViewport = {
-  latitude: 37.785164,
-  longitude: -85,
+  latitude: 40,
+  longitude: -95,
   zoom: 3.5,
   bearing: 0,
   pitch: 0
@@ -110,11 +107,12 @@ export const Map = ({
     })
   }
   const _goToStateView = geoState => {
+    console.log(geoState.zoom)
     setViewport({
       latitude: geoState.latitude,
       // Offset the lng
-      longitude: geoState.longitude + 3,
-      zoom: 6,
+      longitude: geoState.longitude,
+      zoom: geoState.zoom || 6,
       bearing: 0,
       pitch: 0,
       transitionDuration: 1500,
@@ -217,6 +215,7 @@ export const Map = ({
 
   return (
     <MapGL
+      id="react-map"
       {...viewport}
       width="100%"
       height="100%"
