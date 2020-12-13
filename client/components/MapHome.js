@@ -38,9 +38,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapHome)
 
-/**
- * PROP TYPES
- */
-// MapHome.propTypes = {
-//   email: PropTypes.string
-// }
