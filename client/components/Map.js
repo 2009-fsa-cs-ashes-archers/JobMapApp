@@ -215,6 +215,7 @@ export const Map = ({
 
   return (
     <MapGL
+      id="react-map"
       {...viewport}
       width="100%"
       height="100%"
