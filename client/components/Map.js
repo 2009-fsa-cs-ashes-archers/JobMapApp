@@ -215,29 +215,27 @@ export const Map = ({
   // Cluster Functions
   const _sourceRef = React.createRef()
 
-  // _onViewportChange = viewport => this.setState({viewport});
-
   const _onClickCluster = (event) => {
-    // if (event.feature) {
-    const feature = event.features[0]
-    const clusterId = feature.properties.cluster_id
+    if (event.features.length) {
+      const feature = event.features[0]
+      const clusterId = feature.properties.cluster_id
 
-    const mapboxSource = _sourceRef.current.getSource()
+      const mapboxSource = _sourceRef.current.getSource()
 
-    mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
-      if (err) {
-        return
-      }
+      mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (err) {
+          return
+        }
 
-      setViewport({
-        ...viewport,
-        longitude: feature.geometry.coordinates[0],
-        latitude: feature.geometry.coordinates[1],
-        zoom,
-        transitionDuration: 500,
+        setViewport({
+          ...viewport,
+          longitude: feature.geometry.coordinates[0],
+          latitude: feature.geometry.coordinates[1],
+          zoom,
+          transitionDuration: 500,
+        })
       })
-    })
-    // }
+    }
   }
 
   return (
