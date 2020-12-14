@@ -6,8 +6,12 @@ const ShowSidebar = ({toggleShowing, showing}) => {
       type="submit"
       onClick={toggleShowing}
       style={{marginTop: '3px'}}
+      id="mobile-info-button"
     >
-      {showing ? 'Hide' : 'Show Stats'}
+      {showing
+      ? <img src="Down-Arrow.png" alt="close" />
+      : <img src="Up-Arrow.png" alt="open" />
+      }
     </button>
   )
 }

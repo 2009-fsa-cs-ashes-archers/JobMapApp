@@ -229,9 +229,11 @@ form div {
     bottom: 0;
     height: 5%;
     width: 100vw;
+    transition: all .5s ease;
   }
   .show-sidebar {
-    height: 74%
+    height: 100%;
+    transition: all .5s ease;
   }
   .navbar-right {
     display: none;
@@ -241,5 +243,25 @@ form div {
   }
   #mobile-only {
     display: block;
+  }
+  .filter {
+    padding-top: 5px;
+    padding-bottom: 0;
+    height: 155px;
+  }
+  .search-data-container {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: space-evenly;
+  }
+  .average-rent-container {
+    margin-top: 8px;
+  }
+  #mobile-info-button {
+    border: none;
+  }
+  #mobile-info-button img {
+    height: 20px;
+    width: 60px;
   }
 }
