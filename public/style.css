@@ -75,14 +75,17 @@ form div {
 
 /* Sidebar styles */
 #sidebar-container {
-  width: 20vw;
-  height: 100%;
   /* border-left: 6px groove #457B9D; */
   margin-right: -15px;
   text-align: center;
   background: #eaebea;
   z-index: 3;
   border-radius: 0px 0px 0px 40px;
+}
+
+.sidebar-class {
+  width: 20vw;
+  height: 100%;
 }
 
 .search-data-container {
@@ -100,6 +103,13 @@ form div {
   padding: 25px;
   height: 200px;
   color: white;
+}
+.average-rent-container {
+  margin: 20px;
+  padding-top: 10px;
+  /* background-color: white; */
+  border-radius: 5px;
+  border: black solid 1px;
 }
 
 /* Map Styles */
@@ -190,4 +200,68 @@ form div {
   justify-content: center;
   align-items: center;
   left: 4px;
+}
+
+#mobile-only {
+  display: none;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 500px) {
+  .app-row {
+    flex-direction: column;
+  }
+  .app-column {
+    width: 100vw;
+    height: 100vh;
+  }
+  #nav {
+    height: 0;
+    justify-content: flex-end;
+    margin-right: 0;
+  }
+  #sidebar-container {
+    border-radius: 0px;
+  }
+  .sidebar-class {
+    position: absolute;
+    bottom: 0;
+    height: 5%;
+    width: 100vw;
+    transition: all .5s ease;
+  }
+  .show-sidebar {
+    height: 100%;
+    transition: all .5s ease;
+  }
+  .navbar-right {
+    display: none;
+  }
+  #logo {
+    left: 20px;
+  }
+  #mobile-only {
+    display: block;
+  }
+  .filter {
+    padding-top: 5px;
+    padding-bottom: 0;
+    height: 155px;
+  }
+  .search-data-container {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: space-evenly;
+  }
+  .average-rent-container {
+    margin-top: 8px;
+  }
+  #mobile-info-button {
+    border: none;
+  }
+  #mobile-info-button img {
+    height: 20px;
+    width: 60px;
+  }
 }

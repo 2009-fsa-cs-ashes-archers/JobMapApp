@@ -4,7 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
-export {default as MapHome} from './MapHome'
+export {default as Map} from './Map'
 export {Login, Signup} from './auth-form'
 export {default as Sidebar} from './Sidebar'
 export {default as Filter} from './Filter'
@@ -15,3 +15,4 @@ export {default as JobInfo} from './job-info'
 export {default as JobDetails} from './job-details'
 export {default as NationalViewButton} from './NationalViewButton'
 export {default as StateInfo} from './state-info'
+export {default as AverageRentInfo} from './AverageRentInfo'

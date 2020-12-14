@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {dataByState, states} from '../../utils/constants'
 import {applyGeoState} from '../store/selectedState'
@@ -30,13 +30,10 @@ import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers'
 const TOKEN =
   'pk.eyJ1IjoiYm91c3RhbmlwNzE4IiwiYSI6ImNrZndwa2MweTE1bDkzMHA5NTdvMWxjZHUifQ.zY3GvA4Jq0g5I22NoPCt-Q'
 
-// MAPREF
-// const mapRef = useRef()
-
 // VIEWPORT
 const defaultViewport = {
-  latitude: 37.785164,
-  longitude: -85,
+  latitude: 40,
+  longitude: -95,
   zoom: 3.5,
   bearing: 0,
   pitch: 0,
@@ -83,23 +80,23 @@ export const Map = ({
         })
 
   // GeoJson for the heatmap
+  let myGeoJSON = {};
+    myGeoJSON.type = "FeatureCollection";
+    myGeoJSON.features = [];
 
-  let myGeoJSON = {}
-  myGeoJSON.type = 'FeatureCollection'
-  myGeoJSON.features = []
+    if (jobs) {
+      myGeoJSON.features = jobs.map((job) => ({
+        type: 'Feature',
+        properties: {
+          name: job.title
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [job.longitude, job.latitude],
+        },
+      }))
+    }
 
-  if (jobs) {
-    myGeoJSON.features = jobs.map((job) => ({
-      type: 'Feature',
-      properties: {
-        name: job.title,
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [job.longitude, job.latitude],
-      },
-    }))
-  }
 
   // listens for change in selectedState to change a viewport
   const _goToNationalView = () => {
@@ -113,8 +110,8 @@ export const Map = ({
     setViewport({
       latitude: geoState.latitude,
       // Offset the lng
-      longitude: geoState.longitude + 3,
-      zoom: 6,
+      longitude: geoState.longitude,
+      zoom: geoState.zoom || 6,
       bearing: 0,
       pitch: 0,
       transitionDuration: 1500,
@@ -240,6 +237,7 @@ export const Map = ({
 
   return (
     <MapGL
+      id="react-map"
       {...viewport}
       width="100%"
       height="100%"
@@ -290,7 +288,7 @@ export const Map = ({
         }
       })()}
 
-      {/* Show heatmap if mapView as a heatmap selected (works for states) */}
+      {/* Show clusters if mapView 'clusters' mode is selected (works for states) */}
       {(() => {
         if (mapView === 'clusters' && selectedState !== 'USA') {
           return (
@@ -341,6 +339,7 @@ const mapStateToProps = (state) => {
     selectedState: state.selectedState,
     country: state.country,
     filter: state.filter,
+    jobsInfo: state.stateJobs,
   }
 }
 

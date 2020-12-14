@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {Filter, SearchData} from '../components'
+import {Filter, SearchData, AverageRentInfo} from '../components'
 import {applyFilter} from '../store/filter'
 import {applyGeoState} from '../store/selectedState'
 import {fetchStateJobs} from '../store/stateJobs'
 import {fetchCountry} from '../store/country'
+import ShowSidebar from "./ShowSidebar"
 
 const Sidebar = props => {
   const [filter, setFilter] = useState(props.filter)
   const [geoState, setGeoState] = useState(props.selectedState)
   const [loading, toggleLoading] = useState(true)
+  const [showingInMobile, toggleShowing] = useState(false)
 
   // Runs once when the app loads
   useEffect(() => {
@@ -27,6 +29,11 @@ const Sidebar = props => {
     },
     [props.selectedState]
   )
+
+  const handleTap = (e) => {
+    e.preventDefault()
+    toggleShowing(!showingInMobile)
+  }
 
   // Handler to apply new geo & keyword filter
   const handleSubmit = async event => {
@@ -47,10 +54,14 @@ const Sidebar = props => {
     }
   }
 
-  // useEffect(() => console.log(loading), [loading])
-
   return (
-    <div id="sidebar-container">
+    <div id="sidebar-container" className={`sidebar-class${showingInMobile ? ' show-sidebar' : ''}`}>
+      <div id="mobile-only">
+        <ShowSidebar
+          toggleShowing={handleTap}
+          showing={showingInMobile}
+        />
+      </div>
       <Filter
         keyword={filter}
         handleFilter={setFilter}
@@ -59,6 +70,7 @@ const Sidebar = props => {
         dealWithSubmit={handleSubmit}
       />
       <SearchData loading={loading} />
+      <AverageRentInfo loading={loading} />
     </div>
   )
 }
