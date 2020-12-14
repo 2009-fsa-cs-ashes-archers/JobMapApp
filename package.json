@@ -60,6 +60,7 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^16.8.6",
     "react-map-gl": "^5.2.10",
     "react-redux": "^7.0.1",

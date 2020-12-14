@@ -112,6 +112,22 @@ form div {
   border: black solid 1px;
 }
 
+.rent-green {
+  border: green solid 1px;
+}
+.rent-yellow {
+  border: #E6AD0F solid 1px;
+}
+.rent-red {
+  border: #E63946 solid 1px;
+}
+
+.rent-ratio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 /* Map Styles */
 
 .marker-btn {
@@ -263,5 +279,9 @@ form div {
   #mobile-info-button img {
     height: 20px;
     width: 60px;
+  }
+
+  .table td, .table th {
+    padding: 0;
   }
 }

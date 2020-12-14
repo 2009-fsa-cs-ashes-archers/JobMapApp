@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(1),
+    maxWidth: '375px',
   },
 }));
 
@@ -56,7 +57,9 @@ export default function InfoPopover() {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <Typography>Ratio based on 2 bedroom average rent. A good rent-to-income ratio is around 30% of gross income. Most landlords will require that as a minimum percentage. </Typography>
+        <Typography
+          style={{fontSize: '.9rem',}}
+        >Based on avg. 2-bedroom rent. Suggested rent-to-income ratio is appx. 30% of gross income, and is required by many landlords. </Typography>
       </Popover>
     </div>
   );
