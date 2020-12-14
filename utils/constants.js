@@ -19,7 +19,8 @@ const dataByState = {
     studioAverageRent: 1065,
     oneBedroomAverageRent: 679.74,
     twoBedroomAverageRent: 1266.6,
-    abb: 'AK'
+    abb: 'AK',
+    zoom: 3.5
   },
   Arizona: {
     latitude: 34.048927,
@@ -43,7 +44,8 @@ const dataByState = {
     studioAverageRent: 2403.94,
     oneBedroomAverageRent: 2559.61,
     twoBedroomAverageRent: 3175.54,
-    abb: 'CA'
+    abb: 'CA',
+    zoom: 5
   },
   Colorado: {
     latitude: 39.113014,
@@ -59,7 +61,8 @@ const dataByState = {
     studioAverageRent: 1387.09,
     oneBedroomAverageRent: 1642.01,
     twoBedroomAverageRent: 2036.84,
-    abb: 'CT'
+    abb: 'CT',
+    zoom: 7.5
   },
   Delaware: {
     latitude: 39.0,
@@ -67,7 +70,8 @@ const dataByState = {
     studioAverageRent: 1106.56,
     oneBedroomAverageRent: 1255.80,
     twoBedroomAverageRent: 1442.02,
-    abb: 'DE'
+    abb: 'DE',
+    zoom: 7.5
   },
   Florida: {
     latitude: 27.994402,
@@ -163,7 +167,8 @@ const dataByState = {
     studioAverageRent: 1527.12,
     oneBedroomAverageRent: 1675.44,
     twoBedroomAverageRent: 1869.39,
-    abb: 'MD'
+    abb: 'MD',
+    zoom: 7
   },
   Massachusetts: {
     latitude: 42.407211,
@@ -171,7 +176,8 @@ const dataByState = {
     studioAverageRent: 2476.12,
     oneBedroomAverageRent: 2644.07,
     twoBedroomAverageRent: 3120.45,
-    abb: 'MA'
+    abb: 'MA',
+    zoom: 7
   },
   Michigan: {
     latitude: 44.182205,
@@ -235,7 +241,8 @@ const dataByState = {
     studioAverageRent: 1191.42,
     oneBedroomAverageRent: 1631.61,
     twoBedroomAverageRent: 1824.32,
-    abb: 'NH'
+    abb: 'NH',
+    zoom: 7
   },
   'New Jersey': {
     latitude: 39.833851,
@@ -243,7 +250,8 @@ const dataByState = {
     studioAverageRent: 2008.04,
     oneBedroomAverageRent: 2038.41,
     twoBedroomAverageRent: 2558.25,
-    abb: 'NJ'
+    abb: 'NJ',
+    zoom: 7
   },
   'New Mexico': {
     latitude: 34.307144,
@@ -315,7 +323,8 @@ const dataByState = {
     studioAverageRent: 1555.42,
     oneBedroomAverageRent: 1893.35,
     twoBedroomAverageRent: 2427.56,
-    abb: 'RI'
+    abb: 'RI',
+    zoom: 8
   },
   'South Carolina': {
     latitude: 33.836082,
@@ -347,7 +356,8 @@ const dataByState = {
     studioAverageRent: 1134.93,
     oneBedroomAverageRent: 1271.46,
     twoBedroomAverageRent: 1576.46,
-    abb: 'TX'
+    abb: 'TX',
+    zoom: 5
   },
   Utah: {
     latitude: 39.41922,
@@ -363,7 +373,8 @@ const dataByState = {
     studioAverageRent: 1526.73,
     oneBedroomAverageRent: 1485.71,
     twoBedroomAverageRent: 1388.14,
-    abb: 'VT'
+    abb: 'VT',
+    zoom: 7.5
   },
   Virginia: {
     latitude: 37.926868,

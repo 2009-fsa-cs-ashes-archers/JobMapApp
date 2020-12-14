@@ -10,6 +10,7 @@ const App = () => {
         <Navbar />
         <Routes />
       </div>
+      {/* For mobile, I want the sidebar to expose itself by clicking on the bottom, and then have it come up to about half the page, and upon clicking a collapse button, have it go back down */}
       <Sidebar />
     </div>
   )
