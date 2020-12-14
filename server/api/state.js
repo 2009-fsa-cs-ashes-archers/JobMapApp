@@ -30,7 +30,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
         count: californiaJavascriptData.count,
         averageSalary: californiaJavascriptData.averageSalary,
         histogramByPercent: californiaJavascriptData.histogramByPercent,
-        jobs: californiaJavascriptJobs
+        jobs: californiaJavascriptJobs,
       }
     } else {
       // Multiple Pages -- We may want to comment this back in for production
@@ -50,6 +50,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
       //     return [...arr, ...obj.results]
       //   }, [])
       // }
+
 
       // Only 1 Page (no need to Promise.all)
       const data = await getAdzunaJobs(filter, state, 3, 1)
@@ -82,7 +83,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
         // This might be undefined:
         averageSalary: data.mean,
         histogramByPercent,
-        jobs: jobs
+        jobs: jobs,
       }
     }
     console.log(

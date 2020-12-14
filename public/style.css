@@ -104,6 +104,13 @@ form div {
   height: 200px;
   color: white;
 }
+.average-rent-container {
+  margin: 20px;
+  padding-top: 10px;
+  /* background-color: white; */
+  border-radius: 5px;
+  border: black solid 1px;
+}
 
 /* Map Styles */
 

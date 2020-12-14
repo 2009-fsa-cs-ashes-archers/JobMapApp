@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {Filter, SearchData} from '../components'
+import {Filter, SearchData, AverageRentInfo} from '../components'
 import {applyFilter} from '../store/filter'
 import {applyGeoState} from '../store/selectedState'
 import {fetchStateJobs} from '../store/stateJobs'
@@ -70,6 +70,7 @@ const Sidebar = props => {
         dealWithSubmit={handleSubmit}
       />
       <SearchData loading={loading} />
+      <AverageRentInfo loading={loading} />
     </div>
   )
 }

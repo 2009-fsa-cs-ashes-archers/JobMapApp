@@ -1,4 +1,4 @@
-const MAX_ZOOM_LEVEL = 9;
+const MAX_ZOOM_LEVEL = 20;
 
 export const heatmapLayer = {
   maxzoom: MAX_ZOOM_LEVEL,
@@ -30,8 +30,8 @@ export const heatmapLayer = {
       'rgb(255,201,101)'
     ],
     // Adjust the heatmap radius by zoom level
-    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, MAX_ZOOM_LEVEL, 20],
+    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, MAX_ZOOM_LEVEL, 30],
     // Transition from heatmap to circle layer by zoom level
-    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0]
+    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 20]
   }
 };

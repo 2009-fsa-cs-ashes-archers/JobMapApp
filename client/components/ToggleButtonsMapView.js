@@ -14,13 +14,13 @@ export default function VerticalToggleButtons({mapView}) {
 
   return (
     <ToggleButtonGroup size="small" orientation="vertical" value={view} exclusive onChange={handleChange}>
-      <ToggleButton value="list" aria-label="list" onClick={() => mapView('pins')}>
+      <ToggleButton value="pins" aria-label="pins" onClick={() => mapView("pins")}>
         <PinDropIcon style={{ color: '#eaebea' }}/>
       </ToggleButton>
-      <ToggleButton value="module" aria-label="module" onClick={() => mapView('heatMap')}>
+      <ToggleButton value="heatmap" aria-label="heatmap" onClick={() => mapView("heatMap")}>
         <WhatshotIcon style={{ color: '#eaebea' }}/>
       </ToggleButton>
-      <ToggleButton value="quilt" aria-label="quilt" onClick={() => mapView('clusters')}>
+      <ToggleButton value="clusters" aria-label="clusters" onClick={() => mapView("clusters")}>
         <RadioButtonUncheckedIcon style={{ color: '#eaebea' }}/>
       </ToggleButton>
     </ToggleButtonGroup>
