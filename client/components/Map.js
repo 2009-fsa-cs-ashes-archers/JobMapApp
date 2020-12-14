@@ -11,7 +11,7 @@ import MapGL, {
   GeolocateControl,
   FlyToInterpolator,
   Source,
-  Layer
+  Layer,
 } from 'react-map-gl'
 import {
   Pins,
@@ -24,6 +24,7 @@ import {
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
 import {heatmapLayer} from './heatmap-style'
 import ToggleButtonsMapView from './ToggleButtonsMapView'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers'
 
 // TOKEN
 const TOKEN =
@@ -35,10 +36,10 @@ const defaultViewport = {
   longitude: -95,
   zoom: 3.5,
   bearing: 0,
-  pitch: 0
+  pitch: 0,
 }
 
-let firstMapView = 'pins';
+let firstMapView = 'pins'
 
 export const Map = ({
   filter,
@@ -46,7 +47,7 @@ export const Map = ({
   country,
   jobsInfo,
   updateSelectedState,
-  updateStateJobs
+  updateStateJobs,
 }) => {
   const [viewport, setViewport] = useState(defaultViewport)
   const [jobPopupInfo, setJobPopupInfo] = useState(null)
@@ -60,13 +61,13 @@ export const Map = ({
   // Map view (pins, heatmap, clusters)
   const handleMapView = (value) => {
     setMapView(value)
-  };
+  }
 
   // Set up geostates for rendering national pins
   const geostates =
     Object.keys(country).length === 0 && country.constructor === Object
       ? []
-      : states.map(state => {
+      : states.map((state) => {
           const jobsInState = country.jobsPerState[state]
           const dataForState = dataByState[state]
           return {
@@ -74,12 +75,11 @@ export const Map = ({
             latitude: dataForState.latitude,
             longitude: dataForState.longitude,
             count: jobsInState.count,
-            averageSalary: jobsInState.averageSalary
+            averageSalary: jobsInState.averageSalary,
           }
         })
 
   // GeoJson for the heatmap
-
   let myGeoJSON = {};
     myGeoJSON.type = "FeatureCollection";
     myGeoJSON.features = [];
@@ -103,11 +103,10 @@ export const Map = ({
     setViewport({
       ...defaultViewport,
       transitionDuration: 1500,
-      transitionInterpolator: new FlyToInterpolator()
+      transitionInterpolator: new FlyToInterpolator(),
     })
   }
-  const _goToStateView = geoState => {
-    console.log(geoState.zoom)
+  const _goToStateView = (geoState) => {
     setViewport({
       latitude: geoState.latitude,
       // Offset the lng
@@ -116,25 +115,22 @@ export const Map = ({
       bearing: 0,
       pitch: 0,
       transitionDuration: 1500,
-      transitionInterpolator: new FlyToInterpolator()
+      transitionInterpolator: new FlyToInterpolator(),
     })
   }
-  useEffect(
-    () => {
-      if (selectedState === 'USA') {
-        _goToNationalView()
-      } else {
-        _goToStateView(dataByState[selectedState])
-      }
-    },
-    [selectedState]
-  )
+  useEffect(() => {
+    if (selectedState === 'USA') {
+      _goToNationalView()
+    } else {
+      _goToStateView(dataByState[selectedState])
+    }
+  }, [selectedState])
 
   // Methods for Job Nodes
-  const _onClickMarker = job => {
+  const _onClickMarker = (job) => {
     setJobPopupInfo(job)
   }
-  const _onHoverMarker = job => {
+  const _onHoverMarker = (job) => {
     setJobHoverInfo(job)
   }
   const _onLeaveHover = () => {
@@ -145,12 +141,12 @@ export const Map = ({
   }
 
   // Methods for State Nodes
-  const _onClickStateNode = async geoState => {
+  const _onClickStateNode = async (geoState) => {
     setStateHoverInfo(null)
     updateSelectedState(geoState.name)
     await updateStateJobs(geoState.name, filter)
   }
-  const _onHoverStateNode = geoState => {
+  const _onHoverStateNode = (geoState) => {
     setStateHoverInfo(geoState)
   }
   const _onLeaveHoverStateNode = () => {
@@ -213,6 +209,32 @@ export const Map = ({
     )
   }
 
+  // Cluster Functions
+  const _sourceRef = React.createRef()
+
+  const _onClickCluster = (event) => {
+    if (event.features.length) {
+      const feature = event.features[0]
+      const clusterId = feature.properties.cluster_id
+
+      const mapboxSource = _sourceRef.current.getSource()
+
+      mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (err) {
+          return
+        }
+
+        setViewport({
+          ...viewport,
+          longitude: feature.geometry.coordinates[0],
+          latitude: feature.geometry.coordinates[1],
+          zoom,
+          transitionDuration: 500,
+        })
+      })
+    }
+  }
+
   return (
     <MapGL
       id="react-map"
@@ -220,10 +242,12 @@ export const Map = ({
       width="100%"
       height="100%"
       mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={newViewport => {
+      onViewportChange={(newViewport) => {
         setViewport(newViewport)
       }}
       mapboxApiAccessToken={TOKEN}
+      interactiveLayerIds={[clusterLayer.id]}
+      onClick={_onClickCluster}
     >
       {/* Show Job Pins if a state is selected */}
       {(() => {
@@ -239,7 +263,6 @@ export const Map = ({
         }
       })()}
 
-
       {/* Show National Pins if USA selected */}
       {(() => {
         if (selectedState === 'USA') {
@@ -249,7 +272,7 @@ export const Map = ({
               onClick={_onClickStateNode}
               onMouseEnter={_onHoverStateNode}
               onMouseLeave={_onLeaveHoverStateNode}
-        />
+            />
           )
         }
       })()}
@@ -265,6 +288,25 @@ export const Map = ({
         }
       })()}
 
+      {/* Show clusters if mapView 'clusters' mode is selected (works for states) */}
+      {(() => {
+        if (mapView === 'clusters' && selectedState !== 'USA') {
+          return (
+            <Source
+              type="geojson"
+              data={myGeoJSON}
+              cluster={true}
+              clusterMaxZoom={14}
+              clusterRadius={50}
+              ref={_sourceRef}
+            >
+              <Layer {...clusterLayer} />
+              <Layer {...clusterCountLayer} />
+              <Layer {...unclusteredPointLayer} />
+            </Source>
+          )
+        }
+      })()}
 
       {_renderPopup()}
       {_renderHover()}
@@ -292,7 +334,7 @@ export const Map = ({
   )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     selectedState: state.selectedState,
     country: state.country,
@@ -301,11 +343,11 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    updateSelectedState: stateName => dispatch(applyGeoState(stateName)),
+    updateSelectedState: (stateName) => dispatch(applyGeoState(stateName)),
     updateStateJobs: (stateName, filter) =>
-      dispatch(fetchStateJobs(stateName, filter))
+      dispatch(fetchStateJobs(stateName, filter)),
   }
 }
 
