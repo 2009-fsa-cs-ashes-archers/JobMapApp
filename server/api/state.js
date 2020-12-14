@@ -36,7 +36,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
       // Multiple Pages -- We may want to comment this back in for production
       // let data = await Promise.all(
       // // EXAMPLE: 10 Pages = 500 Jobs
-      //   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(async page => {
+      //   [1, 2, 3, 4, 5,].map(async page => {
       //     const pageJobs = await getAdzunaJobs(filter, state, 50, page)
       //     return pageJobs
       //   })
@@ -53,7 +53,7 @@ router.get('/:state/jobs/:filter', stateCache, async (req, res, next) => {
 
 
       // Only 1 Page (no need to Promise.all)
-      const data = await getAdzunaJobs(filter, state, 3, 1)
+      const data = await getAdzunaJobs(filter, state, 25, 1)
 
       jobs = jobDataHelper(data.results)
       console.log('returns ' + jobs.length + ' jobs')
