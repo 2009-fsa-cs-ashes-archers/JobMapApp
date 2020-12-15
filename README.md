@@ -1,4 +1,6 @@
-# Boilermaker
+# Welcome to JavaScript Jobs USA
+
+<img src="public/Logo-Yellow.png" width="300">
 
 _Good things come in pairs_
 
