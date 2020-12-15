@@ -2,19 +2,22 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCountry} from '../store/country'
 import {applyGeoState} from '../store/selectedState'
+import Tooltip from '@material-ui/core/Tooltip';
 
 const NationalViewButton = props => {
   return (
-    <button
-      className="national-button"
-      type="button"
-      onClick={() => {
-        props.updateSelectedState('USA')
-        props.updateCountry(props.filter)
-      }}
-    >
-      🇺🇸
-    </button>
+    <Tooltip title="Return To USA" aria-label="Return To USA" placement="right-end">
+      <button
+        className="national-button"
+        type="button"
+        onClick={() => {
+          props.updateSelectedState('USA')
+          props.updateCountry(props.filter)
+        }}
+      >
+        🇺🇸
+      </button>
+    </Tooltip>
   )
 }
 
