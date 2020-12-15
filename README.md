@@ -57,7 +57,7 @@ cd JobMapApp
 npm install
 npm run start-dev
 ```
-You'll need to run Redis server locally. To download Redis, run 'brew install redis' and 'redis-server'.
+You'll need to run Redis server locally. To download Redis, run 'brew install redis' and 'redis-server'. For more information, go to this <a href="https://dzone.com/articles/a-brief-introduction-to-caching-with-nodejs-and-re">link</a>.
 
 You will need to sign up for API keys with <a href="https://developer.adzuna.com/signup">Adzuna</a> and <a href="https://cloud.google.com/free">Google Cloud</a> and set them to process environment variables:
 
