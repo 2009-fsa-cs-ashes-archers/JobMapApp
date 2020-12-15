@@ -14,8 +14,8 @@ const Navbar = props => (
     </div>
     <div className="navbar navbar-right">
       {/* {if user is not logged in show this} */}
-      <Link to="/login">Log In</Link>
-      <Link to="/signup">Sign Up</Link>
+      {/* <Link to="/login">Log In</Link>
+      <Link to="/signup">Sign Up</Link> */}
       {/* {if user is logged in show bookmarks + log out + account tbd} */}
     </div>
   </nav>

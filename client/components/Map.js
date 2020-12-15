@@ -22,9 +22,8 @@ import {
   StateInfo,
 } from '../components'
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener'
-import {heatmapLayer} from './heatmap-style'
 import ToggleButtonsMapView from './ToggleButtonsMapView'
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './layers'
 
 // TOKEN
 const TOKEN =
@@ -54,6 +53,7 @@ export const Map = ({
   const [jobHoverInfo, setJobHoverInfo] = useState(null)
   const [stateHoverInfo, setStateHoverInfo] = useState(null)
   const [mapView, setMapView] = useState(firstMapView)
+  const [interactiveLayerIds, setInteractiveLayerIds] = useState(null)
 
   // GRAB ALL JOBS
   const jobs = jobsInfo.jobs
@@ -61,6 +61,8 @@ export const Map = ({
   // Map view (pins, heatmap, clusters)
   const handleMapView = (value) => {
     setMapView(value)
+    if (value === 'clusters') setInteractiveLayerIds([clusterLayer.id]);
+    else setInteractiveLayerIds(null)
   }
 
   // Set up geostates for rendering national pins
@@ -213,25 +215,24 @@ export const Map = ({
   const _sourceRef = React.createRef()
 
   const _onClickCluster = (event) => {
-    if (event.features.length) {
-      const feature = event.features[0]
-      const clusterId = feature.properties.cluster_id
-
-      const mapboxSource = _sourceRef.current.getSource()
-
-      mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
-        if (err) {
-          return
-        }
-
-        setViewport({
-          ...viewport,
-          longitude: feature.geometry.coordinates[0],
-          latitude: feature.geometry.coordinates[1],
-          zoom,
-          transitionDuration: 500,
+    if (mapView === 'clusters') {
+      if (event.features.length) {
+        const feature = event.features[0]
+        const clusterId = feature.properties.cluster_id
+        const mapboxSource = _sourceRef.current.getSource()
+        mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) {
+            return
+          }
+          setViewport({
+            ...viewport,
+            longitude: feature.geometry.coordinates[0],
+            latitude: feature.geometry.coordinates[1],
+            zoom,
+            transitionDuration: 500,
+          })
         })
-      })
+      }
     }
   }
 
@@ -246,7 +247,7 @@ export const Map = ({
         setViewport(newViewport)
       }}
       mapboxApiAccessToken={TOKEN}
-      interactiveLayerIds={[clusterLayer.id]}
+      interactiveLayerIds={interactiveLayerIds}
       onClick={_onClickCluster}
     >
       {/* Show Job Pins if a state is selected */}
@@ -291,6 +292,7 @@ export const Map = ({
       {/* Show clusters if mapView 'clusters' mode is selected (works for states) */}
       {(() => {
         if (mapView === 'clusters' && selectedState !== 'USA') {
+
           return (
             <Source
               type="geojson"
