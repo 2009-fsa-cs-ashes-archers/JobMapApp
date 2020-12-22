@@ -10,7 +10,7 @@ An interactive job search tool to find jobs for JavaScript developers by locatio
   
 ## Video Demo
 
-//Link//
+<a href="https://www.youtube.com/watch?v=UNz9k9E9IWM"> YouTube Video </a>
 
 ## Tech-Stack
 
