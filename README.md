@@ -7,6 +7,8 @@ An interactive job search tool to find jobs for JavaScript developers by locatio
 ## Deployed App
 
 <a href="https://javascript-jobs-usa.herokuapp.com/"> JavaScript Jobs USA </a>
+
+<img src="public/JJU_Screencapture.png" width="600">
   
 ## Video Demo
 
