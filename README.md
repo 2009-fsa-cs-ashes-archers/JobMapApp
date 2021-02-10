@@ -4,17 +4,14 @@
 
 An interactive job search tool to find jobs for JavaScript developers by location. Custom search any US state for a developer job and see and apply to hundreds of real-time jobs plotted to the map in multiple view modes. JavaScript Jobs USA is a Progressive Web App (PWA) built using React, Redux, Node/Express, Mapbox, Redis, Adzuna Jobs API, and Google Place Search API. 
 
-## Deployed App
+## <a href="https://www.youtube.com/watch?v=UNz9k9E9IWM"> Demo Video on YouTube </a>
 
-<a href="https://javascript-jobs-usa.herokuapp.com/"> JavaScript Jobs USA </a>
+## <a href="https://javascript-jobs-usa.herokuapp.com/"> Deployed on Heroku </a>
+_App is hosted on a free Heroku server. Please allow 15-30 seconds for it to spin up._
 
 <img src="public/JJU_ScreenCapture.png" width="800">
 
 <img src="public/JJU_ScreenCapture2.png" width="800">
-  
-## Video Demo
-
-<a href="https://www.youtube.com/watch?v=UNz9k9E9IWM"> YouTube Video </a>
 
 ## Tech-Stack
 
