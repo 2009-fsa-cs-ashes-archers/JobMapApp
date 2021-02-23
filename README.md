@@ -7,7 +7,9 @@ An interactive job search tool to find jobs for JavaScript developers by locatio
 ## <a href="https://www.youtube.com/watch?v=UNz9k9E9IWM"> Demo Video on YouTube </a>
 
 ## <a href="https://javascript-jobs-usa.herokuapp.com/"> Deployed on Heroku </a>
-_App is hosted on a free Heroku server. Please allow 15-30 seconds for it to spin up._
+_App is hosted on a free Heroku server. Please allow 15-30 seconds for it to spin up. Also, we have limited Adzuna API queries. If app causes 500 error, please select state: California; filter: Javascript, to explore app with cached dummy data.
+
+_
 
 <img src="public/JJU_ScreenCapture.png" width="800">
 
